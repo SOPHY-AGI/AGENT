@@ -18,8 +18,8 @@ read_when:
 </p>
 
 <p align="center">
-  <a href="https://github.com/AGENT/AGENT">GitHub</a> ·
-  <a href="https://github.com/AGENT/AGENT/releases">Releases</a> ·
+  <a href="https://github.com/SOPHY-AGI/AGENT">GitHub</a> ·
+  <a href="https://github.com/SOPHY-AGI/AGENT/releases">Releases</a> ·
   <a href="/">Docs</a> ·
   <a href="/start/clawd">Moltbot assistant setup</a>
 </p>
@@ -120,7 +120,7 @@ Switching between npm and git installs later is easy: install the other flavor a
 From source (development):
 
 ```bash
-git clone https://github.com/AGENT/AGENT.git
+git clone https://github.com/SOPHY-AGI/AGENT.git
 cd AGENT
 pnpm install
 pnpm ui:build # auto-installs UI deps on first run

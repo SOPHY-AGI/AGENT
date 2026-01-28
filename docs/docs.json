@@ -13,11 +13,11 @@
   "topbarLinks": [
     {
       "name": "GitHub",
-      "url": "https://github.com/AGENT/AGENT"
+      "url": "https://github.com/SOPHY-AGI/AGENT"
     },
     {
       "name": "Releases",
-      "url": "https://github.com/AGENT/AGENT/releases"
+      "url": "https://github.com/SOPHY-AGI/AGENT/releases"
     }
   ],
   "redirects": [

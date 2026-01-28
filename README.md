@@ -1,7 +1,7 @@
 # 🦞 Moltbot — Personal AI Assistant
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/AGENT/AGENT/main/docs/whatsapp-clawd.jpg" alt="Clawdbot" width="400">
+  <img src="https://raw.githubusercontent.com/SOPHY-AGI/AGENT/main/docs/whatsapp-clawd.jpg" alt="Clawdbot" width="400">
 </p>
 
 <p align="center">
@@ -9,9 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AGENT/AGENT/actions/workflows/ci.yml?branch=main"><img src="https://img.shields.io/github/actions/workflow/status/AGENT/AGENT/ci.yml?branch=main&style=for-the-badge" alt="CI status"></a>
-  <a href="https://github.com/AGENT/AGENT/releases"><img src="https://img.shields.io/github/v/release/AGENT/AGENT?include_prereleases&style=for-the-badge" alt="GitHub release"></a>
-  <a href="https://deepwiki.com/AGENT/AGENT"><img src="https://img.shields.io/badge/DeepWiki-AGENT-111111?style=for-the-badge" alt="DeepWiki"></a>
+  <a href="https://github.com/SOPHY-AGI/AGENT/actions/workflows/ci.yml?branch=main"><img src="https://img.shields.io/github/actions/workflow/status/SOPHY-AGI/AGENT/ci.yml?branch=main&style=for-the-badge" alt="CI status"></a>
+  <a href="https://github.com/SOPHY-AGI/AGENT/releases"><img src="https://img.shields.io/github/v/release/SOPHY-AGI/AGENT?include_prereleases&style=for-the-badge" alt="GitHub release"></a>
+  <a href="https://deepwiki.com/SOPHY-AGI/AGENT"><img src="https://img.shields.io/badge/DeepWiki-AGENT-111111?style=for-the-badge" alt="DeepWiki"></a>
   <a href="https://discord.gg/clawd"><img src="https://img.shields.io/discord/1456350064065904867?label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Discord"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
 </p>
@@ -86,7 +86,7 @@ Details: [Development channels](https://docs.molt.bot/install/development-channe
 Prefer `pnpm` for builds from source. Bun is optional for running TypeScript directly.
 
 ```bash
-git clone https://github.com/AGENT/AGENT.git
+git clone https://github.com/SOPHY-AGI/AGENT.git
 cd AGENT
 
 pnpm install
@@ -127,7 +127,7 @@ Run `AGENT doctor` to surface risky/misconfigured DM policies.
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=AGENT/AGENT&type=date&legend=top-left)](https://www.star-history.com/#AGENT/AGENT&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=SOPHY-AGI/AGENT&type=date&legend=top-left)](https://www.star-history.com/#SOPHY-AGI/AGENT&type=date&legend=top-left)
 
 ## Everything we built so far
 
