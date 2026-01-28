@@ -24,8 +24,8 @@ export async function removeChannelConfigWizard(
     if (configured.length === 0) {
       note(
         [
-          "No channel config found in moltbot.json.",
-          `Tip: \`${formatCliCommand("moltbot channels status")}\` shows what is configured and enabled.`,
+          "No channel config found in AGENT.json.",
+          `Tip: \`${formatCliCommand("AGENT channels status")}\` shows what is configured and enabled.`,
         ].join("\n"),
         "Remove channel",
       );

@@ -29,7 +29,7 @@ enum MoltbotPaths {
         if let override = MoltbotEnv.path(self.configPathEnv) {
             return URL(fileURLWithPath: override)
         }
-        return self.stateDirURL.appendingPathComponent("moltbot.json")
+        return self.stateDirURL.appendingPathComponent("AGENT.json")
     }
 
     static var workspaceURL: URL {

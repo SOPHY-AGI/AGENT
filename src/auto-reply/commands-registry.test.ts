@@ -147,23 +147,21 @@ describe("commands registry", () => {
   });
 
   it("normalizes telegram-style command mentions for the current bot", () => {
-    expect(normalizeCommandBody("/help@moltbot", { botUsername: "moltbot" })).toBe("/help");
+    expect(normalizeCommandBody("/help@AGENT", { botUsername: "AGENT" })).toBe("/help");
     expect(
-      normalizeCommandBody("/help@moltbot args", {
-        botUsername: "moltbot",
+      normalizeCommandBody("/help@AGENT args", {
+        botUsername: "AGENT",
       }),
     ).toBe("/help args");
     expect(
-      normalizeCommandBody("/help@moltbot: args", {
-        botUsername: "moltbot",
+      normalizeCommandBody("/help@AGENT: args", {
+        botUsername: "AGENT",
       }),
     ).toBe("/help args");
   });
 
   it("keeps telegram-style command mentions for other bots", () => {
-    expect(normalizeCommandBody("/help@otherbot", { botUsername: "moltbot" })).toBe(
-      "/help@otherbot",
-    );
+    expect(normalizeCommandBody("/help@otherbot", { botUsername: "AGENT" })).toBe("/help@otherbot");
   });
 
   it("normalizes dock command aliases", () => {

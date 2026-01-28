@@ -21,12 +21,12 @@ Explainable: keeps core installs lighter and lets MS Teams dependencies update i
 
 Install via CLI (npm registry):
 ```bash
-moltbot plugins install @moltbot/msteams
+AGENT plugins install @AGENT/msteams
 ```
 
 Local checkout (when running from a git repo):
 ```bash
-moltbot plugins install ./extensions/msteams
+AGENT plugins install ./extensions/msteams
 ```
 
 If you choose Teams during configure/onboarding and a git checkout is detected,
@@ -127,7 +127,7 @@ Example:
 2. Create an **Azure Bot** (App ID + secret + tenant ID).
 3. Build a **Teams app package** that references the bot and includes the RSC permissions below.
 4. Upload/install the Teams app into a team (or personal scope for DMs).
-5. Configure `msteams` in `~/.clawdbot/moltbot.json` (or env vars) and start the gateway.
+5. Configure `msteams` in `~/.clawdbot/AGENT.json` (or env vars) and start the gateway.
 6. The gateway listens for Bot Framework webhook traffic on `/api/messages` by default.
 
 ## Azure Bot Setup (Prerequisites)
@@ -141,7 +141,7 @@ Before configuring Moltbot, you need to create an Azure Bot resource.
 
    | Field | Value |
    |-------|-------|
-   | **Bot handle** | Your bot name, e.g., `moltbot-msteams` (must be unique) |
+   | **Bot handle** | Your bot name, e.g., `AGENT-msteams` (must be unique) |
    | **Subscription** | Select your Azure subscription |
    | **Resource group** | Create new or use existing |
    | **Pricing tier** | **Free** for dev/testing |
@@ -218,8 +218,8 @@ This is often easier than hand-editing JSON manifests.
 
 ## Setup (minimal text-only)
 1. **Install the Microsoft Teams plugin**
-   - From npm: `moltbot plugins install @moltbot/msteams`
-   - From a local checkout: `moltbot plugins install ./extensions/msteams`
+   - From npm: `AGENT plugins install @AGENT/msteams`
+   - From a local checkout: `AGENT plugins install ./extensions/msteams`
 
 2. **Bot registration**
    - Create an Azure Bot (see above) and note:
@@ -549,7 +549,7 @@ Uploaded files are stored in a `/MoltbotShared/` folder in the configured ShareP
 ## Polls (Adaptive Cards)
 Moltbot sends Teams polls as Adaptive Cards (there is no native Teams poll API).
 
-- CLI: `moltbot message poll --channel msteams --target conversation:<id> ...`
+- CLI: `AGENT message poll --channel msteams --target conversation:<id> ...`
 - Votes are recorded by the gateway in `~/.clawdbot/msteams-polls.json`.
 - The gateway must stay online to record votes.
 - Polls do not auto-post result summaries yet (inspect the store file if needed).
@@ -575,7 +575,7 @@ The `card` parameter accepts an Adaptive Card JSON object. When `card` is provid
 
 **CLI:**
 ```bash
-moltbot message send --channel msteams \
+AGENT message send --channel msteams \
   --target "conversation:19:abc...@thread.tacv2" \
   --card '{"type":"AdaptiveCard","version":"1.5","body":[{"type":"TextBlock","text":"Hello!"}]}'
 ```
@@ -596,16 +596,16 @@ MSTeams targets use prefixes to distinguish between users and conversations:
 **CLI examples:**
 ```bash
 # Send to a user by ID
-moltbot message send --channel msteams --target "user:40a1a0ed-..." --message "Hello"
+AGENT message send --channel msteams --target "user:40a1a0ed-..." --message "Hello"
 
 # Send to a user by display name (triggers Graph API lookup)
-moltbot message send --channel msteams --target "user:John Smith" --message "Hello"
+AGENT message send --channel msteams --target "user:John Smith" --message "Hello"
 
 # Send to a group chat or channel
-moltbot message send --channel msteams --target "conversation:19:abc...@thread.tacv2" --message "Hello"
+AGENT message send --channel msteams --target "conversation:19:abc...@thread.tacv2" --message "Hello"
 
 # Send an Adaptive Card to a conversation
-moltbot message send --channel msteams --target "conversation:19:abc...@thread.tacv2" \
+AGENT message send --channel msteams --target "conversation:19:abc...@thread.tacv2" \
   --card '{"type":"AdaptiveCard","version":"1.5","body":[{"type":"TextBlock","text":"Hello"}]}'
 ```
 

@@ -11,7 +11,7 @@ Deploy Moltbot on Render using Infrastructure as Code. The included `render.yaml
 
 ## Deploy with a Render Blueprint
 
-<a href="https://render.com/deploy?repo=https://github.com/moltbot/moltbot" target="_blank" rel="noreferrer">Deploy to Render</a>
+<a href="https://render.com/deploy?repo=https://github.com/AGENT/AGENT" target="_blank" rel="noreferrer">Deploy to Render</a>
 
 Clicking this link will:
 
@@ -29,7 +29,7 @@ repository configures everything needed to run Moltbot:
 ```yaml
 services:
   - type: web
-    name: moltbot
+    name: AGENT
     runtime: docker
     plan: starter
     healthCheckPath: /health
@@ -45,7 +45,7 @@ services:
       - key: CLAWDBOT_GATEWAY_TOKEN
         generateValue: true  # auto-generates a secure token
     disk:
-      name: moltbot-data
+      name: AGENT-data
       mountPath: /data
       sizeGB: 1
 ```
@@ -83,7 +83,7 @@ The Blueprint defaults to `starter`. To use free tier, change `plan: free` in yo
 
 ### Access the Control UI
 
-The web dashboard is available at `https://<your-service>.onrender.com/moltbot`.
+The web dashboard is available at `https://<your-service>.onrender.com/AGENT`.
 
 ## Render Dashboard features
 

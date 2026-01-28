@@ -26,7 +26,7 @@ import type { ToolsConfig } from "./types.tools.js";
 
 export type MoltbotConfig = {
   meta?: {
-    /** Last moltbot version that wrote this config. */
+    /** Last AGENT version that wrote this config. */
     lastTouchedVersion?: string;
     /** ISO timestamp when this config was last written. */
     lastTouchedAt?: string;

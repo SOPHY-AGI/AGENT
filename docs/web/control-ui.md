@@ -9,7 +9,7 @@ read_when:
 The Control UI is a small **Vite + Lit** single-page app served by the Gateway:
 
 - default: `http://<host>:18789/`
-- optional prefix: set `gateway.controlUi.basePath` (e.g. `/moltbot`)
+- optional prefix: set `gateway.controlUi.basePath` (e.g. `/AGENT`)
 
 It speaks **directly to the Gateway WebSocket** on the same port.
 
@@ -19,7 +19,7 @@ If the Gateway is running on the same computer, open:
 
 - http://127.0.0.1:18789/ (or http://localhost:18789/)
 
-If the page fails to load, start the Gateway first: `moltbot gateway`.
+If the page fails to load, start the Gateway first: `AGENT gateway`.
 
 Auth is supplied during the WebSocket handshake via:
 - `connect.params.auth.token`
@@ -37,7 +37,7 @@ The onboarding wizard generates a gateway token by default, so paste it here on 
 - Skills: status, enable/disable, install, API key updates (`skills.*`)
 - Nodes: list + caps (`node.list`)
 - Exec approvals: edit gateway or node allowlists + ask policy for `exec host=gateway/node` (`exec.approvals.*`)
-- Config: view/edit `~/.clawdbot/moltbot.json` (`config.get`, `config.set`)
+- Config: view/edit `~/.clawdbot/AGENT.json` (`config.get`, `config.set`)
 - Config: apply + restart with validation (`config.apply`) and wake the last active session
 - Config writes include a base-hash guard to prevent clobbering concurrent edits
 - Config schema + form rendering (`config.schema`, including plugin + channel schemas); Raw JSON editor remains available
@@ -62,7 +62,7 @@ The onboarding wizard generates a gateway token by default, so paste it here on 
 Keep the Gateway on loopback and let Tailscale Serve proxy it with HTTPS:
 
 ```bash
-moltbot gateway --tailscale serve
+AGENT gateway --tailscale serve
 ```
 
 Open:
@@ -79,7 +79,7 @@ if you want to require a token/password even for Serve traffic.
 ### Bind to tailnet + token
 
 ```bash
-moltbot gateway --bind tailnet --token "$(openssl rand -hex 32)"
+AGENT gateway --bind tailnet --token "$(openssl rand -hex 32)"
 ```
 
 Then open:
@@ -125,7 +125,7 @@ pnpm ui:build # auto-installs UI deps on first run
 Optional absolute base (when you want fixed asset URLs):
 
 ```bash
-CLAWDBOT_CONTROL_UI_BASE_PATH=/moltbot/ pnpm ui:build
+CLAWDBOT_CONTROL_UI_BASE_PATH=/AGENT/ pnpm ui:build
 ```
 
 For local development (separate dev server):

@@ -64,7 +64,7 @@ async function main() {
   installUnhandledRejectionHandler();
 
   process.on("uncaughtException", (error) => {
-    console.error("[moltbot] Uncaught exception:", formatUncaughtError(error));
+    console.error("[AGENT] Uncaught exception:", formatUncaughtError(error));
     process.exit(1);
   });
 
@@ -72,6 +72,6 @@ async function main() {
 }
 
 void main().catch((err) => {
-  console.error("[moltbot] Relay failed:", err instanceof Error ? (err.stack ?? err.message) : err);
+  console.error("[AGENT] Relay failed:", err instanceof Error ? (err.stack ?? err.message) : err);
   process.exit(1);
 });

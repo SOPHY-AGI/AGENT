@@ -7,8 +7,8 @@ struct MoltbotConfigFileTests {
     @Test
     func configPathRespectsEnvOverride() async {
         let override = FileManager().temporaryDirectory
-            .appendingPathComponent("moltbot-config-\(UUID().uuidString)")
-            .appendingPathComponent("moltbot.json")
+            .appendingPathComponent("AGENT-config-\(UUID().uuidString)")
+            .appendingPathComponent("AGENT.json")
             .path
 
         await TestIsolation.withEnvValues(["CLAWDBOT_CONFIG_PATH": override]) {
@@ -20,8 +20,8 @@ struct MoltbotConfigFileTests {
     @Test
     func remoteGatewayPortParsesAndMatchesHost() async {
         let override = FileManager().temporaryDirectory
-            .appendingPathComponent("moltbot-config-\(UUID().uuidString)")
-            .appendingPathComponent("moltbot.json")
+            .appendingPathComponent("AGENT-config-\(UUID().uuidString)")
+            .appendingPathComponent("AGENT.json")
             .path
 
         await TestIsolation.withEnvValues(["CLAWDBOT_CONFIG_PATH": override]) {
@@ -43,8 +43,8 @@ struct MoltbotConfigFileTests {
     @Test
     func setRemoteGatewayUrlPreservesScheme() async {
         let override = FileManager().temporaryDirectory
-            .appendingPathComponent("moltbot-config-\(UUID().uuidString)")
-            .appendingPathComponent("moltbot.json")
+            .appendingPathComponent("AGENT-config-\(UUID().uuidString)")
+            .appendingPathComponent("AGENT.json")
             .path
 
         await TestIsolation.withEnvValues(["CLAWDBOT_CONFIG_PATH": override]) {
@@ -65,7 +65,7 @@ struct MoltbotConfigFileTests {
     @Test
     func stateDirOverrideSetsConfigPath() async {
         let dir = FileManager().temporaryDirectory
-            .appendingPathComponent("moltbot-state-\(UUID().uuidString)", isDirectory: true)
+            .appendingPathComponent("AGENT-state-\(UUID().uuidString)", isDirectory: true)
             .path
 
         await TestIsolation.withEnvValues([
@@ -73,7 +73,7 @@ struct MoltbotConfigFileTests {
             "CLAWDBOT_STATE_DIR": dir,
         ]) {
             #expect(MoltbotConfigFile.stateDirURL().path == dir)
-            #expect(MoltbotConfigFile.url().path == "\(dir)/moltbot.json")
+            #expect(MoltbotConfigFile.url().path == "\(dir)/AGENT.json")
         }
     }
 }

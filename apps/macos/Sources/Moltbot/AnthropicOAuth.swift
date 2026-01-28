@@ -197,7 +197,7 @@ enum AnthropicOAuth {
 enum MoltbotOAuthStore {
     static let oauthFilename = "oauth.json"
     private static let providerKey = "anthropic"
-    private static let moltbotOAuthDirEnv = "CLAWDBOT_OAUTH_DIR"
+    private static let AGENTOAuthDirEnv = "CLAWDBOT_OAUTH_DIR"
     private static let legacyPiDirEnv = "PI_CODING_AGENT_DIR"
 
     enum AnthropicOAuthStatus: Equatable {
@@ -226,7 +226,7 @@ enum MoltbotOAuthStore {
     }
 
     static func oauthDir() -> URL {
-        if let override = ProcessInfo.processInfo.environment[self.moltbotOAuthDirEnv]?
+        if let override = ProcessInfo.processInfo.environment[self.AGENTOAuthDirEnv]?
             .trimmingCharacters(in: .whitespacesAndNewlines),
             !override.isEmpty
         {

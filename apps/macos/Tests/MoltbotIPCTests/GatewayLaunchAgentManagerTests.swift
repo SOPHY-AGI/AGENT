@@ -5,9 +5,9 @@ import Testing
 @Suite struct GatewayLaunchAgentManagerTests {
     @Test func launchAgentPlistSnapshotParsesArgsAndEnv() throws {
         let url = FileManager().temporaryDirectory
-            .appendingPathComponent("moltbot-launchd-\(UUID().uuidString).plist")
+            .appendingPathComponent("AGENT-launchd-\(UUID().uuidString).plist")
         let plist: [String: Any] = [
-            "ProgramArguments": ["moltbot", "gateway-daemon", "--port", "18789", "--bind", "loopback"],
+            "ProgramArguments": ["AGENT", "gateway-daemon", "--port", "18789", "--bind", "loopback"],
             "EnvironmentVariables": [
                 "CLAWDBOT_GATEWAY_TOKEN": " secret ",
                 "CLAWDBOT_GATEWAY_PASSWORD": "pw",
@@ -26,9 +26,9 @@ import Testing
 
     @Test func launchAgentPlistSnapshotAllowsMissingBind() throws {
         let url = FileManager().temporaryDirectory
-            .appendingPathComponent("moltbot-launchd-\(UUID().uuidString).plist")
+            .appendingPathComponent("AGENT-launchd-\(UUID().uuidString).plist")
         let plist: [String: Any] = [
-            "ProgramArguments": ["moltbot", "gateway-daemon", "--port", "18789"],
+            "ProgramArguments": ["AGENT", "gateway-daemon", "--port", "18789"],
         ]
         let data = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
         try data.write(to: url, options: [.atomic])

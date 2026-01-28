@@ -75,7 +75,7 @@ import UIKit
     }
 
     @Test @MainActor func voiceWakeToastBuildsAViewHierarchy() {
-        let root = VoiceWakeToast(command: "moltbot: do something")
+        let root = VoiceWakeToast(command: "AGENT: do something")
         _ = Self.host(root)
     }
 }

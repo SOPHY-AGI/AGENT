@@ -30,8 +30,8 @@ Pairing codes:
 ### Approve a sender
 
 ```bash
-moltbot pairing list telegram
-moltbot pairing approve telegram <CODE>
+AGENT pairing list telegram
+AGENT pairing approve telegram <CODE>
 ```
 
 Supported channels: `telegram`, `whatsapp`, `signal`, `imessage`, `discord`, `slack`.
@@ -53,9 +53,9 @@ creates a device pairing request that must be approved.
 ### Approve a node device
 
 ```bash
-moltbot devices list
-moltbot devices approve <requestId>
-moltbot devices reject <requestId>
+AGENT devices list
+AGENT devices approve <requestId>
+AGENT devices reject <requestId>
 ```
 
 ### Where the state lives
@@ -66,7 +66,7 @@ Stored under `~/.clawdbot/devices/`:
 
 ### Notes
 
-- The legacy `node.pair.*` API (CLI: `moltbot nodes pending/approve`) is a
+- The legacy `node.pair.*` API (CLI: `AGENT nodes pending/approve`) is a
   separate gateway-owned pairing store. WS nodes still require device pairing.
 
 

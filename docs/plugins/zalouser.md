@@ -24,7 +24,7 @@ If you use a remote Gateway, install/configure it on the **machine running the G
 ### Option A: install from npm
 
 ```bash
-moltbot plugins install @moltbot/zalouser
+AGENT plugins install @AGENT/zalouser
 ```
 
 Restart the Gateway afterwards.
@@ -32,7 +32,7 @@ Restart the Gateway afterwards.
 ### Option B: install from a local folder (dev)
 
 ```bash
-moltbot plugins install ./extensions/zalouser
+AGENT plugins install ./extensions/zalouser
 cd ./extensions/zalouser && pnpm install
 ```
 
@@ -62,11 +62,11 @@ Channel config lives under `channels.zalouser` (not `plugins.entries.*`):
 ## CLI
 
 ```bash
-moltbot channels login --channel zalouser
-moltbot channels logout --channel zalouser
-moltbot channels status --probe
-moltbot message send --channel zalouser --target <threadId> --message "Hello from Moltbot"
-moltbot directory peers list --channel zalouser --query "name"
+AGENT channels login --channel zalouser
+AGENT channels logout --channel zalouser
+AGENT channels status --probe
+AGENT message send --channel zalouser --target <threadId> --message "Hello from Moltbot"
+AGENT directory peers list --channel zalouser --query "name"
 ```
 
 ## Agent tool

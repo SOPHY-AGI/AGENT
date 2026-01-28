@@ -53,7 +53,7 @@ Client → Gateway:
     "permissions": {},
     "auth": { "token": "…" },
     "locale": "en-US",
-    "userAgent": "moltbot-cli/1.2.3",
+    "userAgent": "AGENT-cli/1.2.3",
     "device": {
       "id": "device_fingerprint",
       "publicKey": "…",
@@ -111,7 +111,7 @@ When a device token is issued, `hello-ok` also includes:
     "permissions": { "camera.capture": true, "screen.record": false },
     "auth": { "token": "…" },
     "locale": "en-US",
-    "userAgent": "moltbot-ios/1.2.3",
+    "userAgent": "AGENT-ios/1.2.3",
     "device": {
       "id": "device_fingerprint",
       "publicKey": "…",

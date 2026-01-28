@@ -56,7 +56,7 @@ export VENICE_API_KEY="vapi_xxxxxxxxxxxx"
 **Option B: Interactive Setup (Recommended)**
 
 ```bash
-moltbot onboard --auth-choice venice-api-key
+AGENT onboard --auth-choice venice-api-key
 ```
 
 This will:
@@ -68,7 +68,7 @@ This will:
 **Option C: Non-interactive**
 
 ```bash
-moltbot onboard --non-interactive \
+AGENT onboard --non-interactive \
   --auth-choice venice-api-key \
   --venice-api-key "vapi_xxxxxxxxxxxx"
 ```
@@ -76,7 +76,7 @@ moltbot onboard --non-interactive \
 ### 3. Verify Setup
 
 ```bash
-moltbot chat --model venice/llama-3.3-70b "Hello, are you working?"
+AGENT chat --model venice/llama-3.3-70b "Hello, are you working?"
 ```
 
 ## Model Selection
@@ -91,19 +91,19 @@ After setup, Moltbot shows all available Venice models. Pick based on your needs
 Change your default model anytime:
 
 ```bash
-moltbot models set venice/claude-opus-45
-moltbot models set venice/llama-3.3-70b
+AGENT models set venice/claude-opus-45
+AGENT models set venice/llama-3.3-70b
 ```
 
 List all available models:
 
 ```bash
-moltbot models list | grep venice
+AGENT models list | grep venice
 ```
 
-## Configure via `moltbot configure`
+## Configure via `AGENT configure`
 
-1. Run `moltbot configure`
+1. Run `AGENT configure`
 2. Select **Model/auth**
 3. Choose **Venice AI**
 
@@ -192,19 +192,19 @@ Venice uses a credit-based system. Check [venice.ai/pricing](https://venice.ai/p
 
 ```bash
 # Use default private model
-moltbot chat --model venice/llama-3.3-70b
+AGENT chat --model venice/llama-3.3-70b
 
 # Use Claude via Venice (anonymized)
-moltbot chat --model venice/claude-opus-45
+AGENT chat --model venice/claude-opus-45
 
 # Use uncensored model
-moltbot chat --model venice/venice-uncensored
+AGENT chat --model venice/venice-uncensored
 
 # Use vision model with image
-moltbot chat --model venice/qwen3-vl-235b-a22b
+AGENT chat --model venice/qwen3-vl-235b-a22b
 
 # Use coding model
-moltbot chat --model venice/qwen3-coder-480b-a35b-instruct
+AGENT chat --model venice/qwen3-coder-480b-a35b-instruct
 ```
 
 ## Troubleshooting
@@ -213,14 +213,14 @@ moltbot chat --model venice/qwen3-coder-480b-a35b-instruct
 
 ```bash
 echo $VENICE_API_KEY
-moltbot models list | grep venice
+AGENT models list | grep venice
 ```
 
 Ensure the key starts with `vapi_`.
 
 ### Model not available
 
-The Venice model catalog updates dynamically. Run `moltbot models list` to see currently available models. Some models may be temporarily offline.
+The Venice model catalog updates dynamically. Run `AGENT models list` to see currently available models. Some models may be temporarily offline.
 
 ### Connection issues
 

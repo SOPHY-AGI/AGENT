@@ -1,4 +1,4 @@
-import { resolveMoltbotPackageRoot } from "../infra/moltbot-root.js";
+import { resolveMoltbotPackageRoot } from "../infra/AGENT-root.js";
 import {
   checkUpdateStatus,
   compareSemverStrings,
@@ -64,7 +64,7 @@ export function formatUpdateAvailableHint(update: UpdateCheckResult): string | n
     details.push(`npm ${availability.latestVersion}`);
   }
   const suffix = details.length > 0 ? ` (${details.join(" · ")})` : "";
-  return `Update available${suffix}. Run: ${formatCliCommand("moltbot update")}`;
+  return `Update available${suffix}. Run: ${formatCliCommand("AGENT update")}`;
 }
 
 export function formatUpdateOneLiner(update: UpdateCheckResult): string {

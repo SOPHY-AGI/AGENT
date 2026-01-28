@@ -96,8 +96,8 @@ docker compose version
 ## 3) Clone the Moltbot repository
 
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/AGENT/AGENT.git
+cd AGENT
 ```
 
 This guide assumes you will build a custom image to guarantee binary persistence.
@@ -125,7 +125,7 @@ chown -R 1000:1000 /root/clawd
 Create `.env` in the repository root.
 
 ```bash
-CLAWDBOT_IMAGE=moltbot:latest
+CLAWDBOT_IMAGE=AGENT:latest
 CLAWDBOT_GATEWAY_TOKEN=change-me-now
 CLAWDBOT_GATEWAY_BIND=lan
 CLAWDBOT_GATEWAY_PORT=18789
@@ -153,7 +153,7 @@ Create or update `docker-compose.yml`.
 
 ```yaml
 services:
-  moltbot-gateway:
+  AGENT-gateway:
     image: ${CLAWDBOT_IMAGE}
     build: .
     restart: unless-stopped
@@ -259,15 +259,15 @@ CMD ["node","dist/index.js"]
 
 ```bash
 docker compose build
-docker compose up -d moltbot-gateway
+docker compose up -d AGENT-gateway
 ```
 
 Verify binaries:
 
 ```bash
-docker compose exec moltbot-gateway which gog
-docker compose exec moltbot-gateway which goplaces
-docker compose exec moltbot-gateway which wacli
+docker compose exec AGENT-gateway which gog
+docker compose exec AGENT-gateway which goplaces
+docker compose exec AGENT-gateway which wacli
 ```
 
 Expected output:
@@ -283,7 +283,7 @@ Expected output:
 ## 9) Verify Gateway
 
 ```bash
-docker compose logs -f moltbot-gateway
+docker compose logs -f AGENT-gateway
 ```
 
 Success:
@@ -313,7 +313,7 @@ All long-lived state must survive restarts, rebuilds, and reboots.
 
 | Component | Location | Persistence mechanism | Notes |
 |---|---|---|---|
-| Gateway config | `/home/node/.clawdbot/` | Host volume mount | Includes `moltbot.json`, tokens |
+| Gateway config | `/home/node/.clawdbot/` | Host volume mount | Includes `AGENT.json`, tokens |
 | Model auth profiles | `/home/node/.clawdbot/` | Host volume mount | OAuth tokens, API keys |
 | Skill configs | `/home/node/.clawdbot/skills/` | Host volume mount | Skill-level state |
 | Agent workspace | `/home/node/clawd/` | Host volume mount | Code and agent artifacts |

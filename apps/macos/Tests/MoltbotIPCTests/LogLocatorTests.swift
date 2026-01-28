@@ -7,7 +7,7 @@ import Testing
     @Test func launchdGatewayLogPathEnsuresTmpDirExists() throws {
         let fm = FileManager()
         let baseDir = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
-        let logDir = baseDir.appendingPathComponent("moltbot-tests-\(UUID().uuidString)")
+        let logDir = baseDir.appendingPathComponent("AGENT-tests-\(UUID().uuidString)")
 
         setenv("CLAWDBOT_LOG_DIR", logDir.path, 1)
         defer {

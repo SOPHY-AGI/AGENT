@@ -422,6 +422,6 @@ final class ControlChannel {
 }
 
 extension Notification.Name {
-    static let controlHeartbeat = Notification.Name("moltbot.control.heartbeat")
-    static let controlAgentEvent = Notification.Name("moltbot.control.agent")
+    static let controlHeartbeat = Notification.Name("AGENT.control.heartbeat")
+    static let controlAgentEvent = Notification.Name("AGENT.control.agent")
 }

@@ -13,9 +13,9 @@ with a Z.AI API key.
 ## CLI setup
 
 ```bash
-moltbot onboard --auth-choice zai-api-key
+AGENT onboard --auth-choice zai-api-key
 # or non-interactive
-moltbot onboard --zai-api-key "$ZAI_API_KEY"
+AGENT onboard --zai-api-key "$ZAI_API_KEY"
 ```
 
 ## Config snippet

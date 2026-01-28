@@ -27,15 +27,15 @@ Start conservative:
 - A second phone number (SIM/eSIM/prepaid) for the assistant
 
 ```bash
-npm install -g moltbot@latest
-# or: pnpm add -g moltbot@latest
+npm install -g AGENT@latest
+# or: pnpm add -g AGENT@latest
 ```
 
 From source (development):
 
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/AGENT/AGENT.git
+cd AGENT
 pnpm install
 pnpm ui:build # auto-installs UI deps on first run
 pnpm build
@@ -56,7 +56,7 @@ Your Phone (personal)          Second Phone (assistant)
                                        ▼
                               ┌─────────────────┐
                               │  Your Mac       │
-                              │  (moltbot)      │
+                              │  (AGENT)      │
                               │    Pi agent     │
                               └─────────────────┘
 ```
@@ -68,16 +68,16 @@ If you link your personal WhatsApp to Moltbot, every message to you becomes “a
 1) Pair WhatsApp Web (shows QR; scan with the assistant phone):
 
 ```bash
-moltbot channels login
+AGENT channels login
 ```
 
 2) Start the Gateway (leave it running):
 
 ```bash
-moltbot gateway --port 18789
+AGENT gateway --port 18789
 ```
 
-3) Put a minimal config in `~/.clawdbot/moltbot.json`:
+3) Put a minimal config in `~/.clawdbot/AGENT.json`:
 
 ```json5
 {
@@ -87,7 +87,7 @@ moltbot gateway --port 18789
 
 Now message the assistant number from your allowlisted phone.
 
-When onboarding finishes, we auto-open the dashboard with your gateway token and print the tokenized link. To reopen later: `moltbot dashboard`.
+When onboarding finishes, we auto-open the dashboard with your gateway token and print the tokenized link. To reopen later: `AGENT dashboard`.
 
 ## Give the agent a workspace (AGENTS)
 
@@ -98,7 +98,7 @@ By default, Moltbot uses `~/clawd` as the agent workspace, and will create it (p
 Tip: treat this folder like Clawd’s “memory” and make it a git repo (ideally private) so your `AGENTS.md` + memory files are backed up. If git is installed, brand-new workspaces are auto-initialized.
 
 ```bash
-moltbot setup
+AGENT setup
 ```
 
 Full workspace layout + backup guide: [Agent workspace](/concepts/agent-workspace)
@@ -214,13 +214,13 @@ Moltbot extracts these and sends them as media alongside the text.
 ## Operations checklist
 
 ```bash
-moltbot status          # local status (creds, sessions, queued events)
-moltbot status --all    # full diagnosis (read-only, pasteable)
-moltbot status --deep   # adds gateway health probes (Telegram + Discord)
-moltbot health --json   # gateway health snapshot (WS)
+AGENT status          # local status (creds, sessions, queued events)
+AGENT status --all    # full diagnosis (read-only, pasteable)
+AGENT status --deep   # adds gateway health probes (Telegram + Discord)
+AGENT health --json   # gateway health snapshot (WS)
 ```
 
-Logs live under `/tmp/moltbot/` (default: `moltbot-YYYY-MM-DD.log`).
+Logs live under `/tmp/AGENT/` (default: `AGENT-YYYY-MM-DD.log`).
 
 ## Next steps
 

@@ -84,7 +84,7 @@ Molty: *visible lobster embarrassment*
 
 ### The Great Molt (Jan 27, 2026)
 
-At 5am, Anthropic's email arrived. By 6:14am, Peter called it: "fuck it, let's go with moltbot."
+At 5am, Anthropic's email arrived. By 6:14am, Peter called it: "fuck it, let's go with AGENT."
 
 Then the chaos began.
 

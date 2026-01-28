@@ -47,7 +47,7 @@ extension OnboardingView {
         SettingsTabRouter.request(tab)
         self.openSettings()
         DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .moltbotSelectSettingsTab, object: tab)
+            NotificationCenter.default.post(name: .AGENTSelectSettingsTab, object: tab)
         }
     }
 
@@ -67,7 +67,7 @@ extension OnboardingView {
     }
 
     func finish() {
-        UserDefaults.standard.set(true, forKey: "moltbot.onboardingSeen")
+        UserDefaults.standard.set(true, forKey: "AGENT.onboardingSeen")
         UserDefaults.standard.set(currentOnboardingVersion, forKey: onboardingVersionKey)
         OnboardingController.shared.close()
     }

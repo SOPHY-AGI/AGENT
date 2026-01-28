@@ -9,7 +9,7 @@ summary: "Community-built projects and integrations powered by Moltbot"
 Real projects from the community. See what people are building with Moltbot.
 
 <Info>
-**Want to be featured?** Share your project in [#showcase on Discord](https://discord.gg/clawd) or [tag @moltbot on X](https://x.com/moltbot).
+**Want to be featured?** Share your project in [#showcase on Discord](https://discord.gg/clawd) or [tag @AGENT on X](https://x.com/AGENT).
 </Info>
 
 ## 🎥 Moltbot in Action
@@ -97,7 +97,7 @@ Full setup walkthrough (28m) by VelvetShark.
 <Card title="Wine Cellar Skill in Minutes" icon="wine-glass" href="https://x.com/i/status/2010916352454791216">
   **@prades_maxime** • `skills` `local` `csv`
 
-  Asked “Robby” (@moltbot) for a local wine cellar skill. It requests a sample CSV export + where to store it, then builds/tests the skill fast (962 bottles in the example).
+  Asked “Robby” (@AGENT) for a local wine cellar skill. It requests a sample CSV export + where to store it, then builds/tests the skill fast (962 bottles in the example).
 
   <img src="/assets/showcase/wine-cellar-skill.jpg" alt="Moltbot building a local wine cellar skill from CSV" />
 </Card>
@@ -337,7 +337,7 @@ Full setup walkthrough (28m) by VelvetShark.
 
 <CardGroup cols={2}>
 
-<Card title="Home Assistant Add-on" icon="home" href="https://github.com/ngutman/moltbot-ha-addon">
+<Card title="Home Assistant Add-on" icon="home" href="https://github.com/ngutman/AGENT-ha-addon">
   **@ngutman** • `homeassistant` `docker` `raspberry-pi`
   
   Moltbot gateway running on Home Assistant OS with SSH tunnel support and persistent state.
@@ -349,8 +349,8 @@ Full setup walkthrough (28m) by VelvetShark.
   Control and automate Home Assistant devices via natural language.
 </Card>
 
-<Card title="Nix Packaging" icon="snowflake" href="https://github.com/moltbot/nix-moltbot">
-  **@moltbot** • `nix` `packaging` `deployment`
+<Card title="Nix Packaging" icon="snowflake" href="https://github.com/AGENT/nix-AGENT">
+  **@AGENT** • `nix` `packaging` `deployment`
   
   Batteries-included nixified Moltbot configuration for reproducible deployments.
 </Card>
@@ -405,7 +405,7 @@ Have something to share? We'd love to feature it!
 
 <Steps>
   <Step title="Share It">
-    Post in [#showcase on Discord](https://discord.gg/clawd) or [tweet @moltbot](https://x.com/moltbot)
+    Post in [#showcase on Discord](https://discord.gg/clawd) or [tweet @AGENT](https://x.com/AGENT)
   </Step>
   <Step title="Include Details">
     Tell us what it does, link to the repo/demo, share a screenshot if you have one

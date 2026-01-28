@@ -10,7 +10,7 @@ import { makeTempWorkspace, writeWorkspaceFile } from "../../../test-helpers/wor
 
 describe("soul-evil hook", () => {
   it("skips subagent sessions", async () => {
-    const tempDir = await makeTempWorkspace("moltbot-soul-");
+    const tempDir = await makeTempWorkspace("AGENT-soul-");
     await writeWorkspaceFile({
       dir: tempDir,
       name: "SOUL_EVIL.md",

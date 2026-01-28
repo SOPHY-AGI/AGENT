@@ -32,10 +32,10 @@ agent automation and verification.
 ## Quick start
 
 ```bash
-moltbot browser --browser-profile clawd status
-moltbot browser --browser-profile clawd start
-moltbot browser --browser-profile clawd open https://example.com
-moltbot browser --browser-profile clawd snapshot
+AGENT browser --browser-profile clawd status
+AGENT browser --browser-profile clawd start
+AGENT browser --browser-profile clawd open https://example.com
+AGENT browser --browser-profile clawd snapshot
 ```
 
 If you get “Browser disabled”, enable it in config (see below) and restart the
@@ -51,7 +51,7 @@ Set `browser.defaultProfile: "clawd"` if you want managed mode by default.
 
 ## Configuration
 
-Browser settings live in `~/.clawdbot/moltbot.json`.
+Browser settings live in `~/.clawdbot/AGENT.json`.
 
 ```json5
 {
@@ -98,7 +98,7 @@ auto-detection:
 CLI example:
 
 ```bash
-moltbot config set browser.executablePath "/usr/bin/google-chrome"
+AGENT config set browser.executablePath "/usr/bin/google-chrome"
 ```
 
 ```json5
@@ -232,21 +232,21 @@ Chrome extension relay takeover requires host browser control, so either:
 1) Load the extension (dev/unpacked):
 
 ```bash
-moltbot browser extension install
+AGENT browser extension install
 ```
 
 - Chrome → `chrome://extensions` → enable “Developer mode”
-- “Load unpacked” → select the directory printed by `moltbot browser extension path`
+- “Load unpacked” → select the directory printed by `AGENT browser extension path`
 - Pin the extension, then click it on the tab you want to control (badge shows `ON`).
 
 2) Use it:
-- CLI: `moltbot browser --browser-profile chrome tabs`
+- CLI: `AGENT browser --browser-profile chrome tabs`
 - Agent tool: `browser` with `profile="chrome"`
 
 Optional: if you want a different name or relay port, create your own profile:
 
 ```bash
-moltbot browser create-profile \
+AGENT browser create-profile \
   --name my-chrome \
   --driver extension \
   --cdp-url http://127.0.0.1:18792 \
@@ -327,76 +327,76 @@ All commands accept `--browser-profile <name>` to target a specific profile.
 All commands also accept `--json` for machine-readable output (stable payloads).
 
 Basics:
-- `moltbot browser status`
-- `moltbot browser start`
-- `moltbot browser stop`
-- `moltbot browser tabs`
-- `moltbot browser tab`
-- `moltbot browser tab new`
-- `moltbot browser tab select 2`
-- `moltbot browser tab close 2`
-- `moltbot browser open https://example.com`
-- `moltbot browser focus abcd1234`
-- `moltbot browser close abcd1234`
+- `AGENT browser status`
+- `AGENT browser start`
+- `AGENT browser stop`
+- `AGENT browser tabs`
+- `AGENT browser tab`
+- `AGENT browser tab new`
+- `AGENT browser tab select 2`
+- `AGENT browser tab close 2`
+- `AGENT browser open https://example.com`
+- `AGENT browser focus abcd1234`
+- `AGENT browser close abcd1234`
 
 Inspection:
-- `moltbot browser screenshot`
-- `moltbot browser screenshot --full-page`
-- `moltbot browser screenshot --ref 12`
-- `moltbot browser screenshot --ref e12`
-- `moltbot browser snapshot`
-- `moltbot browser snapshot --format aria --limit 200`
-- `moltbot browser snapshot --interactive --compact --depth 6`
-- `moltbot browser snapshot --efficient`
-- `moltbot browser snapshot --labels`
-- `moltbot browser snapshot --selector "#main" --interactive`
-- `moltbot browser snapshot --frame "iframe#main" --interactive`
-- `moltbot browser console --level error`
-- `moltbot browser errors --clear`
-- `moltbot browser requests --filter api --clear`
-- `moltbot browser pdf`
-- `moltbot browser responsebody "**/api" --max-chars 5000`
+- `AGENT browser screenshot`
+- `AGENT browser screenshot --full-page`
+- `AGENT browser screenshot --ref 12`
+- `AGENT browser screenshot --ref e12`
+- `AGENT browser snapshot`
+- `AGENT browser snapshot --format aria --limit 200`
+- `AGENT browser snapshot --interactive --compact --depth 6`
+- `AGENT browser snapshot --efficient`
+- `AGENT browser snapshot --labels`
+- `AGENT browser snapshot --selector "#main" --interactive`
+- `AGENT browser snapshot --frame "iframe#main" --interactive`
+- `AGENT browser console --level error`
+- `AGENT browser errors --clear`
+- `AGENT browser requests --filter api --clear`
+- `AGENT browser pdf`
+- `AGENT browser responsebody "**/api" --max-chars 5000`
 
 Actions:
-- `moltbot browser navigate https://example.com`
-- `moltbot browser resize 1280 720`
-- `moltbot browser click 12 --double`
-- `moltbot browser click e12 --double`
-- `moltbot browser type 23 "hello" --submit`
-- `moltbot browser press Enter`
-- `moltbot browser hover 44`
-- `moltbot browser scrollintoview e12`
-- `moltbot browser drag 10 11`
-- `moltbot browser select 9 OptionA OptionB`
-- `moltbot browser download e12 /tmp/report.pdf`
-- `moltbot browser waitfordownload /tmp/report.pdf`
-- `moltbot browser upload /tmp/file.pdf`
-- `moltbot browser fill --fields '[{"ref":"1","type":"text","value":"Ada"}]'`
-- `moltbot browser dialog --accept`
-- `moltbot browser wait --text "Done"`
-- `moltbot browser wait "#main" --url "**/dash" --load networkidle --fn "window.ready===true"`
-- `moltbot browser evaluate --fn '(el) => el.textContent' --ref 7`
-- `moltbot browser highlight e12`
-- `moltbot browser trace start`
-- `moltbot browser trace stop`
+- `AGENT browser navigate https://example.com`
+- `AGENT browser resize 1280 720`
+- `AGENT browser click 12 --double`
+- `AGENT browser click e12 --double`
+- `AGENT browser type 23 "hello" --submit`
+- `AGENT browser press Enter`
+- `AGENT browser hover 44`
+- `AGENT browser scrollintoview e12`
+- `AGENT browser drag 10 11`
+- `AGENT browser select 9 OptionA OptionB`
+- `AGENT browser download e12 /tmp/report.pdf`
+- `AGENT browser waitfordownload /tmp/report.pdf`
+- `AGENT browser upload /tmp/file.pdf`
+- `AGENT browser fill --fields '[{"ref":"1","type":"text","value":"Ada"}]'`
+- `AGENT browser dialog --accept`
+- `AGENT browser wait --text "Done"`
+- `AGENT browser wait "#main" --url "**/dash" --load networkidle --fn "window.ready===true"`
+- `AGENT browser evaluate --fn '(el) => el.textContent' --ref 7`
+- `AGENT browser highlight e12`
+- `AGENT browser trace start`
+- `AGENT browser trace stop`
 
 State:
-- `moltbot browser cookies`
-- `moltbot browser cookies set session abc123 --url "https://example.com"`
-- `moltbot browser cookies clear`
-- `moltbot browser storage local get`
-- `moltbot browser storage local set theme dark`
-- `moltbot browser storage session clear`
-- `moltbot browser set offline on`
-- `moltbot browser set headers --json '{"X-Debug":"1"}'`
-- `moltbot browser set credentials user pass`
-- `moltbot browser set credentials --clear`
-- `moltbot browser set geo 37.7749 -122.4194 --origin "https://example.com"`
-- `moltbot browser set geo --clear`
-- `moltbot browser set media dark`
-- `moltbot browser set timezone America/New_York`
-- `moltbot browser set locale en-US`
-- `moltbot browser set device "iPhone 14"`
+- `AGENT browser cookies`
+- `AGENT browser cookies set session abc123 --url "https://example.com"`
+- `AGENT browser cookies clear`
+- `AGENT browser storage local get`
+- `AGENT browser storage local set theme dark`
+- `AGENT browser storage session clear`
+- `AGENT browser set offline on`
+- `AGENT browser set headers --json '{"X-Debug":"1"}'`
+- `AGENT browser set credentials user pass`
+- `AGENT browser set credentials --clear`
+- `AGENT browser set geo 37.7749 -122.4194 --origin "https://example.com"`
+- `AGENT browser set geo --clear`
+- `AGENT browser set media dark`
+- `AGENT browser set timezone America/New_York`
+- `AGENT browser set locale en-US`
+- `AGENT browser set device "iPhone 14"`
 
 Notes:
 - `upload` and `dialog` are **arming** calls; run them before the click/press
@@ -418,14 +418,14 @@ Notes:
 
 Moltbot supports two “snapshot” styles:
 
-- **AI snapshot (numeric refs)**: `moltbot browser snapshot` (default; `--format ai`)
+- **AI snapshot (numeric refs)**: `AGENT browser snapshot` (default; `--format ai`)
   - Output: a text snapshot that includes numeric refs.
-  - Actions: `moltbot browser click 12`, `moltbot browser type 23 "hello"`.
+  - Actions: `AGENT browser click 12`, `AGENT browser type 23 "hello"`.
   - Internally, the ref is resolved via Playwright’s `aria-ref`.
 
-- **Role snapshot (role refs like `e12`)**: `moltbot browser snapshot --interactive` (or `--compact`, `--depth`, `--selector`, `--frame`)
+- **Role snapshot (role refs like `e12`)**: `AGENT browser snapshot --interactive` (or `--compact`, `--depth`, `--selector`, `--frame`)
   - Output: a role-based list/tree with `[ref=e12]` (and optional `[nth=1]`).
-  - Actions: `moltbot browser click e12`, `moltbot browser highlight e12`.
+  - Actions: `AGENT browser click e12`, `AGENT browser highlight e12`.
   - Internally, the ref is resolved via `getByRole(...)` (plus `nth()` for duplicates).
   - Add `--labels` to include a viewport screenshot with overlayed `e12` labels.
 
@@ -438,18 +438,18 @@ Ref behavior:
 You can wait on more than just time/text:
 
 - Wait for URL (globs supported by Playwright):
-  - `moltbot browser wait --url "**/dash"`
+  - `AGENT browser wait --url "**/dash"`
 - Wait for load state:
-  - `moltbot browser wait --load networkidle`
+  - `AGENT browser wait --load networkidle`
 - Wait for a JS predicate:
-  - `moltbot browser wait --fn "window.ready===true"`
+  - `AGENT browser wait --fn "window.ready===true"`
 - Wait for a selector to become visible:
-  - `moltbot browser wait "#main"`
+  - `AGENT browser wait "#main"`
 
 These can be combined:
 
 ```bash
-moltbot browser wait "#main" \
+AGENT browser wait "#main" \
   --url "**/dash" \
   --load networkidle \
   --fn "window.ready===true" \
@@ -460,16 +460,16 @@ moltbot browser wait "#main" \
 
 When an action fails (e.g. “not visible”, “strict mode violation”, “covered”):
 
-1. `moltbot browser snapshot --interactive`
+1. `AGENT browser snapshot --interactive`
 2. Use `click <ref>` / `type <ref>` (prefer role refs in interactive mode)
-3. If it still fails: `moltbot browser highlight <ref>` to see what Playwright is targeting
+3. If it still fails: `AGENT browser highlight <ref>` to see what Playwright is targeting
 4. If the page behaves oddly:
-   - `moltbot browser errors --clear`
-   - `moltbot browser requests --filter api --clear`
+   - `AGENT browser errors --clear`
+   - `AGENT browser requests --filter api --clear`
 5. For deep debugging: record a trace:
-   - `moltbot browser trace start`
+   - `AGENT browser trace start`
    - reproduce the issue
-   - `moltbot browser trace stop` (prints `TRACE:<path>`)
+   - `AGENT browser trace stop` (prints `TRACE:<path>`)
 
 ## JSON output
 
@@ -478,10 +478,10 @@ When an action fails (e.g. “not visible”, “strict mode violation”, “co
 Examples:
 
 ```bash
-moltbot browser status --json
-moltbot browser snapshot --interactive --json
-moltbot browser requests --filter api --json
-moltbot browser cookies --json
+AGENT browser status --json
+AGENT browser snapshot --interactive --json
+AGENT browser requests --filter api --json
+AGENT browser cookies --json
 ```
 
 Role snapshots in JSON include `refs` plus a small `stats` block (lines/chars/refs/interactive) so tools can reason about payload size and density.
@@ -505,7 +505,7 @@ These are useful for “make the site behave like X” workflows:
 ## Security & privacy
 
 - The clawd browser profile may contain logged-in sessions; treat it as sensitive.
-- `browser act kind=evaluate` / `moltbot browser evaluate` and `wait --fn`
+- `browser act kind=evaluate` / `AGENT browser evaluate` and `wait --fn`
   execute arbitrary JavaScript in the page context. Prompt injection can steer
   this. Disable it with `browser.evaluateEnabled=false` if you do not need it.
 - For logins and anti-bot notes (X/Twitter, etc.), see [Browser login + X/Twitter posting](/tools/browser-login).

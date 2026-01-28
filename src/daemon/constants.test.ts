@@ -62,7 +62,7 @@ describe("resolveGatewaySystemdServiceName", () => {
   it("returns default service name when no profile is set", () => {
     const result = resolveGatewaySystemdServiceName();
     expect(result).toBe(GATEWAY_SYSTEMD_SERVICE_NAME);
-    expect(result).toBe("moltbot-gateway");
+    expect(result).toBe("AGENT-gateway");
   });
 
   it("returns default service name when profile is undefined", () => {
@@ -82,17 +82,17 @@ describe("resolveGatewaySystemdServiceName", () => {
 
   it("returns profile-specific service name when profile is set", () => {
     const result = resolveGatewaySystemdServiceName("dev");
-    expect(result).toBe("moltbot-gateway-dev");
+    expect(result).toBe("AGENT-gateway-dev");
   });
 
   it("returns profile-specific service name for custom profile", () => {
     const result = resolveGatewaySystemdServiceName("production");
-    expect(result).toBe("moltbot-gateway-production");
+    expect(result).toBe("AGENT-gateway-production");
   });
 
   it("trims whitespace from profile", () => {
     const result = resolveGatewaySystemdServiceName("  test  ");
-    expect(result).toBe("moltbot-gateway-test");
+    expect(result).toBe("AGENT-gateway-test");
   });
 
   it("returns default service name for empty string profile", () => {

@@ -22,7 +22,7 @@ Status: bundled plugin that talks to the BlueBubbles macOS server over HTTP. **R
 ## Quick start
 1. Install the BlueBubbles server on your Mac (follow the instructions at [bluebubbles.app/install](https://bluebubbles.app/install)).
 2. In the BlueBubbles config, enable the web API and set a password.
-3. Run `moltbot onboard` and select BlueBubbles, or configure manually:
+3. Run `AGENT onboard` and select BlueBubbles, or configure manually:
    ```json5
    {
      channels: {
@@ -41,7 +41,7 @@ Status: bundled plugin that talks to the BlueBubbles macOS server over HTTP. **R
 ## Onboarding
 BlueBubbles is available in the interactive setup wizard:
 ```
-moltbot onboard
+AGENT onboard
 ```
 
 The wizard prompts for:
@@ -53,7 +53,7 @@ The wizard prompts for:
 
 You can also add BlueBubbles via CLI:
 ```
-moltbot channels add bluebubbles --http-url http://192.168.1.100:1234 --password <password>
+AGENT channels add bluebubbles --http-url http://192.168.1.100:1234 --password <password>
 ```
 
 ## Access control (DMs + groups)
@@ -61,8 +61,8 @@ DMs:
 - Default: `channels.bluebubbles.dmPolicy = "pairing"`.
 - Unknown senders receive a pairing code; messages are ignored until approved (codes expire after 1 hour).
 - Approve via:
-  - `moltbot pairing list bluebubbles`
-  - `moltbot pairing approve bluebubbles <CODE>`
+  - `AGENT pairing list bluebubbles`
+  - `AGENT pairing approve bluebubbles <CODE>`
 - Pairing is the default token exchange. Details: [Pairing](/start/pairing)
 
 Groups:
@@ -223,11 +223,11 @@ Prefer `chat_guid` for stable routing:
 
 ## Troubleshooting
 - If typing/read events stop working, check the BlueBubbles webhook logs and verify the gateway path matches `channels.bluebubbles.webhookPath`.
-- Pairing codes expire after one hour; use `moltbot pairing list bluebubbles` and `moltbot pairing approve bluebubbles <code>`.
+- Pairing codes expire after one hour; use `AGENT pairing list bluebubbles` and `AGENT pairing approve bluebubbles <code>`.
 - Reactions require the BlueBubbles private API (`POST /api/v1/message/react`); ensure the server version exposes it.
 - Edit/unsend require macOS 13+ and a compatible BlueBubbles server version. On macOS 26 (Tahoe), edit is currently broken due to private API changes.
 - Group icon updates can be flaky on macOS 26 (Tahoe): the API may return success but the new icon does not sync.
 - Moltbot auto-hides known-broken actions based on the BlueBubbles server's macOS version. If edit still appears on macOS 26 (Tahoe), disable it manually with `channels.bluebubbles.actions.edit=false`.
-- For status/health info: `moltbot status --all` or `moltbot status --deep`.
+- For status/health info: `AGENT status --all` or `AGENT status --deep`.
 
 For general channel workflow reference, see [Channels](/channels) and the [Plugins](/plugins) guide.

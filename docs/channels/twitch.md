@@ -14,13 +14,13 @@ Twitch ships as a plugin and is not bundled with the core install.
 Install via CLI (npm registry):
 
 ```bash
-moltbot plugins install @moltbot/twitch
+AGENT plugins install @AGENT/twitch
 ```
 
 Local checkout (when running from a git repo):
 
 ```bash
-moltbot plugins install ./extensions/twitch
+AGENT plugins install ./extensions/twitch
 ```
 
 Details: [Plugins](/plugin)
@@ -48,7 +48,7 @@ Minimal config:
   channels: {
     twitch: {
       enabled: true,
-      username: "moltbot",              // Bot's Twitch account
+      username: "AGENT",              // Bot's Twitch account
       accessToken: "oauth:abc123...",    // OAuth Access Token (or use CLAWDBOT_TWITCH_ACCESS_TOKEN env var)
       clientId: "xyz789...",             // Client ID from Token Generator
       channel: "vevisk",                 // Which Twitch channel's chat to join (required)
@@ -89,7 +89,7 @@ CLAWDBOT_TWITCH_ACCESS_TOKEN=oauth:abc123...
   channels: {
     twitch: {
       enabled: true,
-      username: "moltbot",
+      username: "AGENT",
       accessToken: "oauth:abc123...",
       clientId: "xyz789...",
       channel: "vevisk"
@@ -150,13 +150,13 @@ Example (one bot account in two channels):
     twitch: {
       accounts: {
         channel1: {
-          username: "moltbot",
+          username: "AGENT",
           accessToken: "oauth:abc123...",
           clientId: "xyz789...",
           channel: "vevisk"
         },
         channel2: {
-          username: "moltbot",
+          username: "AGENT",
           accessToken: "oauth:def456...",
           clientId: "uvw012...",
           channel: "secondchannel"
@@ -245,8 +245,8 @@ By default, `requireMention` is `true`. To disable and respond to all messages:
 First, run diagnostic commands:
 
 ```bash
-moltbot doctor
-moltbot channels status --probe
+AGENT doctor
+AGENT channels status --probe
 ```
 
 ### Bot doesn't respond to messages
@@ -305,7 +305,7 @@ Full example:
   channels: {
     twitch: {
       enabled: true,
-      username: "moltbot",
+      username: "AGENT",
       accessToken: "oauth:abc123...",
       clientId: "xyz789...",
       channel: "vevisk",

@@ -77,7 +77,7 @@ vi.mock("../infra/provider-usage.js", () => ({
 }));
 
 import "./test-helpers/fast-core-tools.js";
-import { createMoltbotTools } from "./moltbot-tools.js";
+import { createMoltbotTools } from "./AGENT-tools.js";
 
 describe("session_status tool", () => {
   it("returns a status card for the current session", async () => {

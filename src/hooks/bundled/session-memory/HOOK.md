@@ -4,7 +4,7 @@ description: "Save session context to memory when /new command is issued"
 homepage: https://docs.molt.bot/hooks#session-memory
 metadata:
   {
-    "moltbot":
+    "AGENT":
       {
         "emoji": "💾",
         "events": ["command:new"],
@@ -68,7 +68,7 @@ No additional configuration required. The hook automatically:
 To disable this hook:
 
 ```bash
-moltbot hooks disable session-memory
+AGENT hooks disable session-memory
 ```
 
 Or remove it from your config:

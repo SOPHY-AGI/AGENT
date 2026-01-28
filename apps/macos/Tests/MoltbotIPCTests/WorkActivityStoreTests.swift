@@ -68,7 +68,7 @@ struct WorkActivityStoreTests {
             meta: nil,
             args: [
                 "command": AnyCodable("echo hi\necho bye"),
-                "path": AnyCodable("\(home)/Projects/moltbot"),
+                "path": AnyCodable("\(home)/Projects/AGENT"),
             ])
 
         #expect(store.current?.label == "bash: echo hi")

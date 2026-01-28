@@ -151,10 +151,10 @@ export async function docsSearchCommand(queryParts: string[], runtime: RuntimeEn
     const docs = formatDocsLink("/", "docs.molt.bot");
     if (isRich()) {
       runtime.log(`${theme.muted("Docs:")} ${docs}`);
-      runtime.log(`${theme.muted("Search:")} ${formatCliCommand('moltbot docs "your query"')}`);
+      runtime.log(`${theme.muted("Search:")} ${formatCliCommand('AGENT docs "your query"')}`);
     } else {
       runtime.log("Docs: https://docs.molt.bot/");
-      runtime.log(`Search: ${formatCliCommand('moltbot docs "your query"')}`);
+      runtime.log(`Search: ${formatCliCommand('AGENT docs "your query"')}`);
     }
     return;
   }

@@ -1,4 +1,4 @@
-import { resolveMoltbotPackageRoot } from "../../infra/moltbot-root.js";
+import { resolveMoltbotPackageRoot } from "../../infra/AGENT-root.js";
 import { scheduleGatewaySigusr1Restart } from "../../infra/restart.js";
 import {
   formatDoctorNonInteractiveHint,

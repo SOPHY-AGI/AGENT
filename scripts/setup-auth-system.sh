@@ -49,7 +49,7 @@ echo ""
 # Check for ntfy
 echo "  ntfy.sh: Free push notifications to your phone"
 echo "  1. Install ntfy app on your phone"
-echo "  2. Subscribe to a topic (e.g., 'moltbot-alerts')"
+echo "  2. Subscribe to a topic (e.g., 'AGENT-alerts')"
 echo ""
 echo "Enter ntfy.sh topic (or leave blank to skip):"
 read -r NTFY_TOPIC
@@ -61,7 +61,7 @@ echo "Enter your phone number for alerts (or leave blank to skip):"
 read -r PHONE_NUMBER
 
 # Update service file
-SERVICE_FILE="$SCRIPT_DIR/systemd/moltbot-auth-monitor.service"
+SERVICE_FILE="$SCRIPT_DIR/systemd/AGENT-auth-monitor.service"
 if [ -n "$NTFY_TOPIC" ]; then
     sed -i "s|# Environment=NOTIFY_NTFY=.*|Environment=NOTIFY_NTFY=$NTFY_TOPIC|" "$SERVICE_FILE"
 fi
@@ -73,10 +73,10 @@ fi
 echo ""
 echo "Installing systemd timer..."
 mkdir -p ~/.config/systemd/user
-cp "$SCRIPT_DIR/systemd/moltbot-auth-monitor.service" ~/.config/systemd/user/
-cp "$SCRIPT_DIR/systemd/moltbot-auth-monitor.timer" ~/.config/systemd/user/
+cp "$SCRIPT_DIR/systemd/AGENT-auth-monitor.service" ~/.config/systemd/user/
+cp "$SCRIPT_DIR/systemd/AGENT-auth-monitor.timer" ~/.config/systemd/user/
 systemctl --user daemon-reload
-systemctl --user enable --now moltbot-auth-monitor.timer
+systemctl --user enable --now AGENT-auth-monitor.timer
 
 echo "Auth monitor installed and running."
 echo ""
@@ -110,7 +110,7 @@ echo ""
 echo "What's configured:"
 echo "  - Auth status: $SCRIPT_DIR/claude-auth-status.sh"
 echo "  - Mobile re-auth: $SCRIPT_DIR/mobile-reauth.sh"
-echo "  - Auth monitor: systemctl --user status moltbot-auth-monitor.timer"
+echo "  - Auth monitor: systemctl --user status AGENT-auth-monitor.timer"
 echo ""
 echo "Quick commands:"
 echo "  Check auth:  $SCRIPT_DIR/claude-auth-status.sh"

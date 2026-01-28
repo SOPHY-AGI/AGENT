@@ -34,7 +34,7 @@ const baseEntry: ChannelPluginCatalogEntry = {
     blurb: "Test",
   },
   install: {
-    npmSpec: "@moltbot/zalo",
+    npmSpec: "@AGENT/zalo",
     localPath: "extensions/zalo",
   },
 };
@@ -69,10 +69,10 @@ describe("ensureOnboardingPluginInstalled", () => {
     expect(result.cfg.plugins?.entries?.zalo?.enabled).toBe(true);
     expect(result.cfg.plugins?.allow).toContain("zalo");
     expect(result.cfg.plugins?.installs?.zalo?.source).toBe("npm");
-    expect(result.cfg.plugins?.installs?.zalo?.spec).toBe("@moltbot/zalo");
+    expect(result.cfg.plugins?.installs?.zalo?.spec).toBe("@AGENT/zalo");
     expect(result.cfg.plugins?.installs?.zalo?.installPath).toBe("/tmp/zalo");
     expect(installPluginFromNpmSpec).toHaveBeenCalledWith(
-      expect.objectContaining({ spec: "@moltbot/zalo" }),
+      expect.objectContaining({ spec: "@AGENT/zalo" }),
     );
   });
 

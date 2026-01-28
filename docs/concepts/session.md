@@ -90,7 +90,7 @@ Send these as standalone messages so they register.
 
 ## Configuration (optional rename example)
 ```json5
-// ~/.clawdbot/moltbot.json
+// ~/.clawdbot/AGENT.json
 {
   session: {
     scope: "per-sender",      // keep group keys separate
@@ -121,9 +121,9 @@ Send these as standalone messages so they register.
 ```
 
 ## Inspecting
-- `moltbot status` — shows store path and recent sessions.
-- `moltbot sessions --json` — dumps every entry (filter with `--active <minutes>`).
-- `moltbot gateway call sessions.list --params '{}'` — fetch sessions from the running gateway (use `--url`/`--token` for remote gateway access).
+- `AGENT status` — shows store path and recent sessions.
+- `AGENT sessions --json` — dumps every entry (filter with `--active <minutes>`).
+- `AGENT gateway call sessions.list --params '{}'` — fetch sessions from the running gateway (use `--url`/`--token` for remote gateway access).
 - Send `/status` as a standalone message in chat to see whether the agent is reachable, how much of the session context is used, current thinking/verbose toggles, and when your WhatsApp web creds were last refreshed (helps spot relink needs).
 - Send `/context list` or `/context detail` to see what’s in the system prompt and injected workspace files (and the biggest context contributors).
 - Send `/stop` as a standalone message to abort the current run, clear queued followups for that session, and stop any sub-agent runs spawned from it (the reply includes the stopped count).

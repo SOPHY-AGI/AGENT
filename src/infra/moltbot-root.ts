@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const CORE_PACKAGE_NAMES = new Set(["moltbot", "moltbot"]);
+const CORE_PACKAGE_NAMES = new Set(["AGENT", "AGENT"]);
 
 async function readPackageName(dir: string): Promise<string | null> {
   try {

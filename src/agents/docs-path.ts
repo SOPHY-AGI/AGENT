@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { resolveMoltbotPackageRoot } from "../infra/moltbot-root.js";
+import { resolveMoltbotPackageRoot } from "../infra/AGENT-root.js";
 
 export async function resolveMoltbotDocsPath(params: {
   workspaceDir?: string;

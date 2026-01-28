@@ -403,7 +403,7 @@ describe("buildStatusMessage", () => {
 
         expect(normalizeTestText(text)).toContain("Context: 1.0k/32k");
       },
-      { prefix: "moltbot-status-" },
+      { prefix: "AGENT-status-" },
     );
   });
 });

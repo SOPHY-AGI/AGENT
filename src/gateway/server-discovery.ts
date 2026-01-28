@@ -14,7 +14,7 @@ export type ResolveBonjourCliPathOptions = {
 export function formatBonjourInstanceName(displayName: string) {
   const trimmed = displayName.trim();
   if (!trimmed) return "Moltbot";
-  if (/moltbot/i.test(trimmed)) return trimmed;
+  if (/AGENT/i.test(trimmed)) return trimmed;
   return `${trimmed} (Moltbot)`;
 }
 
@@ -34,7 +34,7 @@ export function resolveBonjourCliPath(opts: ResolveBonjourCliPathOptions = {}): 
 
   const execPath = opts.execPath ?? process.execPath;
   const execDir = path.dirname(execPath);
-  const siblingCli = path.join(execDir, "moltbot");
+  const siblingCli = path.join(execDir, "AGENT");
   if (isFile(siblingCli)) return siblingCli;
 
   const argv = opts.argv ?? process.argv;
@@ -46,7 +46,7 @@ export function resolveBonjourCliPath(opts: ResolveBonjourCliPathOptions = {}): 
   const cwd = opts.cwd ?? process.cwd();
   const distCli = path.join(cwd, "dist", "index.js");
   if (isFile(distCli)) return distCli;
-  const binCli = path.join(cwd, "bin", "moltbot.js");
+  const binCli = path.join(cwd, "bin", "AGENT.js");
   if (isFile(binCli)) return binCli;
 
   return undefined;

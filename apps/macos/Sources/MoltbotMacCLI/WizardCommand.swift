@@ -71,10 +71,10 @@ func runWizardCommand(_ args: [String]) async {
     let opts = WizardCliOptions.parse(args)
     if opts.help {
         print("""
-        moltbot-mac wizard
+        AGENT-mac wizard
 
         Usage:
-          moltbot-mac wizard [--url <ws://host:port>] [--token <token>] [--password <password>]
+          AGENT-mac wizard [--url <ws://host:port>] [--token <token>] [--password <password>]
                               [--mode <local|remote>] [--workspace <path>] [--json]
 
         Options:
@@ -253,7 +253,7 @@ actor GatewayWizardClient {
         }
         let osVersion = ProcessInfo.processInfo.operatingSystemVersion
         let platform = "macos \(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
-        let clientId = "moltbot-macos"
+        let clientId = "AGENT-macos"
         let clientMode = "ui"
         let role = "operator"
         let scopes: [String] = []

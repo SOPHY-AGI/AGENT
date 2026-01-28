@@ -9,7 +9,7 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
 
 - [Quick start and first-run setup](#quick-start-and-firstrun-setup)
   - [Im stuck whats the fastest way to get unstuck?](#im-stuck-whats-the-fastest-way-to-get-unstuck)
-  - [What’s the recommended way to install and set up Moltbot?](#whats-the-recommended-way-to-install-and-set-up-moltbot)
+  - [What’s the recommended way to install and set up Moltbot?](#whats-the-recommended-way-to-install-and-set-up-AGENT)
   - [How do I open the dashboard after onboarding?](#how-do-i-open-the-dashboard-after-onboarding)
   - [How do I authenticate the dashboard (token) on localhost vs remote?](#how-do-i-authenticate-the-dashboard-token-on-localhost-vs-remote)
   - [What runtime do I need?](#what-runtime-do-i-need)
@@ -18,16 +18,16 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   - [It is stuck on "wake up my friend" / onboarding will not hatch. What now?](#it-is-stuck-on-wake-up-my-friend-onboarding-will-not-hatch-what-now)
   - [Can I migrate my setup to a new machine (Mac mini) without redoing onboarding?](#can-i-migrate-my-setup-to-a-new-machine-mac-mini-without-redoing-onboarding)
   - [Where do I see what’s new in the latest version?](#where-do-i-see-whats-new-in-the-latest-version)
-  - [I can't access docs.molt.bot (SSL error). What now?](#i-cant-access-docsmoltbot-ssl-error-what-now)
+  - [I can't access docs.molt.bot (SSL error). What now?](#i-cant-access-docsAGENT-ssl-error-what-now)
   - [What’s the difference between stable and beta?](#whats-the-difference-between-stable-and-beta)
 - [How do I install the beta version, and what’s the difference between beta and dev?](#how-do-i-install-the-beta-version-and-whats-the-difference-between-beta-and-dev)
   - [How do I try the latest bits?](#how-do-i-try-the-latest-bits)
   - [How long does install and onboarding usually take?](#how-long-does-install-and-onboarding-usually-take)
   - [Installer stuck? How do I get more feedback?](#installer-stuck-how-do-i-get-more-feedback)
-  - [Windows install says git not found or moltbot not recognized](#windows-install-says-git-not-found-or-moltbot-not-recognized)
+  - [Windows install says git not found or AGENT not recognized](#windows-install-says-git-not-found-or-AGENT-not-recognized)
   - [The docs didn’t answer my question - how do I get a better answer?](#the-docs-didnt-answer-my-question-how-do-i-get-a-better-answer)
-  - [How do I install Moltbot on Linux?](#how-do-i-install-moltbot-on-linux)
-  - [How do I install Moltbot on a VPS?](#how-do-i-install-moltbot-on-a-vps)
+  - [How do I install Moltbot on Linux?](#how-do-i-install-AGENT-on-linux)
+  - [How do I install Moltbot on a VPS?](#how-do-i-install-AGENT-on-a-vps)
   - [Where are the cloud/VPS install guides?](#where-are-the-cloudvps-install-guides)
   - [Can I ask Clawd to update itself?](#can-i-ask-clawd-to-update-itself)
   - [What does the onboarding wizard actually do?](#what-does-the-onboarding-wizard-actually-do)
@@ -45,24 +45,24 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   - [How do I keep hosted model traffic in a specific region?](#how-do-i-keep-hosted-model-traffic-in-a-specific-region)
   - [Do I have to buy a Mac Mini to install this?](#do-i-have-to-buy-a-mac-mini-to-install-this)
   - [Do I need a Mac mini for iMessage support?](#do-i-need-a-mac-mini-for-imessage-support)
-  - [If I buy a Mac mini to run Moltbot, can I connect it to my MacBook Pro?](#if-i-buy-a-mac-mini-to-run-moltbot-can-i-connect-it-to-my-macbook-pro)
+  - [If I buy a Mac mini to run Moltbot, can I connect it to my MacBook Pro?](#if-i-buy-a-mac-mini-to-run-AGENT-can-i-connect-it-to-my-macbook-pro)
   - [Can I use Bun?](#can-i-use-bun)
   - [Telegram: what goes in `allowFrom`?](#telegram-what-goes-in-allowfrom)
-  - [Can multiple people use one WhatsApp number with different Moltbots?](#can-multiple-people-use-one-whatsapp-number-with-different-moltbots)
+  - [Can multiple people use one WhatsApp number with different Moltbots?](#can-multiple-people-use-one-whatsapp-number-with-different-AGENTs)
   - [Can I run a "fast chat" agent and an "Opus for coding" agent?](#can-i-run-a-fast-chat-agent-and-an-opus-for-coding-agent)
   - [Does Homebrew work on Linux?](#does-homebrew-work-on-linux)
   - [What’s the difference between the hackable (git) install and npm install?](#whats-the-difference-between-the-hackable-git-install-and-npm-install)
   - [Can I switch between npm and git installs later?](#can-i-switch-between-npm-and-git-installs-later)
   - [Should I run the Gateway on my laptop or a VPS?](#should-i-run-the-gateway-on-my-laptop-or-a-vps)
-  - [How important is it to run Moltbot on a dedicated machine?](#how-important-is-it-to-run-moltbot-on-a-dedicated-machine)
+  - [How important is it to run Moltbot on a dedicated machine?](#how-important-is-it-to-run-AGENT-on-a-dedicated-machine)
   - [What are the minimum VPS requirements and recommended OS?](#what-are-the-minimum-vps-requirements-and-recommended-os)
-  - [Can I run Moltbot in a VM and what are the requirements](#can-i-run-moltbot-in-a-vm-and-what-are-the-requirements)
-- [What is Moltbot?](#what-is-moltbot)
-  - [What is Moltbot, in one paragraph?](#what-is-moltbot-in-one-paragraph)
+  - [Can I run Moltbot in a VM and what are the requirements](#can-i-run-AGENT-in-a-vm-and-what-are-the-requirements)
+- [What is Moltbot?](#what-is-AGENT)
+  - [What is Moltbot, in one paragraph?](#what-is-AGENT-in-one-paragraph)
   - [What’s the value proposition?](#whats-the-value-proposition)
   - [I just set it up what should I do first](#i-just-set-it-up-what-should-i-do-first)
-  - [What are the top five everyday use cases for Moltbot](#what-are-the-top-five-everyday-use-cases-for-moltbot)
-  - [Can Moltbot help with lead gen outreach ads and blogs for a SaaS](#can-moltbot-help-with-lead-gen-outreach-ads-and-blogs-for-a-saas)
+  - [What are the top five everyday use cases for Moltbot](#what-are-the-top-five-everyday-use-cases-for-AGENT)
+  - [Can Moltbot help with lead gen outreach ads and blogs for a SaaS](#can-AGENT-help-with-lead-gen-outreach-ads-and-blogs-for-a-saas)
   - [What are the advantages vs Claude Code for web development?](#what-are-the-advantages-vs-claude-code-for-web-development)
 - [Skills and automation](#skills-and-automation)
   - [How do I customize skills without keeping the repo dirty?](#how-do-i-customize-skills-without-keeping-the-repo-dirty)
@@ -71,7 +71,7 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   - [The bot freezes while doing heavy work. How do I offload that?](#the-bot-freezes-while-doing-heavy-work-how-do-i-offload-that)
   - [Cron or reminders do not fire. What should I check?](#cron-or-reminders-do-not-fire-what-should-i-check)
   - [How do I install skills on Linux?](#how-do-i-install-skills-on-linux)
-  - [Can Moltbot run tasks on a schedule or continuously in the background?](#can-moltbot-run-tasks-on-a-schedule-or-continuously-in-the-background)
+  - [Can Moltbot run tasks on a schedule or continuously in the background?](#can-AGENT-run-tasks-on-a-schedule-or-continuously-in-the-background)
   - [Can I run Apple/macOS-only skills from Linux?](#can-i-run-applemacosonly-skills-from-linux)
   - [Do you have a Notion or HeyGen integration?](#do-you-have-a-notion-or-heygen-integration)
   - [How do I install the Chrome extension for browser takeover?](#how-do-i-install-the-chrome-extension-for-browser-takeover)
@@ -83,11 +83,11 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   - [Does memory persist forever? What are the limits?](#does-memory-persist-forever-what-are-the-limits)
   - [Does semantic memory search require an OpenAI API key?](#does-semantic-memory-search-require-an-openai-api-key)
 - [Where things live on disk](#where-things-live-on-disk)
-  - [Is all data used with Moltbot saved locally?](#is-all-data-used-with-moltbot-saved-locally)
-  - [Where does Moltbot store its data?](#where-does-moltbot-store-its-data)
+  - [Is all data used with Moltbot saved locally?](#is-all-data-used-with-AGENT-saved-locally)
+  - [Where does Moltbot store its data?](#where-does-AGENT-store-its-data)
   - [Where should AGENTS.md / SOUL.md / USER.md / MEMORY.md live?](#where-should-agentsmd-soulmd-usermd-memorymd-live)
   - [What’s the recommended backup strategy?](#whats-the-recommended-backup-strategy)
-  - [How do I completely uninstall Moltbot?](#how-do-i-completely-uninstall-moltbot)
+  - [How do I completely uninstall Moltbot?](#how-do-i-completely-uninstall-AGENT)
   - [Can agents work outside the workspace?](#can-agents-work-outside-the-workspace)
   - [I’m in remote mode - where is the session store?](#im-in-remote-mode-where-is-the-session-store)
 - [Config basics](#config-basics)
@@ -98,13 +98,13 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   - [How do I enable web search (and web fetch)?](#how-do-i-enable-web-search-and-web-fetch)
   - [config.apply wiped my config. How do I recover and avoid this?](#configapply-wiped-my-config-how-do-i-recover-and-avoid-this)
   - [How do I run a central Gateway with specialized workers across devices?](#how-do-i-run-a-central-gateway-with-specialized-workers-across-devices)
-  - [Can the Moltbot browser run headless?](#can-the-moltbot-browser-run-headless)
+  - [Can the Moltbot browser run headless?](#can-the-AGENT-browser-run-headless)
   - [How do I use Brave for browser control?](#how-do-i-use-brave-for-browser-control)
 - [Remote gateways + nodes](#remote-gateways-nodes)
   - [How do commands propagate between Telegram, the gateway, and nodes?](#how-do-commands-propagate-between-telegram-the-gateway-and-nodes)
   - [How can my agent access my computer if the Gateway is hosted remotely?](#how-can-my-agent-access-my-computer-if-the-gateway-is-hosted-remotely)
   - [Tailscale is connected but I get no replies. What now?](#tailscale-is-connected-but-i-get-no-replies-what-now)
-  - [Can two Moltbots talk to each other (local + VPS)?](#can-two-moltbots-talk-to-each-other-local-vps)
+  - [Can two Moltbots talk to each other (local + VPS)?](#can-two-AGENTs-talk-to-each-other-local-vps)
   - [Do I need separate VPSes for multiple agents](#do-i-need-separate-vpses-for-multiple-agents)
   - [Is there a benefit to using a node on my personal laptop instead of SSH from a VPS?](#is-there-a-benefit-to-using-a-node-on-my-personal-laptop-instead-of-ssh-from-a-vps)
   - [Do nodes run a gateway service?](#do-nodes-run-a-gateway-service)
@@ -114,21 +114,21 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   - [How do I connect a Mac node to a remote Gateway (Tailscale Serve)?](#how-do-i-connect-a-mac-node-to-a-remote-gateway-tailscale-serve)
   - [Should I install on a second laptop or just add a node?](#should-i-install-on-a-second-laptop-or-just-add-a-node)
 - [Env vars and .env loading](#env-vars-and-env-loading)
-  - [How does Moltbot load environment variables?](#how-does-moltbot-load-environment-variables)
+  - [How does Moltbot load environment variables?](#how-does-AGENT-load-environment-variables)
   - [“I started the Gateway via the service and my env vars disappeared.” What now?](#i-started-the-gateway-via-the-service-and-my-env-vars-disappeared-what-now)
   - [I set `COPILOT_GITHUB_TOKEN`, but models status shows “Shell env: off.” Why?](#i-set-copilotgithubtoken-but-models-status-shows-shell-env-off-why)
 - [Sessions & multiple chats](#sessions-multiple-chats)
   - [How do I start a fresh conversation?](#how-do-i-start-a-fresh-conversation)
   - [Do sessions reset automatically if I never send `/new`?](#do-sessions-reset-automatically-if-i-never-send-new)
-  - [Is there a way to make a team of Moltbots one CEO and many agents](#is-there-a-way-to-make-a-team-of-moltbots-one-ceo-and-many-agents)
+  - [Is there a way to make a team of Moltbots one CEO and many agents](#is-there-a-way-to-make-a-team-of-AGENTs-one-ceo-and-many-agents)
   - [Why did context get truncated mid-task? How do I prevent it?](#why-did-context-get-truncated-midtask-how-do-i-prevent-it)
-  - [How do I completely reset Moltbot but keep it installed?](#how-do-i-completely-reset-moltbot-but-keep-it-installed)
+  - [How do I completely reset Moltbot but keep it installed?](#how-do-i-completely-reset-AGENT-but-keep-it-installed)
   - [I’m getting “context too large” errors - how do I reset or compact?](#im-getting-context-too-large-errors-how-do-i-reset-or-compact)
   - [Why am I seeing “LLM request rejected: messages.N.content.X.tool_use.input: Field required”?](#why-am-i-seeing-llm-request-rejected-messagesncontentxtooluseinput-field-required)
   - [Why am I getting heartbeat messages every 30 minutes?](#why-am-i-getting-heartbeat-messages-every-30-minutes)
   - [Do I need to add a “bot account” to a WhatsApp group?](#do-i-need-to-add-a-bot-account-to-a-whatsapp-group)
   - [How do I get the JID of a WhatsApp group?](#how-do-i-get-the-jid-of-a-whatsapp-group)
-  - [Why doesn’t Moltbot reply in a group?](#why-doesnt-moltbot-reply-in-a-group)
+  - [Why doesn’t Moltbot reply in a group?](#why-doesnt-AGENT-reply-in-a-group)
   - [Do groups/threads share context with DMs?](#do-groupsthreads-share-context-with-dms)
   - [How many workspaces and agents can I create?](#how-many-workspaces-and-agents-can-i-create)
   - [Can I run multiple bots or chats at the same time (Slack), and how should I set that up?](#can-i-run-multiple-bots-or-chats-at-the-same-time-slack-and-how-should-i-set-that-up)
@@ -158,10 +158,10 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   - [OAuth vs API key: what’s the difference?](#oauth-vs-api-key-whats-the-difference)
 - [Gateway: ports, “already running”, and remote mode](#gateway-ports-already-running-and-remote-mode)
   - [What port does the Gateway use?](#what-port-does-the-gateway-use)
-  - [Why does `moltbot gateway status` say `Runtime: running` but `RPC probe: failed`?](#why-does-moltbot-gateway-status-say-runtime-running-but-rpc-probe-failed)
-  - [Why does `moltbot gateway status` show `Config (cli)` and `Config (service)` different?](#why-does-moltbot-gateway-status-show-config-cli-and-config-service-different)
+  - [Why does `AGENT gateway status` say `Runtime: running` but `RPC probe: failed`?](#why-does-AGENT-gateway-status-say-runtime-running-but-rpc-probe-failed)
+  - [Why does `AGENT gateway status` show `Config (cli)` and `Config (service)` different?](#why-does-AGENT-gateway-status-show-config-cli-and-config-service-different)
   - [What does “another gateway instance is already listening” mean?](#what-does-another-gateway-instance-is-already-listening-mean)
-  - [How do I run Moltbot in remote mode (client connects to a Gateway elsewhere)?](#how-do-i-run-moltbot-in-remote-mode-client-connects-to-a-gateway-elsewhere)
+  - [How do I run Moltbot in remote mode (client connects to a Gateway elsewhere)?](#how-do-i-run-AGENT-in-remote-mode-client-connects-to-a-gateway-elsewhere)
   - [The Control UI says “unauthorized” (or keeps reconnecting). What now?](#the-control-ui-says-unauthorized-or-keeps-reconnecting-what-now)
   - [I set `gateway.bind: "tailnet"` but it can’t bind / nothing listens](#i-set-gatewaybind-tailnet-but-it-cant-bind-nothing-listens)
   - [Can I run multiple Gateways on the same host?](#can-i-run-multiple-gateways-on-the-same-host)
@@ -169,18 +169,18 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
 - [Logging and debugging](#logging-and-debugging)
   - [Where are logs?](#where-are-logs)
   - [How do I start/stop/restart the Gateway service?](#how-do-i-startstoprestart-the-gateway-service)
-  - [I closed my terminal on Windows - how do I restart Moltbot?](#i-closed-my-terminal-on-windows-how-do-i-restart-moltbot)
+  - [I closed my terminal on Windows - how do I restart Moltbot?](#i-closed-my-terminal-on-windows-how-do-i-restart-AGENT)
   - [The Gateway is up but replies never arrive. What should I check?](#the-gateway-is-up-but-replies-never-arrive-what-should-i-check)
   - ["Disconnected from gateway: no reason" - what now?](#disconnected-from-gateway-no-reason-what-now)
   - [Telegram setMyCommands fails with network errors. What should I check?](#telegram-setmycommands-fails-with-network-errors-what-should-i-check)
   - [TUI shows no output. What should I check?](#tui-shows-no-output-what-should-i-check)
   - [How do I completely stop then start the Gateway?](#how-do-i-completely-stop-then-start-the-gateway)
-  - [ELI5: `moltbot gateway restart` vs `moltbot gateway`](#eli5-moltbot-gateway-restart-vs-moltbot-gateway)
+  - [ELI5: `AGENT gateway restart` vs `AGENT gateway`](#eli5-AGENT-gateway-restart-vs-AGENT-gateway)
   - [What’s the fastest way to get more details when something fails?](#whats-the-fastest-way-to-get-more-details-when-something-fails)
 - [Media & attachments](#media-attachments)
   - [My skill generated an image/PDF, but nothing was sent](#my-skill-generated-an-imagepdf-but-nothing-was-sent)
 - [Security and access control](#security-and-access-control)
-  - [Is it safe to expose Moltbot to inbound DMs?](#is-it-safe-to-expose-moltbot-to-inbound-dms)
+  - [Is it safe to expose Moltbot to inbound DMs?](#is-it-safe-to-expose-AGENT-to-inbound-dms)
   - [Is prompt injection only a concern for public bots?](#is-prompt-injection-only-a-concern-for-public-bots)
   - [Should my bot have its own email GitHub account or phone number](#should-my-bot-have-its-own-email-github-account-or-phone-number)
   - [Can I give it autonomy over my text messages and is that safe](#can-i-give-it-autonomy-over-my-text-messages-and-is-that-safe)
@@ -197,48 +197,48 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
 
 1) **Quick status (first check)**
    ```bash
-   moltbot status
+   AGENT status
    ```
    Fast local summary: OS + update, gateway/service reachability, agents/sessions, provider config + runtime issues (when gateway is reachable).
 
 2) **Pasteable report (safe to share)**
    ```bash
-   moltbot status --all
+   AGENT status --all
    ```
    Read-only diagnosis with log tail (tokens redacted).
 
 3) **Daemon + port state**
    ```bash
-   moltbot gateway status
+   AGENT gateway status
    ```
    Shows supervisor runtime vs RPC reachability, the probe target URL, and which config the service likely used.
 
 4) **Deep probes**
    ```bash
-   moltbot status --deep
+   AGENT status --deep
    ```
    Runs gateway health checks + provider probes (requires a reachable gateway). See [Health](/gateway/health).
 
 5) **Tail the latest log**
    ```bash
-   moltbot logs --follow
+   AGENT logs --follow
    ```
    If RPC is down, fall back to:
    ```bash
-   tail -f "$(ls -t /tmp/moltbot/moltbot-*.log | head -1)"
+   tail -f "$(ls -t /tmp/AGENT/AGENT-*.log | head -1)"
    ```
    File logs are separate from service logs; see [Logging](/logging) and [Troubleshooting](/gateway/troubleshooting).
 
 6) **Run the doctor (repairs)**
    ```bash
-   moltbot doctor
+   AGENT doctor
    ```
    Repairs/migrates config/state + runs health checks. See [Doctor](/gateway/doctor).
 
 7) **Gateway snapshot**
    ```bash
-   moltbot health --json
-   moltbot health --verbose   # shows the target URL + config path on errors
+   AGENT health --json
+   AGENT health --verbose   # shows the target URL + config path on errors
    ```
    Asks the running gateway for a full snapshot (WS-only). See [Health](/gateway/health).
 
@@ -269,24 +269,24 @@ Tip: ask the agent to **plan and supervise** the fix (step-by-step), then execut
 necessary commands. That keeps changes small and easier to audit.
 
 If you discover a real bug or fix, please file a GitHub issue or send a PR:
-https://github.com/moltbot/moltbot/issues
-https://github.com/moltbot/moltbot/pulls
+https://github.com/AGENT/AGENT/issues
+https://github.com/AGENT/AGENT/pulls
 
 Start with these commands (share outputs when asking for help):
 
 ```bash
-moltbot status
-moltbot models status
-moltbot doctor
+AGENT status
+AGENT models status
+AGENT doctor
 ```
 
 What they do:
-- `moltbot status`: quick snapshot of gateway/agent health + basic config.
-- `moltbot models status`: checks provider auth + model availability.
-- `moltbot doctor`: validates and repairs common config/state issues.
+- `AGENT status`: quick snapshot of gateway/agent health + basic config.
+- `AGENT models status`: checks provider auth + model availability.
+- `AGENT doctor`: validates and repairs common config/state issues.
 
-Other useful CLI checks: `moltbot status --all`, `moltbot logs --follow`,
-`moltbot gateway status`, `moltbot health --verbose`.
+Other useful CLI checks: `AGENT status --all`, `AGENT logs --follow`,
+`AGENT gateway status`, `AGENT health --verbose`.
 
 Quick debug loop: [First 60 seconds if something's broken](#first-60-seconds-if-somethings-broken).
 Install docs: [Install](/install), [Installer flags](/install/installer), [Updating](/install/updating).
@@ -297,7 +297,7 @@ The repo recommends running from source and using the onboarding wizard:
 
 ```bash
 curl -fsSL https://molt.bot/install.sh | bash
-moltbot onboard --install-daemon
+AGENT onboard --install-daemon
 ```
 
 The wizard can also build UI assets automatically. After onboarding, you typically run the Gateway on port **18789**.
@@ -305,15 +305,15 @@ The wizard can also build UI assets automatically. After onboarding, you typical
 From source (contributors/dev):
 
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/AGENT/AGENT.git
+cd AGENT
 pnpm install
 pnpm build
 pnpm ui:build # auto-installs UI deps on first run
-moltbot onboard
+AGENT onboard
 ```
 
-If you don’t have a global install yet, run it via `pnpm moltbot onboard`.
+If you don’t have a global install yet, run it via `pnpm AGENT onboard`.
 
 ### How do I open the dashboard after onboarding
 
@@ -323,13 +323,13 @@ The wizard now opens your browser with a tokenized dashboard URL right after onb
 
 **Localhost (same machine):**
 - Open `http://127.0.0.1:18789/`.
-- If it asks for auth, run `moltbot dashboard` and use the tokenized link (`?token=...`).
+- If it asks for auth, run `AGENT dashboard` and use the tokenized link (`?token=...`).
 - The token is the same value as `gateway.auth.token` (or `CLAWDBOT_GATEWAY_TOKEN`) and is stored by the UI after first load.
 
 **Not on localhost:**
-- **Tailscale Serve** (recommended): keep bind loopback, run `moltbot gateway --tailscale serve`, open `https://<magicdns>/`. If `gateway.auth.allowTailscale` is `true`, identity headers satisfy auth (no token).
-- **Tailnet bind**: run `moltbot gateway --bind tailnet --token "<token>"`, open `http://<tailscale-ip>:18789/`, paste token in dashboard settings.
-- **SSH tunnel**: `ssh -N -L 18789:127.0.0.1:18789 user@host` then open `http://127.0.0.1:18789/?token=...` from `moltbot dashboard`.
+- **Tailscale Serve** (recommended): keep bind loopback, run `AGENT gateway --tailscale serve`, open `https://<magicdns>/`. If `gateway.auth.allowTailscale` is `true`, identity headers satisfy auth (no token).
+- **Tailnet bind**: run `AGENT gateway --bind tailnet --token "<token>"`, open `http://<tailscale-ip>:18789/`, paste token in dashboard settings.
+- **SSH tunnel**: `ssh -N -L 18789:127.0.0.1:18789 user@host` then open `http://127.0.0.1:18789/?token=...` from `AGENT dashboard`.
 
 See [Dashboard](/web/dashboard) and [Web surfaces](/web) for bind modes and auth details.
 
@@ -367,17 +367,17 @@ and tokens stay at 0, the agent never ran.
 
 1) Restart the Gateway:
 ```bash
-moltbot gateway restart
+AGENT gateway restart
 ```
 2) Check status + auth:
 ```bash
-moltbot status
-moltbot models status
-moltbot logs --follow
+AGENT status
+AGENT models status
+AGENT logs --follow
 ```
 3) If it still hangs, run:
 ```bash
-moltbot doctor
+AGENT doctor
 ```
 
 If the Gateway is remote, ensure the tunnel/Tailscale connection is up and that the UI
@@ -392,7 +392,7 @@ state) as long as you copy **both** locations:
 1) Install Moltbot on the new machine.
 2) Copy `$CLAWDBOT_STATE_DIR` (default: `~/.clawdbot`) from the old machine.
 3) Copy your workspace (default: `~/clawd`).
-4) Run `moltbot doctor` and restart the Gateway service.
+4) Run `AGENT doctor` and restart the Gateway service.
 
 That preserves config, auth profiles, WhatsApp creds, sessions, and memory. If you’re in
 remote mode, remember the gateway host owns the session store and workspace.
@@ -401,28 +401,28 @@ remote mode, remember the gateway host owns the session store and workspace.
 up **memory + bootstrap files**, but **not** session history or auth. Those live
 under `~/.clawdbot/` (for example `~/.clawdbot/agents/<agentId>/sessions/`).
 
-Related: [Migrating](/install/migrating), [Where things live on disk](/help/faq#where-does-moltbot-store-its-data),
+Related: [Migrating](/install/migrating), [Where things live on disk](/help/faq#where-does-AGENT-store-its-data),
 [Agent workspace](/concepts/agent-workspace), [Doctor](/gateway/doctor),
 [Remote mode](/gateway/remote).
 
 ### Where do I see whats new in the latest version
 
 Check the GitHub changelog:  
-https://github.com/moltbot/moltbot/blob/main/CHANGELOG.md
+https://github.com/AGENT/AGENT/blob/main/CHANGELOG.md
 
 Newest entries are at the top. If the top section is marked **Unreleased**, the next dated
 section is the latest shipped version. Entries are grouped by **Highlights**, **Changes**, and
 **Fixes** (plus docs/other sections when needed).
 
-### I cant access docsmoltbot SSL error What now
+### I cant access docsAGENT SSL error What now
 
 Some Comcast/Xfinity connections incorrectly block `docs.molt.bot` via Xfinity
 Advanced Security. Disable it or allowlist `docs.molt.bot`, then retry. More
-detail: [Troubleshooting](/help/troubleshooting#docsmoltbot-shows-an-ssl-error-comcastxfinity).
+detail: [Troubleshooting](/help/troubleshooting#docsAGENT-shows-an-ssl-error-comcastxfinity).
 Please help us unblock it by reporting here: https://spa.xfinity.com/check_url_status.
 
 If you still can't reach the site, the docs are mirrored on GitHub:
-https://github.com/moltbot/moltbot/tree/main/docs
+https://github.com/AGENT/AGENT/tree/main/docs
 
 ### Whats the difference between stable and beta
 
@@ -435,7 +435,7 @@ that same version to `latest`**. That’s why beta and stable can point at the
 **same version**.
 
 See what changed:  
-https://github.com/moltbot/moltbot/blob/main/CHANGELOG.md
+https://github.com/AGENT/AGENT/blob/main/CHANGELOG.md
 
 ### How do I install the beta version and whats the difference between beta and dev
 
@@ -472,7 +472,7 @@ Two options:
 
 1) **Dev channel (git checkout):**
 ```bash
-moltbot update --channel dev
+AGENT update --channel dev
 ```
 This switches to the `main` branch and updates from source.
 
@@ -484,8 +484,8 @@ That gives you a local repo you can edit, then update via git.
 
 If you prefer a clean clone manually, use:
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/AGENT/AGENT.git
+cd AGENT
 pnpm install
 pnpm build
 ```
@@ -515,7 +515,7 @@ curl -fsSL https://molt.bot/install.sh | bash -s -- --install-method git --verbo
 
 More options: [Installer flags](/install/installer).
 
-### Windows install says git not found or moltbot not recognized
+### Windows install says git not found or AGENT not recognized
 
 Two common Windows issues:
 
@@ -523,7 +523,7 @@ Two common Windows issues:
 - Install **Git for Windows** and make sure `git` is on your PATH.
 - Close and reopen PowerShell, then re-run the installer.
 
-**2) moltbot is not recognized after install**
+**2) AGENT is not recognized after install**
 - Your npm global bin folder is not on PATH.
 - Check the path:
   ```powershell
@@ -590,25 +590,25 @@ can prompt for confirmation. Safer: run updates from a shell as the operator.
 Use the CLI:
 
 ```bash
-moltbot update
-moltbot update status
-moltbot update --channel stable|beta|dev
-moltbot update --tag <dist-tag|version>
-moltbot update --no-restart
+AGENT update
+AGENT update status
+AGENT update --channel stable|beta|dev
+AGENT update --tag <dist-tag|version>
+AGENT update --no-restart
 ```
 
 If you must automate from an agent:
 
 ```bash
-moltbot update --yes --no-restart
-moltbot gateway restart
+AGENT update --yes --no-restart
+AGENT gateway restart
 ```
 
 Docs: [Update](/cli/update), [Updating](/install/updating).
 
 ### What does the onboarding wizard actually do
 
-`moltbot onboard` is the recommended setup path. In **local mode** it walks you through:
+`AGENT onboard` is the recommended setup path. In **local mode** it walks you through:
 
 - **Model/auth setup** (Anthropic **setup-token** recommended for Claude subscriptions, OpenAI Codex OAuth supported, API keys optional, LM Studio local models supported)
 - **Workspace** location + bootstrap files
@@ -640,7 +640,7 @@ If you want the most explicit, supported path, use an Anthropic API key.
 
 ### How does Anthropic setuptoken auth work
 
-`claude setup-token` generates a **token string** via the Claude Code CLI (it is not available in the web console). You can run it on **any machine**. Choose **Anthropic token (paste setup-token)** in the wizard or paste it with `moltbot models auth paste-token --provider anthropic`. The token is stored as an auth profile for the **anthropic** provider and used like an API key (no auto-refresh). More detail: [OAuth](/concepts/oauth).
+`claude setup-token` generates a **token string** via the Claude Code CLI (it is not available in the web console). You can run it on **any machine**. Choose **Anthropic token (paste setup-token)** in the wizard or paste it with `AGENT models auth paste-token --provider anthropic`. The token is stored as an auth profile for the **anthropic** provider and used like an API key (no auto-refresh). More detail: [OAuth](/concepts/oauth).
 
 ### Where do I find an Anthropic setuptoken
 
@@ -650,7 +650,7 @@ It is **not** in the Anthropic Console. The setup-token is generated by the **Cl
 claude setup-token
 ```
 
-Copy the token it prints, then choose **Anthropic token (paste setup-token)** in the wizard. If you want to run it on the gateway host, use `moltbot models auth setup-token --provider anthropic`. If you ran `claude setup-token` elsewhere, paste it on the gateway host with `moltbot models auth paste-token --provider anthropic`. See [Anthropic](/providers/anthropic).
+Copy the token it prints, then choose **Anthropic token (paste setup-token)** in the wizard. If you want to run it on the gateway host, use `AGENT models auth setup-token --provider anthropic`. If you ran `claude setup-token` elsewhere, paste it on the gateway host with `AGENT models auth paste-token --provider anthropic`. See [Anthropic](/providers/anthropic).
 
 ### Do you support Claude subscription auth (Claude Pro/Max)
 
@@ -685,11 +685,11 @@ See [OAuth](/concepts/oauth), [Model providers](/concepts/model-providers), and 
 
 ### How do I set up Gemini CLI OAuth
 
-Gemini CLI uses a **plugin auth flow**, not a client id or secret in `moltbot.json`.
+Gemini CLI uses a **plugin auth flow**, not a client id or secret in `AGENT.json`.
 
 Steps:
-1) Enable the plugin: `moltbot plugins enable google-gemini-cli-auth`
-2) Login: `moltbot models auth login --provider google-gemini-cli --set-default`
+1) Enable the plugin: `AGENT plugins enable google-gemini-cli-auth`
+2) Login: `AGENT models auth login --provider google-gemini-cli --set-default`
 
 This stores OAuth tokens in auth profiles on the gateway host. Details: [Model providers](/concepts/model-providers).
 
@@ -735,7 +735,7 @@ capabilities like screen/camera/canvas and `system.run` on that device.
 Common pattern:
 - Gateway on the Mac mini (always‑on).
 - MacBook Pro runs the macOS app or a node host and pairs to the Gateway.
-- Use `moltbot nodes status` / `moltbot nodes list` to see it.
+- Use `AGENT nodes status` / `AGENT nodes list` to see it.
 
 Docs: [Nodes](/nodes), [Nodes CLI](/cli/nodes).
 
@@ -752,7 +752,7 @@ without WhatsApp/Telegram.
 `channels.telegram.allowFrom` is **the human sender’s Telegram user ID** (numeric, recommended) or `@username`. It is not the bot username.
 
 Safer (no third-party bot):
-- DM your bot, then run `moltbot logs --follow` and read `from.id`.
+- DM your bot, then run `AGENT logs --follow` and read `from.id`.
 
 Official Bot API:
 - DM your bot, then call `https://api.telegram.org/bot<bot_token>/getUpdates` and read `message.from.id`.
@@ -802,20 +802,20 @@ This **does not delete your data** - it only changes the Moltbot code install. Y
 From npm → git:
 
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/AGENT/AGENT.git
+cd AGENT
 pnpm install
 pnpm build
-moltbot doctor
-moltbot gateway restart
+AGENT doctor
+AGENT gateway restart
 ```
 
 From git → npm:
 
 ```bash
-npm install -g moltbot@latest
-moltbot doctor
-moltbot gateway restart
+npm install -g AGENT@latest
+AGENT doctor
+AGENT gateway restart
 ```
 
 Doctor detects a gateway service entrypoint mismatch and offers to rewrite the service config to match the current install (use `--repair` in automation).
@@ -952,11 +952,11 @@ Showcase: https://molt.bot/showcase
 
 ### How do I customize skills without keeping the repo dirty
 
-Use managed overrides instead of editing the repo copy. Put your changes in `~/.clawdbot/skills/<name>/SKILL.md` (or add a folder via `skills.load.extraDirs` in `~/.clawdbot/moltbot.json`). Precedence is `<workspace>/skills` > `~/.clawdbot/skills` > bundled, so managed overrides win without touching git. Only upstream-worthy edits should live in the repo and go out as PRs.
+Use managed overrides instead of editing the repo copy. Put your changes in `~/.clawdbot/skills/<name>/SKILL.md` (or add a folder via `skills.load.extraDirs` in `~/.clawdbot/AGENT.json`). Precedence is `<workspace>/skills` > `~/.clawdbot/skills` > bundled, so managed overrides win without touching git. Only upstream-worthy edits should live in the repo and go out as PRs.
 
 ### Can I load skills from a custom folder
 
-Yes. Add extra directories via `skills.load.extraDirs` in `~/.clawdbot/moltbot.json` (lowest precedence). Default precedence remains: `<workspace>/skills` → `~/.clawdbot/skills` → bundled → `skills.load.extraDirs`. `clawdhub` installs into `./skills` by default, which Moltbot treats as `<workspace>/skills`.
+Yes. Add extra directories via `skills.load.extraDirs` in `~/.clawdbot/AGENT.json` (lowest precedence). Default precedence remains: `<workspace>/skills` → `~/.clawdbot/skills` → bundled → `skills.load.extraDirs`. `clawdhub` installs into `./skills` by default, which Moltbot treats as `<workspace>/skills`.
 
 ### How can I use different models for different tasks
 
@@ -992,8 +992,8 @@ Checklist:
 
 Debug:
 ```bash
-moltbot cron run <jobId> --force
-moltbot cron runs --id <jobId> --limit 50
+AGENT cron run <jobId> --force
+AGENT cron runs --id <jobId> --limit 50
 ```
 
 Docs: [Cron jobs](/automation/cron-jobs), [Cron vs Heartbeat](/automation/cron-vs-heartbeat).
@@ -1031,7 +1031,7 @@ Not directly. macOS skills are gated by `metadata.clawdbot.os` plus required bin
 You have three supported patterns:
 
 **Option A - run the Gateway on a Mac (simplest).**  
-Run the Gateway where the macOS binaries exist, then connect from Linux in [remote mode](#how-do-i-run-moltbot-in-remote-mode-client-connects-to-a-gateway-elsewhere) or over Tailscale. The skills load normally because the Gateway host is macOS.
+Run the Gateway where the macOS binaries exist, then connect from Linux in [remote mode](#how-do-i-run-AGENT-in-remote-mode-client-connects-to-a-gateway-elsewhere) or over Tailscale. The skills load normally because the Gateway host is macOS.
 
 **Option B - use a macOS node (no SSH).**  
 Run the Gateway on Linux, pair a macOS node (menubar app), and set **Node Run Commands** to "Always Ask" or "Always Allow" on the Mac. Moltbot can treat macOS-only skills as eligible when the required binaries exist on the node. The agent runs those skills via the `nodes` tool. If you choose "Always Ask", approving "Always Allow" in the prompt adds that command to the allowlist.
@@ -1051,7 +1051,7 @@ Keep the Gateway on Linux, but make the required CLI binaries resolve to SSH wra
    ---
    name: imsg
    description: iMessage/SMS CLI for listing chats, history, watch, and sending.
-   metadata: {"moltbot":{"os":["darwin","linux"],"requires":{"bins":["imsg"]}}}
+   metadata: {"AGENT":{"os":["darwin","linux"],"requires":{"bins":["imsg"]}}}
    ---
    ```
 4) Start a new session so the skills snapshot refreshes.
@@ -1087,8 +1087,8 @@ ClawdHub installs into `./skills` under your current directory (or falls back to
 Use the built-in installer, then load the unpacked extension in Chrome:
 
 ```bash
-moltbot browser extension install
-moltbot browser extension path
+AGENT browser extension install
+AGENT browser extension path
 ```
 
 Then Chrome → `chrome://extensions` → enable “Developer mode” → “Load unpacked” → pick that folder.
@@ -1191,7 +1191,7 @@ Everything lives under `$CLAWDBOT_STATE_DIR` (default: `~/.clawdbot`):
 
 | Path | Purpose |
 |------|---------|
-| `$CLAWDBOT_STATE_DIR/moltbot.json` | Main config (JSON5) |
+| `$CLAWDBOT_STATE_DIR/AGENT.json` | Main config (JSON5) |
 | `$CLAWDBOT_STATE_DIR/credentials/oauth.json` | Legacy OAuth import (copied into auth profiles on first use) |
 | `$CLAWDBOT_STATE_DIR/agents/<agentId>/agent/auth-profiles.json` | Auth profiles (OAuth + API keys) |
 | `$CLAWDBOT_STATE_DIR/agents/<agentId>/agent/auth.json` | Runtime auth cache (managed automatically) |
@@ -1200,7 +1200,7 @@ Everything lives under `$CLAWDBOT_STATE_DIR` (default: `~/.clawdbot`):
 | `$CLAWDBOT_STATE_DIR/agents/<agentId>/sessions/` | Conversation history & state (per agent) |
 | `$CLAWDBOT_STATE_DIR/agents/<agentId>/sessions/sessions.json` | Session metadata (per agent) |
 
-Legacy single‑agent path: `~/.clawdbot/agent/*` (migrated by `moltbot doctor`).
+Legacy single‑agent path: `~/.clawdbot/agent/*` (migrated by `AGENT doctor`).
 
 Your **workspace** (AGENTS.md, memory files, skills, etc.) is separate and configured via `agents.defaults.workspace` (default: `~/clawd`).
 
@@ -1276,7 +1276,7 @@ Session state is owned by the **gateway host**. If you’re in remote mode, the 
 
 ### What format is the config Where is it
 
-Moltbot reads an optional **JSON5** config from `$CLAWDBOT_CONFIG_PATH` (default: `~/.clawdbot/moltbot.json`):
+Moltbot reads an optional **JSON5** config from `$CLAWDBOT_CONFIG_PATH` (default: `~/.clawdbot/AGENT.json`):
 
 ```
 $CLAWDBOT_CONFIG_PATH
@@ -1308,7 +1308,7 @@ Notes:
 
 The wizard generates a gateway token by default (even on loopback) so **local WS clients must authenticate**. This blocks other local processes from calling the Gateway. Paste the token into the Control UI settings (or your client config) to connect.
 
-If you **really** want open loopback, remove `gateway.auth` from your config. Doctor can generate a token for you any time: `moltbot doctor --generate-gateway-token`.
+If you **really** want open loopback, remove `gateway.auth` from your config. Doctor can generate a token for you any time: `AGENT doctor --generate-gateway-token`.
 
 ### Do I have to restart after changing config
 
@@ -1320,7 +1320,7 @@ The Gateway watches the config and supports hot‑reload:
 ### How do I enable web search and web fetch
 
 `web_fetch` works without an API key. `web_search` requires a Brave Search API
-key. **Recommended:** run `moltbot configure --section web` to store it in
+key. **Recommended:** run `AGENT configure --section web` to store it in
 `tools.web.search.apiKey`. Environment alternative: set `BRAVE_API_KEY` for the
 Gateway process.
 
@@ -1411,8 +1411,8 @@ Typical setup:
    so it can register as a node.
 5) Approve the node on the Gateway:
    ```bash
-   moltbot nodes pending
-   moltbot nodes approve <requestId>
+   AGENT nodes pending
+   AGENT nodes approve <requestId>
    ```
 
 No separate TCP bridge is required; nodes connect over the Gateway WebSocket.
@@ -1425,9 +1425,9 @@ Docs: [Nodes](/nodes), [Gateway protocol](/gateway/protocol), [macOS remote mode
 ### Tailscale is connected but I get no replies What now
 
 Check the basics:
-- Gateway is running: `moltbot gateway status`
-- Gateway health: `moltbot status`
-- Channel health: `moltbot channels status`
+- Gateway is running: `AGENT gateway status`
+- Gateway health: `AGENT status`
+- Channel health: `AGENT channels status`
 
 Then verify auth and routing:
 - If you use Tailscale Serve, make sure `gateway.auth.allowTailscale` is set correctly.
@@ -1445,13 +1445,13 @@ reliable ways:
 Have Bot A send a message to Bot B, then let Bot B reply as usual.
 
 **CLI bridge (generic):** run a script that calls the other Gateway with
-`moltbot agent --message ... --deliver`, targeting a chat where the other bot
+`AGENT agent --message ... --deliver`, targeting a chat where the other bot
 listens. If one bot is on a remote VPS, point your CLI at that remote Gateway
 via SSH/Tailscale (see [Remote access](/gateway/remote)).
 
 Example pattern (run from a machine that can reach the target Gateway):
 ```bash
-moltbot agent --message "Hello from local bot" --deliver --channel telegram --reply-to <chat-id>
+AGENT agent --message "Hello from local bot" --deliver --channel telegram --reply-to <chat-id>
 ```
 
 Tip: add a guardrail so the two bots do not loop endlessly (mention-only, channel
@@ -1515,14 +1515,14 @@ Yes. `config.apply` validates + writes the full config and restarts the Gateway 
 else is removed.
 
 Recover:
-- Restore from backup (git or a copied `~/.clawdbot/moltbot.json`).
-- If you have no backup, re-run `moltbot doctor` and reconfigure channels/models.
+- Restore from backup (git or a copied `~/.clawdbot/AGENT.json`).
+- If you have no backup, re-run `AGENT doctor` and reconfigure channels/models.
 - If this was unexpected, file a bug and include your last known config or any backup.
 - A local coding agent can often reconstruct a working config from logs or history.
 
 Avoid it:
-- Use `moltbot config set` for small changes.
-- Use `moltbot configure` for interactive edits.
+- Use `AGENT config set` for small changes.
+- Use `AGENT configure` for interactive edits.
 
 Docs: [Config](/cli/config), [Configure](/cli/configure), [Doctor](/gateway/doctor).
 
@@ -1556,7 +1556,7 @@ Minimal steps:
 
 If you want the Control UI without SSH, use Tailscale Serve on the VPS:
 ```bash
-moltbot gateway --tailscale serve
+AGENT gateway --tailscale serve
 ```
 This keeps the gateway bound to loopback and exposes HTTPS via Tailscale. See [Tailscale](/gateway/tailscale).
 
@@ -1570,8 +1570,8 @@ Recommended setup:
    The app will tunnel the Gateway port and connect as a node.
 3) **Approve the node** on the gateway:
    ```bash
-   moltbot nodes pending
-   moltbot nodes approve <requestId>
+   AGENT nodes pending
+   AGENT nodes approve <requestId>
    ```
 
 Docs: [Gateway protocol](/gateway/protocol), [Discovery](/gateway/discovery), [macOS remote mode](/platforms/mac/remote).
@@ -1623,7 +1623,7 @@ This runs your login shell and imports only missing expected keys (never overrid
 
 ### I set COPILOTGITHUBTOKEN but models status shows Shell env off Why
 
-`moltbot models status` reports whether **shell env import** is enabled. “Shell env: off”
+`AGENT models status` reports whether **shell env import** is enabled. “Shell env: off”
 does **not** mean your env vars are missing - it just means Moltbot won’t load
 your login shell automatically.
 
@@ -1639,7 +1639,7 @@ environment. Fix by doing one of these:
 
 Then restart the gateway and recheck:
 ```bash
-moltbot models status
+AGENT models status
 ```
 
 Copilot tokens are read from `COPILOT_GITHUB_TOKEN` (also `GH_TOKEN` / `GITHUB_TOKEN`).
@@ -1694,25 +1694,25 @@ What helps:
 Use the reset command:
 
 ```bash
-moltbot reset
+AGENT reset
 ```
 
 Non-interactive full reset:
 
 ```bash
-moltbot reset --scope full --yes --non-interactive
+AGENT reset --scope full --yes --non-interactive
 ```
 
 Then re-run onboarding:
 
 ```bash
-moltbot onboard --install-daemon
+AGENT onboard --install-daemon
 ```
 
 Notes:
 - The onboarding wizard also offers **Reset** if it sees an existing config. See [Wizard](/start/wizard).
 - If you used profiles (`--profile` / `CLAWDBOT_PROFILE`), reset each state dir (defaults are `~/.clawdbot-<profile>`).
-- Dev reset: `moltbot gateway --dev --reset` (dev-only; wipes dev config + credentials + sessions + workspace).
+- Dev reset: `AGENT gateway --dev --reset` (dev-only; wipes dev config + credentials + sessions + workspace).
 
 ### Im getting context too large errors how do I reset or compact
 
@@ -1789,7 +1789,7 @@ If you want only **you** to be able to trigger group replies:
 Option 1 (fastest): tail logs and send a test message in the group:
 
 ```bash
-moltbot logs --follow --json
+AGENT logs --follow --json
 ```
 
 Look for `chatId` (or `from`) ending in `@g.us`, like:
@@ -1798,7 +1798,7 @@ Look for `chatId` (or `from`) ending in `@g.us`, like:
 Option 2 (if already configured/allowlisted): list groups from config:
 
 ```bash
-moltbot directory groups list --channel whatsapp
+AGENT directory groups list --channel whatsapp
 ```
 
 Docs: [WhatsApp](/channels/whatsapp), [Directory](/cli/directory), [Logs](/cli/logs).
@@ -1826,7 +1826,7 @@ No hard limits. Dozens (even hundreds) are fine, but watch for:
 Tips:
 - Keep one **active** workspace per agent (`agents.defaults.workspace`).
 - Prune old sessions (delete JSONL or store entries) if disk grows.
-- Use `moltbot doctor` to spot stray workspaces and profile mismatches.
+- Use `AGENT doctor` to spot stray workspaces and profile mismatches.
 
 ### Can I run multiple bots or chats at the same time Slack and how should I set that up
 
@@ -1897,12 +1897,12 @@ Use **model commands** or edit only the **model** fields. Avoid full config repl
 
 Safe options:
 - `/model` in chat (quick, per-session)
-- `moltbot models set ...` (updates just model config)
-- `moltbot configure --section models` (interactive)
-- edit `agents.defaults.model` in `~/.clawdbot/moltbot.json`
+- `AGENT models set ...` (updates just model config)
+- `AGENT configure --section models` (interactive)
+- edit `agents.defaults.model` in `~/.clawdbot/AGENT.json`
 
 Avoid `config.apply` with a partial object unless you intend to replace the whole config.
-If you did overwrite config, restore from backup or re-run `moltbot doctor` to repair.
+If you did overwrite config, restore from backup or re-run `AGENT doctor` to repair.
 
 Docs: [Models](/concepts/models), [Configure](/cli/configure), [Config](/cli/config), [Doctor](/gateway/doctor).
 
@@ -1990,7 +1990,7 @@ Fix checklist:
    `minimax/MiniMax-M2.1-lightning`.
 4) Run:
    ```bash
-   moltbot models list
+   AGENT models list
    ```
    and pick from the list (or `/model list` in chat).
 
@@ -2105,7 +2105,7 @@ stored in:
 ```
 
 Fix options:
-- Run `moltbot agents add <id>` and configure auth during the wizard.
+- Run `AGENT agents add <id>` and configure auth during the wizard.
 - Or copy `auth-profiles.json` from the main agent’s `agentDir` into the new agent’s `agentDir`.
 
 Do **not** reuse `agentDir` across agents; it causes auth/session collisions.
@@ -2133,13 +2133,13 @@ It means the system attempted to use the auth profile ID `anthropic:default`, bu
 
 - **Confirm where auth profiles live** (new vs legacy paths)
   - Current: `~/.clawdbot/agents/<agentId>/agent/auth-profiles.json`
-  - Legacy: `~/.clawdbot/agent/*` (migrated by `moltbot doctor`)
+  - Legacy: `~/.clawdbot/agent/*` (migrated by `AGENT doctor`)
 - **Confirm your env var is loaded by the Gateway**
   - If you set `ANTHROPIC_API_KEY` in your shell but run the Gateway via systemd/launchd, it may not inherit it. Put it in `~/.clawdbot/.env` or enable `env.shellEnv`.
 - **Make sure you’re editing the correct agent**
   - Multi‑agent setups mean there can be multiple `auth-profiles.json` files.
 - **Sanity‑check model/auth status**
-  - Use `moltbot models status` to see configured models and whether providers are authenticated.
+  - Use `AGENT models status` to see configured models and whether providers are authenticated.
 
 **Fix checklist for No credentials found for profile anthropic**
 
@@ -2147,13 +2147,13 @@ This means the run is pinned to an Anthropic auth profile, but the Gateway
 can’t find it in its auth store.
 
 - **Use a setup-token**
-  - Run `claude setup-token`, then paste it with `moltbot models auth setup-token --provider anthropic`.
-  - If the token was created on another machine, use `moltbot models auth paste-token --provider anthropic`.
+  - Run `claude setup-token`, then paste it with `AGENT models auth setup-token --provider anthropic`.
+  - If the token was created on another machine, use `AGENT models auth paste-token --provider anthropic`.
 - **If you want to use an API key instead**
   - Put `ANTHROPIC_API_KEY` in `~/.clawdbot/.env` on the **gateway host**.
   - Clear any pinned order that forces a missing profile:
     ```bash
-    moltbot models auth order clear --provider anthropic
+    AGENT models auth order clear --provider anthropic
     ```
 - **Confirm you’re running commands on the gateway host**
   - In remote mode, auth profiles live on the gateway machine, not your laptop.
@@ -2195,28 +2195,28 @@ Moltbot uses provider‑prefixed IDs like:
 
 Yes. Config supports optional metadata for profiles and an ordering per provider (`auth.order.<provider>`). This does **not** store secrets; it maps IDs to provider/mode and sets rotation order.
 
-Moltbot may temporarily skip a profile if it’s in a short **cooldown** (rate limits/timeouts/auth failures) or a longer **disabled** state (billing/insufficient credits). To inspect this, run `moltbot models status --json` and check `auth.unusableProfiles`. Tuning: `auth.cooldowns.billingBackoffHours*`.
+Moltbot may temporarily skip a profile if it’s in a short **cooldown** (rate limits/timeouts/auth failures) or a longer **disabled** state (billing/insufficient credits). To inspect this, run `AGENT models status --json` and check `auth.unusableProfiles`. Tuning: `auth.cooldowns.billingBackoffHours*`.
 
 You can also set a **per-agent** order override (stored in that agent’s `auth-profiles.json`) via the CLI:
 
 ```bash
 # Defaults to the configured default agent (omit --agent)
-moltbot models auth order get --provider anthropic
+AGENT models auth order get --provider anthropic
 
 # Lock rotation to a single profile (only try this one)
-moltbot models auth order set --provider anthropic anthropic:default
+AGENT models auth order set --provider anthropic anthropic:default
 
 # Or set an explicit order (fallback within provider)
-moltbot models auth order set --provider anthropic anthropic:work anthropic:default
+AGENT models auth order set --provider anthropic anthropic:work anthropic:default
 
 # Clear override (fall back to config auth.order / round-robin)
-moltbot models auth order clear --provider anthropic
+AGENT models auth order clear --provider anthropic
 ```
 
 To target a specific agent:
 
 ```bash
-moltbot models auth order set --provider anthropic --agent main anthropic:default
+AGENT models auth order set --provider anthropic --agent main anthropic:default
 ```
 
 ### OAuth vs API key whats the difference
@@ -2240,22 +2240,22 @@ Precedence:
 --port > CLAWDBOT_GATEWAY_PORT > gateway.port > default 18789
 ```
 
-### Why does moltbot gateway status say Runtime running but RPC probe failed
+### Why does AGENT gateway status say Runtime running but RPC probe failed
 
 Because “running” is the **supervisor’s** view (launchd/systemd/schtasks). The RPC probe is the CLI actually connecting to the gateway WebSocket and calling `status`.
 
-Use `moltbot gateway status` and trust these lines:
+Use `AGENT gateway status` and trust these lines:
 - `Probe target:` (the URL the probe actually used)
 - `Listening:` (what’s actually bound on the port)
 - `Last gateway error:` (common root cause when the process is alive but the port isn’t listening)
 
-### Why does moltbot gateway status show Config cli and Config service different
+### Why does AGENT gateway status show Config cli and Config service different
 
 You’re editing one config file while the service is running another (often a `--profile` / `CLAWDBOT_STATE_DIR` mismatch).
 
 Fix:
 ```bash
-moltbot gateway install --force
+AGENT gateway install --force
 ```
 Run that from the same `--profile` / environment you want the service to use.
 
@@ -2263,7 +2263,7 @@ Run that from the same `--profile` / environment you want the service to use.
 
 Moltbot enforces a runtime lock by binding the WebSocket listener immediately on startup (default `ws://127.0.0.1:18789`). If the bind fails with `EADDRINUSE`, it throws `GatewayLockError` indicating another instance is already listening.
 
-Fix: stop the other instance, free the port, or run with `moltbot gateway --port <port>`.
+Fix: stop the other instance, free the port, or run with `AGENT gateway --port <port>`.
 
 ### How do I run Moltbot in remote mode client connects to a Gateway elsewhere
 
@@ -2283,7 +2283,7 @@ Set `gateway.mode: "remote"` and point to a remote WebSocket URL, optionally wit
 ```
 
 Notes:
-- `moltbot gateway` only starts when `gateway.mode` is `local` (or you pass the override flag).
+- `AGENT gateway` only starts when `gateway.mode` is `local` (or you pass the override flag).
 - The macOS app watches the config file and switches modes live when these values change.
 
 ### The Control UI says unauthorized or keeps reconnecting What now
@@ -2291,16 +2291,16 @@ Notes:
 Your gateway is running with auth enabled (`gateway.auth.*`), but the UI is not sending the matching token/password.
 
 Facts (from code):
-- The Control UI stores the token in browser localStorage key `moltbot.control.settings.v1`.
+- The Control UI stores the token in browser localStorage key `AGENT.control.settings.v1`.
 - The UI can import `?token=...` (and/or `?password=...`) once, then strips it from the URL.
 
 Fix:
-- Fastest: `moltbot dashboard` (prints + copies tokenized link, tries to open; shows SSH hint if headless).
-- If you don’t have a token yet: `moltbot doctor --generate-gateway-token`.
+- Fastest: `AGENT dashboard` (prints + copies tokenized link, tries to open; shows SSH hint if headless).
+- If you don’t have a token yet: `AGENT doctor --generate-gateway-token`.
 - If remote, tunnel first: `ssh -N -L 18789:127.0.0.1:18789 user@host` then open `http://127.0.0.1:18789/?token=...`.
 - Set `gateway.auth.token` (or `CLAWDBOT_GATEWAY_TOKEN`) on the gateway host.
 - In the Control UI settings, paste the same token (or refresh with a one-time `?token=...` link).
-- Still stuck? Run `moltbot status --all` and follow [Troubleshooting](/gateway/troubleshooting). See [Dashboard](/web/dashboard) for auth details.
+- Still stuck? Run `AGENT status --all` and follow [Troubleshooting](/gateway/troubleshooting). See [Dashboard](/web/dashboard) for auth details.
 
 ### I set gatewaybind tailnet but it cant bind nothing listens
 
@@ -2324,11 +2324,11 @@ Yes, but you must isolate:
 - `gateway.port` (unique ports)
 
 Quick setup (recommended):
-- Use `moltbot --profile <name> …` per instance (auto-creates `~/.clawdbot-<name>`).
+- Use `AGENT --profile <name> …` per instance (auto-creates `~/.clawdbot-<name>`).
 - Set a unique `gateway.port` in each profile config (or pass `--port` for manual runs).
-- Install a per-profile service: `moltbot --profile <name> gateway install`.
+- Install a per-profile service: `AGENT --profile <name> gateway install`.
 
-Profiles also suffix service names (`bot.molt.<profile>`; legacy `com.clawdbot.*`, `moltbot-gateway-<profile>.service`, `Moltbot Gateway (<profile>)`).
+Profiles also suffix service names (`bot.molt.<profile>`; legacy `com.clawdbot.*`, `AGENT-gateway-<profile>.service`, `Moltbot Gateway (<profile>)`).
 Full guide: [Multiple gateways](/gateway/multiple-gateways).
 
 ### What does invalid handshake code 1008 mean
@@ -2349,7 +2349,7 @@ Quick fixes:
 
 If you’re using the CLI or TUI, the URL should look like:
 ```
-moltbot tui --url ws://<host>:18789 --token <token>
+AGENT tui --url ws://<host>:18789 --token <token>
 ```
 
 Protocol details: [Gateway protocol](/gateway/protocol).
@@ -2361,7 +2361,7 @@ Protocol details: [Gateway protocol](/gateway/protocol).
 File logs (structured):
 
 ```
-/tmp/moltbot/moltbot-YYYY-MM-DD.log
+/tmp/AGENT/AGENT-YYYY-MM-DD.log
 ```
 
 You can set a stable path via `logging.file`. File log level is controlled by `logging.level`. Console verbosity is controlled by `--verbose` and `logging.consoleLevel`.
@@ -2369,12 +2369,12 @@ You can set a stable path via `logging.file`. File log level is controlled by `l
 Fastest log tail:
 
 ```bash
-moltbot logs --follow
+AGENT logs --follow
 ```
 
 Service/supervisor logs (when the gateway runs via launchd/systemd):
 - macOS: `$CLAWDBOT_STATE_DIR/logs/gateway.log` and `gateway.err.log` (default: `~/.clawdbot/logs/...`; profiles use `~/.clawdbot-<profile>/logs/...`)
-- Linux: `journalctl --user -u moltbot-gateway[-<profile>].service -n 200 --no-pager`
+- Linux: `journalctl --user -u AGENT-gateway[-<profile>].service -n 200 --no-pager`
 - Windows: `schtasks /Query /TN "Moltbot Gateway (<profile>)" /V /FO LIST`
 
 See [Troubleshooting](/gateway/troubleshooting#log-locations) for more.
@@ -2384,11 +2384,11 @@ See [Troubleshooting](/gateway/troubleshooting#log-locations) for more.
 Use the gateway helpers:
 
 ```bash
-moltbot gateway status
-moltbot gateway restart
+AGENT gateway status
+AGENT gateway restart
 ```
 
-If you run the gateway manually, `moltbot gateway --force` can reclaim the port. See [Gateway](/gateway).
+If you run the gateway manually, `AGENT gateway --force` can reclaim the port. See [Gateway](/gateway).
 
 ### I closed my terminal on Windows how do I restart Moltbot
 
@@ -2400,14 +2400,14 @@ Open PowerShell, enter WSL, then restart:
 
 ```powershell
 wsl
-moltbot gateway status
-moltbot gateway restart
+AGENT gateway status
+AGENT gateway restart
 ```
 
 If you never installed the service, start it in the foreground:
 
 ```bash
-moltbot gateway run
+AGENT gateway run
 ```
 
 **2) Native Windows (not recommended):** the Gateway runs directly in Windows.
@@ -2415,14 +2415,14 @@ moltbot gateway run
 Open PowerShell and run:
 
 ```powershell
-moltbot gateway status
-moltbot gateway restart
+AGENT gateway status
+AGENT gateway restart
 ```
 
 If you run it manually (no service), use:
 
 ```powershell
-moltbot gateway run
+AGENT gateway run
 ```
 
 Docs: [Windows (WSL2)](/platforms/windows), [Gateway service runbook](/gateway).
@@ -2432,10 +2432,10 @@ Docs: [Windows (WSL2)](/platforms/windows), [Gateway service runbook](/gateway).
 Start with a quick health sweep:
 
 ```bash
-moltbot status
-moltbot models status
-moltbot channels status
-moltbot logs --follow
+AGENT status
+AGENT models status
+AGENT channels status
+AGENT logs --follow
 ```
 
 Common causes:
@@ -2452,15 +2452,15 @@ Docs: [Channels](/channels), [Troubleshooting](/gateway/troubleshooting), [Remot
 
 This usually means the UI lost the WebSocket connection. Check:
 
-1) Is the Gateway running? `moltbot gateway status`
-2) Is the Gateway healthy? `moltbot status`
-3) Does the UI have the right token? `moltbot dashboard`
+1) Is the Gateway running? `AGENT gateway status`
+2) Is the Gateway healthy? `AGENT status`
+3) Does the UI have the right token? `AGENT dashboard`
 4) If remote, is the tunnel/Tailscale link up?
 
 Then tail logs:
 
 ```bash
-moltbot logs --follow
+AGENT logs --follow
 ```
 
 Docs: [Dashboard](/web/dashboard), [Remote access](/gateway/remote), [Troubleshooting](/gateway/troubleshooting).
@@ -2470,8 +2470,8 @@ Docs: [Dashboard](/web/dashboard), [Remote access](/gateway/remote), [Troublesho
 Start with logs and channel status:
 
 ```bash
-moltbot channels status
-moltbot channels logs --channel telegram
+AGENT channels status
+AGENT channels logs --channel telegram
 ```
 
 If you are on a VPS or behind a proxy, confirm outbound HTTPS is allowed and DNS works.
@@ -2484,9 +2484,9 @@ Docs: [Telegram](/channels/telegram), [Channel troubleshooting](/channels/troubl
 First confirm the Gateway is reachable and the agent can run:
 
 ```bash
-moltbot status
-moltbot models status
-moltbot logs --follow
+AGENT status
+AGENT models status
+AGENT logs --follow
 ```
 
 In the TUI, use `/status` to see the current state. If you expect replies in a chat
@@ -2499,8 +2499,8 @@ Docs: [TUI](/tui), [Slash commands](/tools/slash-commands).
 If you installed the service:
 
 ```bash
-moltbot gateway stop
-moltbot gateway start
+AGENT gateway stop
+AGENT gateway start
 ```
 
 This stops/starts the **supervised service** (launchd on macOS, systemd on Linux).
@@ -2509,17 +2509,17 @@ Use this when the Gateway runs in the background as a daemon.
 If you’re running in the foreground, stop with Ctrl‑C, then:
 
 ```bash
-moltbot gateway run
+AGENT gateway run
 ```
 
 Docs: [Gateway service runbook](/gateway).
 
-### ELI5 moltbot gateway restart vs moltbot gateway
+### ELI5 AGENT gateway restart vs AGENT gateway
 
-- `moltbot gateway restart`: restarts the **background service** (launchd/systemd).
-- `moltbot gateway`: runs the gateway **in the foreground** for this terminal session.
+- `AGENT gateway restart`: restarts the **background service** (launchd/systemd).
+- `AGENT gateway`: runs the gateway **in the foreground** for this terminal session.
 
-If you installed the service, use the gateway commands. Use `moltbot gateway` when
+If you installed the service, use the gateway commands. Use `AGENT gateway` when
 you want a one-off, foreground run.
 
 ### Whats the fastest way to get more details when something fails
@@ -2535,7 +2535,7 @@ Outbound attachments from the agent must include a `MEDIA:<path-or-url>` line (o
 CLI sending:
 
 ```bash
-moltbot message send --target +15555550123 --message "Here you go" --media /path/to/file.png
+AGENT message send --target +15555550123 --message "Here you go" --media /path/to/file.png
 ```
 
 Also check:
@@ -2552,11 +2552,11 @@ Treat inbound DMs as untrusted input. Defaults are designed to reduce risk:
 
 - Default behavior on DM‑capable channels is **pairing**:
   - Unknown senders receive a pairing code; the bot does not process their message.
-  - Approve with: `moltbot pairing approve <channel> <code>`
-  - Pending requests are capped at **3 per channel**; check `moltbot pairing list <channel>` if a code didn’t arrive.
+  - Approve with: `AGENT pairing approve <channel> <code>`
+  - Pending requests are capped at **3 per channel**; check `AGENT pairing list <channel>` if a code didn’t arrive.
 - Opening DMs publicly requires explicit opt‑in (`dmPolicy: "open"` and allowlist `"*"`).
 
-Run `moltbot doctor` to surface risky DM policies.
+Run `AGENT doctor` to surface risky DM policies.
 
 ### Is prompt injection only a concern for public bots
 
@@ -2608,7 +2608,7 @@ Pairing codes are sent **only** when an unknown sender messages the bot and
 
 Check pending requests:
 ```bash
-moltbot pairing list telegram
+AGENT pairing list telegram
 ```
 
 If you want immediate access, allowlist your sender id or set `dmPolicy: "open"`
@@ -2621,13 +2621,13 @@ No. Default WhatsApp DM policy is **pairing**. Unknown senders only get a pairin
 Approve pairing with:
 
 ```bash
-moltbot pairing approve whatsapp <code>
+AGENT pairing approve whatsapp <code>
 ```
 
 List pending requests:
 
 ```bash
-moltbot pairing list whatsapp
+AGENT pairing list whatsapp
 ```
 
 Wizard phone number prompt: it’s used to set your **allowlist/owner** so your own DMs are permitted. It’s not used for auto-sending. If you run on your personal WhatsApp number, use that number and enable `channels.whatsapp.selfChatMode`.
@@ -2723,4 +2723,4 @@ You can add options like `debounce:2s cap:25 drop:summarize` for followup modes.
 
 ---
 
-Still stuck? Ask in [Discord](https://discord.com/invite/clawd) or open a [GitHub discussion](https://github.com/moltbot/moltbot/discussions).
+Still stuck? Ask in [Discord](https://discord.com/invite/clawd) or open a [GitHub discussion](https://github.com/AGENT/AGENT/discussions).

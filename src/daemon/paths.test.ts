@@ -21,17 +21,17 @@ describe("resolveGatewayStateDir", () => {
   });
 
   it("uses CLAWDBOT_STATE_DIR when provided", () => {
-    const env = { HOME: "/Users/test", CLAWDBOT_STATE_DIR: "/var/lib/moltbot" };
-    expect(resolveGatewayStateDir(env)).toBe(path.resolve("/var/lib/moltbot"));
+    const env = { HOME: "/Users/test", CLAWDBOT_STATE_DIR: "/var/lib/AGENT" };
+    expect(resolveGatewayStateDir(env)).toBe(path.resolve("/var/lib/AGENT"));
   });
 
   it("expands ~ in CLAWDBOT_STATE_DIR", () => {
-    const env = { HOME: "/Users/test", CLAWDBOT_STATE_DIR: "~/moltbot-state" };
-    expect(resolveGatewayStateDir(env)).toBe(path.resolve("/Users/test/moltbot-state"));
+    const env = { HOME: "/Users/test", CLAWDBOT_STATE_DIR: "~/AGENT-state" };
+    expect(resolveGatewayStateDir(env)).toBe(path.resolve("/Users/test/AGENT-state"));
   });
 
   it("preserves Windows absolute paths without HOME", () => {
-    const env = { CLAWDBOT_STATE_DIR: "C:\\State\\moltbot" };
-    expect(resolveGatewayStateDir(env)).toBe("C:\\State\\moltbot");
+    const env = { CLAWDBOT_STATE_DIR: "C:\\State\\AGENT" };
+    expect(resolveGatewayStateDir(env)).toBe("C:\\State\\AGENT");
   });
 });

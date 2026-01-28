@@ -66,7 +66,7 @@ describe("normalizeForwardedContext", () => {
     const ctx = normalizeForwardedContext({
       forward_from_chat: {
         title: "Moltbot Updates",
-        username: "moltbot",
+        username: "AGENT",
         id: 99,
         type: "channel",
       },
@@ -77,7 +77,7 @@ describe("normalizeForwardedContext", () => {
     expect(ctx?.from).toBe("Moltbot Updates (Stan)");
     expect(ctx?.fromType).toBe("legacy_channel");
     expect(ctx?.fromId).toBe("99");
-    expect(ctx?.fromUsername).toBe("moltbot");
+    expect(ctx?.fromUsername).toBe("AGENT");
     expect(ctx?.fromTitle).toBe("Moltbot Updates");
     expect(ctx?.fromSignature).toBe("Stan");
     expect(ctx?.date).toBe(789);

@@ -94,6 +94,6 @@ public enum MoltbotCanvasA2UIAction: Sendable {
             }
             return "{\"id\":\"\(actionId)\",\"ok\":\(ok ? "true" : "false"),\"error\":\"\"}"
         }()
-        return "window.dispatchEvent(new CustomEvent('moltbot:a2ui-action-status', { detail: \(json) }));"
+        return "window.dispatchEvent(new CustomEvent('AGENT:a2ui-action-status', { detail: \(json) }));"
     }
 }

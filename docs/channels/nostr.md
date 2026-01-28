@@ -14,7 +14,7 @@ Nostr is a decentralized protocol for social networking. This channel enables Mo
 
 ### Onboarding (recommended)
 
-- The onboarding wizard (`moltbot onboard`) and `moltbot channels add` list optional channel plugins.
+- The onboarding wizard (`AGENT onboard`) and `AGENT channels add` list optional channel plugins.
 - Selecting Nostr prompts you to install the plugin on demand.
 
 Install defaults:
@@ -27,13 +27,13 @@ You can always override the choice in the prompt.
 ### Manual install
 
 ```bash
-moltbot plugins install @moltbot/nostr
+AGENT plugins install @AGENT/nostr
 ```
 
 Use a local checkout (dev workflows):
 
 ```bash
-moltbot plugins install --link <path-to-moltbot>/extensions/nostr
+AGENT plugins install --link <path-to-AGENT>/extensions/nostr
 ```
 
 Restart the Gateway after installing or enabling plugins.
@@ -91,14 +91,14 @@ Example:
     "nostr": {
       "privateKey": "${NOSTR_PRIVATE_KEY}",
       "profile": {
-        "name": "moltbot",
+        "name": "AGENT",
         "displayName": "Moltbot",
         "about": "Personal assistant DM bot",
         "picture": "https://example.com/avatar.png",
         "banner": "https://example.com/banner.png",
         "website": "https://example.com",
-        "nip05": "moltbot@example.com",
-        "lud16": "moltbot@example.com"
+        "nip05": "AGENT@example.com",
+        "lud16": "AGENT@example.com"
       }
     }
   }

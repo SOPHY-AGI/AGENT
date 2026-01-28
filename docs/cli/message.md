@@ -1,11 +1,11 @@
 ---
-summary: "CLI reference for `moltbot message` (send + channel actions)"
+summary: "CLI reference for `AGENT message` (send + channel actions)"
 read_when:
   - Adding or modifying message CLI actions
   - Changing outbound channel behavior
 ---
 
-# `moltbot message`
+# `AGENT message`
 
 Single outbound command for sending messages and channel actions
 (Discord/Google Chat/Slack/Mattermost (plugin)/Telegram/WhatsApp/Signal/iMessage/MS Teams).
@@ -13,7 +13,7 @@ Single outbound command for sending messages and channel actions
 ## Usage
 
 ```
-moltbot message <subcommand> [flags]
+AGENT message <subcommand> [flags]
 ```
 
 Channel selection:
@@ -181,13 +181,13 @@ Name lookup:
 
 Send a Discord reply:
 ```
-moltbot message send --channel discord \
+AGENT message send --channel discord \
   --target channel:123 --message "hi" --reply-to 456
 ```
 
 Create a Discord poll:
 ```
-moltbot message poll --channel discord \
+AGENT message poll --channel discord \
   --target channel:123 \
   --poll-question "Snack?" \
   --poll-option Pizza --poll-option Sushi \
@@ -196,13 +196,13 @@ moltbot message poll --channel discord \
 
 Send a Teams proactive message:
 ```
-moltbot message send --channel msteams \
+AGENT message send --channel msteams \
   --target conversation:19:abc@thread.tacv2 --message "hi"
 ```
 
 Create a Teams poll:
 ```
-moltbot message poll --channel msteams \
+AGENT message poll --channel msteams \
   --target conversation:19:abc@thread.tacv2 \
   --poll-question "Lunch?" \
   --poll-option Pizza --poll-option Sushi
@@ -210,19 +210,19 @@ moltbot message poll --channel msteams \
 
 React in Slack:
 ```
-moltbot message react --channel slack \
+AGENT message react --channel slack \
   --target C123 --message-id 456 --emoji "✅"
 ```
 
 React in a Signal group:
 ```
-moltbot message react --channel signal \
+AGENT message react --channel signal \
   --target signal:group:abc123 --message-id 1737630212345 \
   --emoji "✅" --target-author-uuid 123e4567-e89b-12d3-a456-426614174000
 ```
 
 Send Telegram inline buttons:
 ```
-moltbot message send --channel telegram --target @mychat --message "Choose:" \
+AGENT message send --channel telegram --target @mychat --message "Choose:" \
   --buttons '[ [{"text":"Yes","callback_data":"cmd:yes"}], [{"text":"No","callback_data":"cmd:no"}] ]'
 ```

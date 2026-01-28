@@ -107,7 +107,7 @@ function resolveMoltbotRoot(): string {
   }
 
   for (const start of candidates) {
-    for (const name of ["moltbot", "moltbot"]) {
+    for (const name of ["AGENT", "AGENT"]) {
       const found = findPackageRoot(start, name);
       if (found) {
         coreRootCache = found;

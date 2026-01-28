@@ -13,7 +13,7 @@ const prevBundledDir = process.env.CLAWDBOT_BUNDLED_PLUGINS_DIR;
 const EMPTY_PLUGIN_SCHEMA = { type: "object", additionalProperties: false, properties: {} };
 
 function makeTempDir() {
-  const dir = path.join(os.tmpdir(), `moltbot-plugin-${randomUUID()}`);
+  const dir = path.join(os.tmpdir(), `AGENT-plugin-${randomUUID()}`);
   fs.mkdirSync(dir, { recursive: true });
   tempDirs.push(dir);
   return dir;
@@ -30,7 +30,7 @@ function writePlugin(params: {
   const file = path.join(dir, filename);
   fs.writeFileSync(file, params.body, "utf-8");
   fs.writeFileSync(
-    path.join(dir, "moltbot.plugin.json"),
+    path.join(dir, "AGENT.plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -177,10 +177,10 @@ describe("loadMoltbotPlugins", () => {
     fs.writeFileSync(
       path.join(pluginDir, "package.json"),
       JSON.stringify({
-        name: "@moltbot/memory-core",
+        name: "@AGENT/memory-core",
         version: "1.2.3",
         description: "Memory plugin package",
-        moltbot: { extensions: ["./index.ts"] },
+        AGENT: { extensions: ["./index.ts"] },
       }),
       "utf-8",
     );

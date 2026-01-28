@@ -265,7 +265,7 @@ enum AgentWorkspace {
         - Timezone (optional)
         - Notes
 
-        3) ~/.clawdbot/moltbot.json
+        3) ~/.clawdbot/AGENT.json
         Set identity.name, identity.theme, identity.emoji to match IDENTITY.md.
 
         ## Cleanup

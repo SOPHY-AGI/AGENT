@@ -79,7 +79,7 @@ async function promptChannelMode(runtime: RuntimeEnv): Promise<ChannelsWizardMod
         {
           value: "remove",
           label: "Remove channel config",
-          hint: "Delete channel tokens/settings from moltbot.json",
+          hint: "Delete channel tokens/settings from AGENT.json",
         },
       ],
       initialValue: "configure",
@@ -196,7 +196,7 @@ export async function runConfigureWizard(
       }
       if (!snapshot.valid) {
         outro(
-          `Config invalid. Run \`${formatCliCommand("moltbot doctor")}\` to repair it, then re-run configure.`,
+          `Config invalid. Run \`${formatCliCommand("AGENT doctor")}\` to repair it, then re-run configure.`,
         );
         runtime.exit(1);
         return;
