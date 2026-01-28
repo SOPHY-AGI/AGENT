@@ -11,10 +11,10 @@ import {
 
 const ROOT_DIR = path.parse(process.cwd()).root;
 const CONFIG_DIR = path.join(ROOT_DIR, "config");
-const ETC_CLAWDBOT_DIR = path.join(ROOT_DIR, "etc", "moltbot");
+const ETC_CLAWDBOT_DIR = path.join(ROOT_DIR, "etc", "AGENT");
 const SHARED_DIR = path.join(ROOT_DIR, "shared");
 
-const DEFAULT_BASE_PATH = path.join(CONFIG_DIR, "moltbot.json");
+const DEFAULT_BASE_PATH = path.join(CONFIG_DIR, "AGENT.json");
 
 function configPath(...parts: string[]) {
   return path.join(CONFIG_DIR, ...parts);
@@ -283,7 +283,7 @@ describe("resolveConfigIncludes", () => {
   it("resolves parent directory references", () => {
     const files = { [sharedPath("common.json")]: { shared: true } };
     const obj = { $include: "../../shared/common.json" };
-    expect(resolve(obj, files, configPath("sub", "moltbot.json"))).toEqual({
+    expect(resolve(obj, files, configPath("sub", "AGENT.json"))).toEqual({
       shared: true,
     });
   });

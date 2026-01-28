@@ -22,7 +22,7 @@ has no effect on sub-agents.
 ## Enable
 
 ```bash
-moltbot hooks enable soul-evil
+AGENT hooks enable soul-evil
 ```
 
 Then set the config:

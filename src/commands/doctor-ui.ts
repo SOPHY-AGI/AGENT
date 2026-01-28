@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { resolveMoltbotPackageRoot } from "../infra/moltbot-root.js";
+import { resolveMoltbotPackageRoot } from "../infra/AGENT-root.js";
 import { runCommandWithTimeout } from "../process/exec.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { note } from "../terminal/note.js";

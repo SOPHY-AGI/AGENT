@@ -1,7 +1,7 @@
 ---
 name: discord
 description: Use when you need to control Discord from Moltbot via the discord tool: send messages, react, post or upload stickers, upload emojis, run polls, manage threads/pins/search, create/edit/delete channels and categories, fetch permissions or member/role/channel info, or handle moderation actions in Discord DMs or channels.
-metadata: {"moltbot":{"emoji":"🎮","requires":{"config":["channels.discord"]}}}
+metadata: {"AGENT":{"emoji":"🎮","requires":{"config":["channels.discord"]}}}
 ---
 
 # Discord Actions
@@ -84,7 +84,7 @@ Message context lines include `discord message id` and `channel` fields you can 
 {
   "action": "stickerUpload",
   "guildId": "999",
-  "name": "moltbot_wave",
+  "name": "AGENT_wave",
   "description": "Moltbot waving hello",
   "tags": "👋",
   "mediaUrl": "file:///tmp/wave.png"

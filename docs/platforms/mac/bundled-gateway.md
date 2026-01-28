@@ -9,16 +9,16 @@ read_when:
 # Gateway on macOS (external launchd)
 
 Moltbot.app no longer bundles Node/Bun or the Gateway runtime. The macOS app
-expects an **external** `moltbot` CLI install, does not spawn the Gateway as a
+expects an **external** `AGENT` CLI install, does not spawn the Gateway as a
 child process, and manages a per‑user launchd service to keep the Gateway
 running (or attaches to an existing local Gateway if one is already running).
 
 ## Install the CLI (required for local mode)
 
-You need Node 22+ on the Mac, then install `moltbot` globally:
+You need Node 22+ on the Mac, then install `AGENT` globally:
 
 ```bash
-npm install -g moltbot@<version>
+npm install -g AGENT@<version>
 ```
 
 The macOS app’s **Install CLI** button runs the same flow via npm/pnpm (bun not recommended for Gateway runtime).
@@ -34,7 +34,7 @@ Plist location (per‑user):
 
 Manager:
 - The macOS app owns LaunchAgent install/update in Local mode.
-- The CLI can also install it: `moltbot gateway install`.
+- The CLI can also install it: `AGENT gateway install`.
 
 Behavior:
 - “Moltbot Active” enables/disables the LaunchAgent.
@@ -43,7 +43,7 @@ Behavior:
   it instead of starting a new one.
 
 Logging:
-- launchd stdout/err: `/tmp/moltbot/moltbot-gateway.log`
+- launchd stdout/err: `/tmp/AGENT/AGENT-gateway.log`
 
 ## Version compatibility
 
@@ -53,15 +53,15 @@ incompatible, update the global CLI to match the app version.
 ## Smoke check
 
 ```bash
-moltbot --version
+AGENT --version
 
 CLAWDBOT_SKIP_CHANNELS=1 \
 CLAWDBOT_SKIP_CANVAS_HOST=1 \
-moltbot gateway --port 18999 --bind loopback
+AGENT gateway --port 18999 --bind loopback
 ```
 
 Then:
 
 ```bash
-moltbot gateway call health --url ws://127.0.0.1:18999 --timeout 3000
+AGENT gateway call health --url ws://127.0.0.1:18999 --timeout 3000
 ```

@@ -18,8 +18,8 @@ read_when:
 </p>
 
 <p align="center">
-  <a href="https://github.com/moltbot/moltbot">GitHub</a> ·
-  <a href="https://github.com/moltbot/moltbot/releases">Releases</a> ·
+  <a href="https://github.com/SOPHY-AGI/AGENT">GitHub</a> ·
+  <a href="https://github.com/SOPHY-AGI/AGENT/releases">Releases</a> ·
   <a href="/">Docs</a> ·
   <a href="/start/clawd">Moltbot assistant setup</a>
 </p>
@@ -30,11 +30,11 @@ Moltbot also powers [Clawd](https://clawd.me), the space‑lobster assistant.
 ## Start here
 
 - **New install from zero:** [Getting Started](/start/getting-started)
-- **Guided setup (recommended):** [Wizard](/start/wizard) (`moltbot onboard`)
+- **Guided setup (recommended):** [Wizard](/start/wizard) (`AGENT onboard`)
 - **Open the dashboard (local Gateway):** http://127.0.0.1:18789/ (or http://localhost:18789/)
 
 If the Gateway is running on the same computer, that link opens the browser Control UI
-immediately. If it fails, start the Gateway first: `moltbot gateway`.
+immediately. If it fails, start the Gateway first: `AGENT gateway`.
 
 ## Dashboard (browser Control UI)
 
@@ -52,27 +52,27 @@ WhatsApp / Telegram / Discord / iMessage (+ plugins)
   │          Gateway          │  ws://127.0.0.1:18789 (loopback-only)
   │     (single source)       │
   │                           │  http://<gateway-host>:18793
-  │                           │    /__moltbot__/canvas/ (Canvas host)
+  │                           │    /__AGENT__/canvas/ (Canvas host)
   └───────────┬───────────────┘
               │
               ├─ Pi agent (RPC)
-              ├─ CLI (moltbot …)
+              ├─ CLI (AGENT …)
               ├─ Chat UI (SwiftUI)
               ├─ macOS app (Moltbot.app)
               ├─ iOS node via Gateway WS + pairing
               └─ Android node via Gateway WS + pairing
 ```
 
-Most operations flow through the **Gateway** (`moltbot gateway`), a single long-running process that owns channel connections and the WebSocket control plane.
+Most operations flow through the **Gateway** (`AGENT gateway`), a single long-running process that owns channel connections and the WebSocket control plane.
 
 ## Network model
 
 - **One Gateway per host (recommended)**: it is the only process allowed to own the WhatsApp Web session. If you need a rescue bot or strict isolation, run multiple gateways with isolated profiles and ports; see [Multiple gateways](/gateway/multiple-gateways).
 - **Loopback-first**: Gateway WS defaults to `ws://127.0.0.1:18789`.
   - The wizard now generates a gateway token by default (even for loopback).
-  - For Tailnet access, run `moltbot gateway --bind tailnet --token ...` (token is required for non-loopback binds).
+  - For Tailnet access, run `AGENT gateway --bind tailnet --token ...` (token is required for non-loopback binds).
 - **Nodes**: connect to the Gateway WebSocket (LAN/tailnet/SSH as needed); legacy TCP bridge is deprecated/removed.
-- **Canvas host**: HTTP file server on `canvasHost.port` (default `18793`), serving `/__moltbot__/canvas/` for node WebViews; see [Gateway configuration](/gateway/configuration) (`canvasHost`).
+- **Canvas host**: HTTP file server on `canvasHost.port` (default `18793`), serving `/__AGENT__/canvas/` for node WebViews; see [Gateway configuration](/gateway/configuration) (`canvasHost`).
 - **Remote use**: SSH tunnel or tailnet/VPN; see [Remote access](/gateway/remote) and [Discovery](/gateway/discovery).
 
 ## Features (high level)
@@ -102,51 +102,51 @@ Runtime requirement: **Node ≥ 22**.
 
 ```bash
 # Recommended: global install (npm/pnpm)
-npm install -g moltbot@latest
-# or: pnpm add -g moltbot@latest
+npm install -g AGENT@latest
+# or: pnpm add -g AGENT@latest
 
 # Onboard + install the service (launchd/systemd user service)
-moltbot onboard --install-daemon
+AGENT onboard --install-daemon
 
 # Pair WhatsApp Web (shows QR)
-moltbot channels login
+AGENT channels login
 
 # Gateway runs via the service after onboarding; manual run is still possible:
-moltbot gateway --port 18789
+AGENT gateway --port 18789
 ```
 
-Switching between npm and git installs later is easy: install the other flavor and run `moltbot doctor` to update the gateway service entrypoint.
+Switching between npm and git installs later is easy: install the other flavor and run `AGENT doctor` to update the gateway service entrypoint.
 
 From source (development):
 
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/SOPHY-AGI/AGENT.git
+cd AGENT
 pnpm install
 pnpm ui:build # auto-installs UI deps on first run
 pnpm build
-moltbot onboard --install-daemon
+AGENT onboard --install-daemon
 ```
 
-If you don’t have a global install yet, run the onboarding step via `pnpm moltbot ...` from the repo.
+If you don’t have a global install yet, run the onboarding step via `pnpm AGENT ...` from the repo.
 
 Multi-instance quickstart (optional):
 
 ```bash
 CLAWDBOT_CONFIG_PATH=~/.clawdbot/a.json \
 CLAWDBOT_STATE_DIR=~/.clawdbot-a \
-moltbot gateway --port 19001
+AGENT gateway --port 19001
 ```
 
 Send a test message (requires a running Gateway):
 
 ```bash
-moltbot message send --target +15555550123 --message "Hello from Moltbot"
+AGENT message send --target +15555550123 --message "Hello from Moltbot"
 ```
 
 ## Configuration (optional)
 
-Config lives at `~/.clawdbot/moltbot.json`.
+Config lives at `~/.clawdbot/AGENT.json`.
 
 - If you **do nothing**, Moltbot uses the bundled Pi binary in RPC mode with per-sender sessions.
 - If you want to lock it down, start with `channels.whatsapp.allowFrom` and (for groups) mention rules.

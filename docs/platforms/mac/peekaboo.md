@@ -14,7 +14,7 @@ macOS app’s TCC permissions.
 ## What this is (and isn’t)
 
 - **Host**: Moltbot.app can act as a PeekabooBridge host.
-- **Client**: use the `peekaboo` CLI (no separate `moltbot ui ...` surface).
+- **Client**: use the `peekaboo` CLI (no separate `AGENT ui ...` surface).
 - **UI**: visual overlays stay in Peekaboo.app; Moltbot is a thin broker host.
 
 ## Enable the bridge

@@ -42,7 +42,7 @@ export interface SendMessageResult {
  * const result = await sendMessageTwitchInternal(
  *   "#mychannel",
  *   "Hello Twitch!",
- *   moltbotConfig,
+ *   AGENTConfig,
  *   "default",
  *   true,
  *   console,

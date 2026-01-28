@@ -172,7 +172,7 @@ describe("routeReply", () => {
   it("applies responsePrefix when routing", async () => {
     mocks.sendMessageSlack.mockClear();
     const cfg = {
-      messages: { responsePrefix: "[moltbot]" },
+      messages: { responsePrefix: "[AGENT]" },
     } as unknown as MoltbotConfig;
     await routeReply({
       payload: { text: "hi" },
@@ -182,7 +182,7 @@ describe("routeReply", () => {
     });
     expect(mocks.sendMessageSlack).toHaveBeenCalledWith(
       "channel:C123",
-      "[moltbot] hi",
+      "[AGENT] hi",
       expect.any(Object),
     );
   });

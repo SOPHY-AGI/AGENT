@@ -20,16 +20,16 @@ levels and formats.
 
 By default, the Gateway writes a rolling log file under:
 
-`/tmp/moltbot/moltbot-YYYY-MM-DD.log`
+`/tmp/AGENT/AGENT-YYYY-MM-DD.log`
 
 The date uses the gateway host's local timezone.
 
-You can override this in `~/.clawdbot/moltbot.json`:
+You can override this in `~/.clawdbot/AGENT.json`:
 
 ```json
 {
   "logging": {
-    "file": "/path/to/moltbot.log"
+    "file": "/path/to/AGENT.log"
   }
 }
 ```
@@ -41,7 +41,7 @@ You can override this in `~/.clawdbot/moltbot.json`:
 Use the CLI to tail the gateway log file via RPC:
 
 ```bash
-moltbot logs --follow
+AGENT logs --follow
 ```
 
 Output modes:
@@ -62,7 +62,7 @@ In JSON mode, the CLI emits `type`-tagged objects:
 If the Gateway is unreachable, the CLI prints a short hint to run:
 
 ```bash
-moltbot doctor
+AGENT doctor
 ```
 
 ### Control UI (web)
@@ -75,7 +75,7 @@ See [/web/control-ui](/web/control-ui) for how to open it.
 To filter channel activity (WhatsApp/Telegram/etc), use:
 
 ```bash
-moltbot channels logs --channel whatsapp
+AGENT channels logs --channel whatsapp
 ```
 
 ## Log formats
@@ -97,13 +97,13 @@ Console formatting is controlled by `logging.consoleStyle`.
 
 ## Configuring logging
 
-All logging configuration lives under `logging` in `~/.clawdbot/moltbot.json`.
+All logging configuration lives under `logging` in `~/.clawdbot/AGENT.json`.
 
 ```json
 {
   "logging": {
     "level": "info",
-    "file": "/tmp/moltbot/moltbot-YYYY-MM-DD.log",
+    "file": "/tmp/AGENT/AGENT-YYYY-MM-DD.log",
     "consoleLevel": "info",
     "consoleStyle": "pretty",
     "redactSensitive": "tools",
@@ -237,7 +237,7 @@ works with any OpenTelemetry collector/backend that accepts OTLP/HTTP.
       "enabled": true,
       "endpoint": "http://otel-collector:4318",
       "protocol": "http/protobuf",
-      "serviceName": "moltbot-gateway",
+      "serviceName": "AGENT-gateway",
       "traces": true,
       "metrics": true,
       "logs": true,
@@ -249,7 +249,7 @@ works with any OpenTelemetry collector/backend that accepts OTLP/HTTP.
 ```
 
 Notes:
-- You can also enable the plugin with `moltbot plugins enable diagnostics-otel`.
+- You can also enable the plugin with `AGENT plugins enable diagnostics-otel`.
 - `protocol` currently supports `http/protobuf` only. `grpc` is ignored.
 - Metrics include token usage, cost, context size, run duration, and message-flow
   counters/histograms (webhooks, queueing, session state, queue depth/wait).
@@ -262,58 +262,58 @@ Notes:
 ### Exported metrics (names + types)
 
 Model usage:
-- `moltbot.tokens` (counter, attrs: `moltbot.token`, `moltbot.channel`,
-  `moltbot.provider`, `moltbot.model`)
-- `moltbot.cost.usd` (counter, attrs: `moltbot.channel`, `moltbot.provider`,
-  `moltbot.model`)
-- `moltbot.run.duration_ms` (histogram, attrs: `moltbot.channel`,
-  `moltbot.provider`, `moltbot.model`)
-- `moltbot.context.tokens` (histogram, attrs: `moltbot.context`,
-  `moltbot.channel`, `moltbot.provider`, `moltbot.model`)
+- `AGENT.tokens` (counter, attrs: `AGENT.token`, `AGENT.channel`,
+  `AGENT.provider`, `AGENT.model`)
+- `AGENT.cost.usd` (counter, attrs: `AGENT.channel`, `AGENT.provider`,
+  `AGENT.model`)
+- `AGENT.run.duration_ms` (histogram, attrs: `AGENT.channel`,
+  `AGENT.provider`, `AGENT.model`)
+- `AGENT.context.tokens` (histogram, attrs: `AGENT.context`,
+  `AGENT.channel`, `AGENT.provider`, `AGENT.model`)
 
 Message flow:
-- `moltbot.webhook.received` (counter, attrs: `moltbot.channel`,
-  `moltbot.webhook`)
-- `moltbot.webhook.error` (counter, attrs: `moltbot.channel`,
-  `moltbot.webhook`)
-- `moltbot.webhook.duration_ms` (histogram, attrs: `moltbot.channel`,
-  `moltbot.webhook`)
-- `moltbot.message.queued` (counter, attrs: `moltbot.channel`,
-  `moltbot.source`)
-- `moltbot.message.processed` (counter, attrs: `moltbot.channel`,
-  `moltbot.outcome`)
-- `moltbot.message.duration_ms` (histogram, attrs: `moltbot.channel`,
-  `moltbot.outcome`)
+- `AGENT.webhook.received` (counter, attrs: `AGENT.channel`,
+  `AGENT.webhook`)
+- `AGENT.webhook.error` (counter, attrs: `AGENT.channel`,
+  `AGENT.webhook`)
+- `AGENT.webhook.duration_ms` (histogram, attrs: `AGENT.channel`,
+  `AGENT.webhook`)
+- `AGENT.message.queued` (counter, attrs: `AGENT.channel`,
+  `AGENT.source`)
+- `AGENT.message.processed` (counter, attrs: `AGENT.channel`,
+  `AGENT.outcome`)
+- `AGENT.message.duration_ms` (histogram, attrs: `AGENT.channel`,
+  `AGENT.outcome`)
 
 Queues + sessions:
-- `moltbot.queue.lane.enqueue` (counter, attrs: `moltbot.lane`)
-- `moltbot.queue.lane.dequeue` (counter, attrs: `moltbot.lane`)
-- `moltbot.queue.depth` (histogram, attrs: `moltbot.lane` or
-  `moltbot.channel=heartbeat`)
-- `moltbot.queue.wait_ms` (histogram, attrs: `moltbot.lane`)
-- `moltbot.session.state` (counter, attrs: `moltbot.state`, `moltbot.reason`)
-- `moltbot.session.stuck` (counter, attrs: `moltbot.state`)
-- `moltbot.session.stuck_age_ms` (histogram, attrs: `moltbot.state`)
-- `moltbot.run.attempt` (counter, attrs: `moltbot.attempt`)
+- `AGENT.queue.lane.enqueue` (counter, attrs: `AGENT.lane`)
+- `AGENT.queue.lane.dequeue` (counter, attrs: `AGENT.lane`)
+- `AGENT.queue.depth` (histogram, attrs: `AGENT.lane` or
+  `AGENT.channel=heartbeat`)
+- `AGENT.queue.wait_ms` (histogram, attrs: `AGENT.lane`)
+- `AGENT.session.state` (counter, attrs: `AGENT.state`, `AGENT.reason`)
+- `AGENT.session.stuck` (counter, attrs: `AGENT.state`)
+- `AGENT.session.stuck_age_ms` (histogram, attrs: `AGENT.state`)
+- `AGENT.run.attempt` (counter, attrs: `AGENT.attempt`)
 
 ### Exported spans (names + key attributes)
 
-- `moltbot.model.usage`
-  - `moltbot.channel`, `moltbot.provider`, `moltbot.model`
-  - `moltbot.sessionKey`, `moltbot.sessionId`
-  - `moltbot.tokens.*` (input/output/cache_read/cache_write/total)
-- `moltbot.webhook.processed`
-  - `moltbot.channel`, `moltbot.webhook`, `moltbot.chatId`
-- `moltbot.webhook.error`
-  - `moltbot.channel`, `moltbot.webhook`, `moltbot.chatId`,
-    `moltbot.error`
-- `moltbot.message.processed`
-  - `moltbot.channel`, `moltbot.outcome`, `moltbot.chatId`,
-    `moltbot.messageId`, `moltbot.sessionKey`, `moltbot.sessionId`,
-    `moltbot.reason`
-- `moltbot.session.stuck`
-  - `moltbot.state`, `moltbot.ageMs`, `moltbot.queueDepth`,
-    `moltbot.sessionKey`, `moltbot.sessionId`
+- `AGENT.model.usage`
+  - `AGENT.channel`, `AGENT.provider`, `AGENT.model`
+  - `AGENT.sessionKey`, `AGENT.sessionId`
+  - `AGENT.tokens.*` (input/output/cache_read/cache_write/total)
+- `AGENT.webhook.processed`
+  - `AGENT.channel`, `AGENT.webhook`, `AGENT.chatId`
+- `AGENT.webhook.error`
+  - `AGENT.channel`, `AGENT.webhook`, `AGENT.chatId`,
+    `AGENT.error`
+- `AGENT.message.processed`
+  - `AGENT.channel`, `AGENT.outcome`, `AGENT.chatId`,
+    `AGENT.messageId`, `AGENT.sessionKey`, `AGENT.sessionId`,
+    `AGENT.reason`
+- `AGENT.session.stuck`
+  - `AGENT.state`, `AGENT.ageMs`, `AGENT.queueDepth`,
+    `AGENT.sessionKey`, `AGENT.sessionId`
 
 ### Sampling + flushing
 
@@ -337,7 +337,7 @@ Queues + sessions:
 
 ## Troubleshooting tips
 
-- **Gateway not reachable?** Run `moltbot doctor` first.
+- **Gateway not reachable?** Run `AGENT doctor` first.
 - **Logs empty?** Check that the Gateway is running and writing to the file path
   in `logging.file`.
 - **Need more detail?** Set `logging.level` to `debug` or `trace` and retry.

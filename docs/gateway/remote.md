@@ -71,8 +71,8 @@ ssh -N -L 18789:127.0.0.1:18789 user@host
 ```
 
 With the tunnel up:
-- `moltbot health` and `moltbot status --deep` now reach the remote gateway via `ws://127.0.0.1:18789`.
-- `moltbot gateway {status,health,send,agent,call}` can also target the forwarded URL via `--url` when needed.
+- `AGENT health` and `AGENT status --deep` now reach the remote gateway via `ws://127.0.0.1:18789`.
+- `AGENT gateway {status,health,send,agent,call}` can also target the forwarded URL via `--url` when needed.
 
 Note: replace `18789` with your configured `gateway.port` (or `--port`/`CLAWDBOT_GATEWAY_PORT`).
 

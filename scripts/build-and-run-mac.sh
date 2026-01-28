@@ -13,6 +13,6 @@ printf "\n⏹  Stopping existing $PRODUCT...\n"
 killall -q "$PRODUCT" 2>/dev/null || true
 
 printf "\n🚀 Launching $BIN ...\n"
-nohup "$BIN" >/tmp/moltbot.log 2>&1 &
+nohup "$BIN" >/tmp/AGENT.log 2>&1 &
 PID=$!
-printf "Started $PRODUCT (PID $PID). Logs: /tmp/moltbot.log\n"
+printf "Started $PRODUCT (PID $PID). Logs: /tmp/AGENT.log\n"

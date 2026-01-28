@@ -13,9 +13,9 @@ Zen is currently in beta.
 ## CLI setup
 
 ```bash
-moltbot onboard --auth-choice opencode-zen
+AGENT onboard --auth-choice opencode-zen
 # or non-interactive
-moltbot onboard --opencode-zen-api-key "$OPENCODE_API_KEY"
+AGENT onboard --opencode-zen-api-key "$OPENCODE_API_KEY"
 ```
 
 ## Config snippet

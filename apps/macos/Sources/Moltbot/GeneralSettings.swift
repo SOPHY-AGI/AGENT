@@ -167,12 +167,12 @@ struct GeneralSettings: View {
                                 .frame(width: 280)
                         }
                         LabeledContent("Project root") {
-                            TextField("/home/you/Projects/moltbot", text: self.$state.remoteProjectRoot)
+                            TextField("/home/you/Projects/AGENT", text: self.$state.remoteProjectRoot)
                                 .textFieldStyle(.roundedBorder)
                                 .frame(width: 280)
                         }
                         LabeledContent("CLI path") {
-                            TextField("/Applications/Moltbot.app/.../moltbot", text: self.$state.remoteCliPath)
+                            TextField("/Applications/Moltbot.app/.../AGENT", text: self.$state.remoteCliPath)
                                 .textFieldStyle(.roundedBorder)
                                 .frame(width: 280)
                         }
@@ -659,7 +659,7 @@ extension GeneralSettings {
         let alert = NSAlert()
         alert.messageText = "Log file not found"
         alert.informativeText = """
-        Looked for moltbot logs in /tmp/moltbot/.
+        Looked for AGENT logs in /tmp/AGENT/.
         Run a health check or send a message to generate activity, then try again.
         """
         alert.alertStyle = .informational
@@ -711,8 +711,8 @@ extension GeneralSettings {
         state.remoteTarget = "user@host:2222"
         state.remoteUrl = "wss://gateway.example.ts.net"
         state.remoteIdentity = "/tmp/id_ed25519"
-        state.remoteProjectRoot = "/tmp/moltbot"
-        state.remoteCliPath = "/tmp/moltbot"
+        state.remoteProjectRoot = "/tmp/AGENT"
+        state.remoteCliPath = "/tmp/AGENT"
 
         let view = GeneralSettings(state: state)
         view.gatewayStatus = GatewayEnvironmentStatus(

@@ -76,8 +76,8 @@ Example:
 Per-agent node binding (use the agent list index in config):
 
 ```bash
-moltbot config get agents.list
-moltbot config set agents.list[0].tools.exec.node "node-id-or-name"
+AGENT config get agents.list
+AGENT config set agents.list[0].tools.exec.node "node-id-or-name"
 ```
 
 Control UI: the Nodes tab includes a small “Exec node binding” panel for the same settings.

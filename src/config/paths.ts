@@ -16,8 +16,8 @@ export function resolveIsNixMode(env: NodeJS.ProcessEnv = process.env): boolean 
 export const isNixMode = resolveIsNixMode();
 
 const LEGACY_STATE_DIRNAME = ".clawdbot";
-const NEW_STATE_DIRNAME = ".moltbot";
-const CONFIG_FILENAME = "moltbot.json";
+const NEW_STATE_DIRNAME = ".AGENT";
+const CONFIG_FILENAME = "AGENT.json";
 
 function legacyStateDir(homedir: () => string = os.homedir): string {
   return path.join(homedir(), LEGACY_STATE_DIRNAME);
@@ -56,7 +56,7 @@ export const STATE_DIR = resolveStateDir();
 /**
  * Config file path (JSON5).
  * Can be overridden via MOLTBOT_CONFIG_PATH (preferred) or CLAWDBOT_CONFIG_PATH (legacy).
- * Default: ~/.clawdbot/moltbot.json (or $*_STATE_DIR/moltbot.json)
+ * Default: ~/.clawdbot/AGENT.json (or $*_STATE_DIR/AGENT.json)
  */
 export function resolveConfigPath(
   env: NodeJS.ProcessEnv = process.env,
@@ -81,9 +81,9 @@ export function resolveDefaultConfigCandidates(
   if (explicit) return [resolveUserPath(explicit)];
 
   const candidates: string[] = [];
-  const moltbotStateDir = env.MOLTBOT_STATE_DIR?.trim();
-  if (moltbotStateDir) {
-    candidates.push(path.join(resolveUserPath(moltbotStateDir), CONFIG_FILENAME));
+  const AGENTStateDir = env.MOLTBOT_STATE_DIR?.trim();
+  if (AGENTStateDir) {
+    candidates.push(path.join(resolveUserPath(AGENTStateDir), CONFIG_FILENAME));
   }
   const legacyStateDirOverride = env.CLAWDBOT_STATE_DIR?.trim();
   if (legacyStateDirOverride) {
@@ -99,12 +99,12 @@ export const DEFAULT_GATEWAY_PORT = 18789;
 
 /**
  * Gateway lock directory (ephemeral).
- * Default: os.tmpdir()/moltbot-<uid> (uid suffix when available).
+ * Default: os.tmpdir()/AGENT-<uid> (uid suffix when available).
  */
 export function resolveGatewayLockDir(tmpdir: () => string = os.tmpdir): string {
   const base = tmpdir();
   const uid = typeof process.getuid === "function" ? process.getuid() : undefined;
-  const suffix = uid != null ? `moltbot-${uid}` : "moltbot";
+  const suffix = uid != null ? `AGENT-${uid}` : "AGENT";
   return path.join(base, suffix);
 }
 

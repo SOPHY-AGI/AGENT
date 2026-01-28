@@ -34,7 +34,7 @@ beforeEach(() => {
     durationMs: 0,
   });
   legacyReadConfigFileSnapshot.mockReset().mockResolvedValue({
-    path: "/tmp/moltbot.json",
+    path: "/tmp/AGENT.json",
     exists: false,
     raw: null,
     parsed: {},
@@ -78,7 +78,7 @@ beforeEach(() => {
   originalStateDir = process.env.CLAWDBOT_STATE_DIR;
   originalUpdateInProgress = process.env.CLAWDBOT_UPDATE_IN_PROGRESS;
   process.env.CLAWDBOT_UPDATE_IN_PROGRESS = "1";
-  tempStateDir = fs.mkdtempSync(path.join(os.tmpdir(), "moltbot-doctor-state-"));
+  tempStateDir = fs.mkdtempSync(path.join(os.tmpdir(), "AGENT-doctor-state-"));
   process.env.CLAWDBOT_STATE_DIR = tempStateDir;
   fs.mkdirSync(path.join(tempStateDir, "agents", "main", "sessions"), {
     recursive: true,
@@ -133,7 +133,7 @@ const runCommandWithTimeout = vi.fn().mockResolvedValue({
 const ensureAuthProfileStore = vi.fn().mockReturnValue({ version: 1, profiles: {} });
 
 const legacyReadConfigFileSnapshot = vi.fn().mockResolvedValue({
-  path: "/tmp/moltbot.json",
+  path: "/tmp/AGENT.json",
   exists: false,
   raw: null,
   parsed: {},
@@ -180,7 +180,7 @@ vi.mock("../config/config.js", async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
-    CONFIG_PATH: "/tmp/moltbot.json",
+    CONFIG_PATH: "/tmp/AGENT.json",
     createConfigIO,
     readConfigFileSnapshot,
     writeConfigFile,
@@ -215,7 +215,7 @@ vi.mock("../process/exec.js", () => ({
   runCommandWithTimeout,
 }));
 
-vi.mock("../infra/moltbot-root.js", () => ({
+vi.mock("../infra/AGENT-root.js", () => ({
   resolveMoltbotPackageRoot,
 }));
 
@@ -326,7 +326,7 @@ vi.mock("./doctor-state-migrations.js", () => ({
 describe("doctor command", () => {
   it("runs legacy state migrations in yes mode without prompting", async () => {
     readConfigFileSnapshot.mockResolvedValue({
-      path: "/tmp/moltbot.json",
+      path: "/tmp/AGENT.json",
       exists: true,
       raw: "{}",
       parsed: {},
@@ -385,7 +385,7 @@ describe("doctor command", () => {
 
   it("skips gateway restarts in non-interactive mode", async () => {
     readConfigFileSnapshot.mockResolvedValue({
-      path: "/tmp/moltbot.json",
+      path: "/tmp/AGENT.json",
       exists: true,
       raw: "{}",
       parsed: {},
@@ -417,7 +417,7 @@ describe("doctor command", () => {
 
   it("migrates anthropic oauth config profile id when only email profile exists", async () => {
     readConfigFileSnapshot.mockResolvedValue({
-      path: "/tmp/moltbot.json",
+      path: "/tmp/AGENT.json",
       exists: true,
       raw: "{}",
       parsed: {},

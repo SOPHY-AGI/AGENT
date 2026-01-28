@@ -100,7 +100,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
     }
     defaultRuntime.error(
       warnText(
-        `Recommendation: run "${formatCliCommand("moltbot doctor")}" (or "${formatCliCommand("moltbot doctor --repair")}").`,
+        `Recommendation: run "${formatCliCommand("AGENT doctor")}" (or "${formatCliCommand("AGENT doctor --repair")}").`,
       ),
     );
   }
@@ -134,7 +134,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
       );
       defaultRuntime.error(
         errorText(
-          `Fix: rerun \`${formatCliCommand("moltbot gateway install --force")}\` from the same --profile / CLAWDBOT_STATE_DIR you expect.`,
+          `Fix: rerun \`${formatCliCommand("AGENT gateway install --force")}\` from the same --profile / CLAWDBOT_STATE_DIR you expect.`,
         ),
       );
     }
@@ -236,9 +236,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
         `LaunchAgent label cached but plist missing. Clear with: launchctl bootout gui/$UID/${labelValue}`,
       ),
     );
-    defaultRuntime.error(
-      errorText(`Then reinstall: ${formatCliCommand("moltbot gateway install")}`),
-    );
+    defaultRuntime.error(errorText(`Then reinstall: ${formatCliCommand("AGENT gateway install")}`));
     spacer();
   }
 
@@ -292,7 +290,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
     for (const svc of legacyServices) {
       defaultRuntime.error(`- ${errorText(svc.label)} (${svc.detail})`);
     }
-    defaultRuntime.error(errorText(`Cleanup: ${formatCliCommand("moltbot doctor")}`));
+    defaultRuntime.error(errorText(`Cleanup: ${formatCliCommand("AGENT doctor")}`));
     spacer();
   }
 
@@ -321,6 +319,6 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
     spacer();
   }
 
-  defaultRuntime.log(`${label("Troubles:")} run ${formatCliCommand("moltbot status")}`);
+  defaultRuntime.log(`${label("Troubles:")} run ${formatCliCommand("AGENT status")}`);
   defaultRuntime.log(`${label("Troubleshooting:")} https://docs.molt.bot/troubleshooting`);
 }

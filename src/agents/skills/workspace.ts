@@ -130,23 +130,23 @@ function loadSkillEntries(
   const bundledSkills = bundledSkillsDir
     ? loadSkills({
         dir: bundledSkillsDir,
-        source: "moltbot-bundled",
+        source: "AGENT-bundled",
       })
     : [];
   const extraSkills = mergedExtraDirs.flatMap((dir) => {
     const resolved = resolveUserPath(dir);
     return loadSkills({
       dir: resolved,
-      source: "moltbot-extra",
+      source: "AGENT-extra",
     });
   });
   const managedSkills = loadSkills({
     dir: managedSkillsDir,
-    source: "moltbot-managed",
+    source: "AGENT-managed",
   });
   const workspaceSkills = loadSkills({
     dir: workspaceSkillsDir,
-    source: "moltbot-workspace",
+    source: "AGENT-workspace",
   });
 
   const merged = new Map<string, Skill>();

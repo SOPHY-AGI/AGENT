@@ -19,13 +19,13 @@ Tlon ships as a plugin and is not bundled with the core install.
 Install via CLI (npm registry):
 
 ```bash
-moltbot plugins install @moltbot/tlon
+AGENT plugins install @AGENT/tlon
 ```
 
 Local checkout (when running from a git repo):
 
 ```bash
-moltbot plugins install ./extensions/tlon
+AGENT plugins install ./extensions/tlon
 ```
 
 Details: [Plugins](/plugin)
@@ -121,7 +121,7 @@ Group authorization (restricted by default):
 
 ## Delivery targets (CLI/cron)
 
-Use these with `moltbot message send` or cron delivery:
+Use these with `AGENT message send` or cron delivery:
 
 - DM: `~sampel-palnet` or `dm/~sampel-palnet`
 - Group: `chat/~host-ship/channel` or `group:~host-ship/channel`

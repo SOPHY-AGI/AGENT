@@ -35,7 +35,7 @@ Related:
 If you don’t want to hand-edit config, run the onboarding wizard:
 
 ```bash
-moltbot onboard
+AGENT onboard
 ```
 
 It can set up model + auth for common providers, including **OpenAI Code (Codex)
@@ -111,27 +111,27 @@ Full command behavior/config: [Slash commands](/tools/slash-commands).
 ## CLI commands
 
 ```bash
-moltbot models list
-moltbot models status
-moltbot models set <provider/model>
-moltbot models set-image <provider/model>
+AGENT models list
+AGENT models status
+AGENT models set <provider/model>
+AGENT models set-image <provider/model>
 
-moltbot models aliases list
-moltbot models aliases add <alias> <provider/model>
-moltbot models aliases remove <alias>
+AGENT models aliases list
+AGENT models aliases add <alias> <provider/model>
+AGENT models aliases remove <alias>
 
-moltbot models fallbacks list
-moltbot models fallbacks add <provider/model>
-moltbot models fallbacks remove <provider/model>
-moltbot models fallbacks clear
+AGENT models fallbacks list
+AGENT models fallbacks add <provider/model>
+AGENT models fallbacks remove <provider/model>
+AGENT models fallbacks clear
 
-moltbot models image-fallbacks list
-moltbot models image-fallbacks add <provider/model>
-moltbot models image-fallbacks remove <provider/model>
-moltbot models image-fallbacks clear
+AGENT models image-fallbacks list
+AGENT models image-fallbacks add <provider/model>
+AGENT models image-fallbacks remove <provider/model>
+AGENT models image-fallbacks clear
 ```
 
-`moltbot models` (no subcommand) is a shortcut for `models status`.
+`AGENT models` (no subcommand) is a shortcut for `models status`.
 
 ### `models list`
 
@@ -159,12 +159,12 @@ Preferred Anthropic auth is the Claude Code CLI setup-token (run anywhere; paste
 
 ```bash
 claude setup-token
-moltbot models status
+AGENT models status
 ```
 
 ## Scanning (OpenRouter free models)
 
-`moltbot models scan` inspects OpenRouter’s **free model catalog** and can
+`AGENT models scan` inspects OpenRouter’s **free model catalog** and can
 optionally probe models for tool and image support.
 
 Key flags:

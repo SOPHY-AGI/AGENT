@@ -123,7 +123,7 @@ enum GatewayEnvironment {
                 requiredGateway: expectedString,
                 message: RuntimeLocator.describeFailure(err))
         case let .success(runtime):
-            let gatewayBin = CommandResolver.moltbotExecutable()
+            let gatewayBin = CommandResolver.AGENTExecutable()
 
             if gatewayBin == nil, projectEntrypoint == nil {
                 return GatewayEnvironmentStatus(
@@ -131,7 +131,7 @@ enum GatewayEnvironment {
                     nodeVersion: runtime.version.description,
                     gatewayVersion: nil,
                     requiredGateway: expectedString,
-                    message: "moltbot CLI not found in PATH; install the CLI.")
+                    message: "AGENT CLI not found in PATH; install the CLI.")
             }
 
             let installed = gatewayBin.flatMap { self.readGatewayVersion(binary: $0) }
@@ -181,7 +181,7 @@ enum GatewayEnvironment {
         let projectRoot = CommandResolver.projectRoot()
         let projectEntrypoint = CommandResolver.gatewayEntrypoint(in: projectRoot)
         let status = self.check()
-        let gatewayBin = CommandResolver.moltbotExecutable()
+        let gatewayBin = CommandResolver.AGENTExecutable()
         let runtime = RuntimeLocator.resolve(searchPaths: CommandResolver.preferredPaths())
 
         guard case .ok = status.kind else {
@@ -247,16 +247,16 @@ enum GatewayEnvironment {
         let bun = CommandResolver.findExecutable(named: "bun")
         let (label, cmd): (String, [String]) =
             if let npm {
-                ("npm", [npm, "install", "-g", "moltbot@\(target)"])
+                ("npm", [npm, "install", "-g", "AGENT@\(target)"])
             } else if let pnpm {
-                ("pnpm", [pnpm, "add", "-g", "moltbot@\(target)"])
+                ("pnpm", [pnpm, "add", "-g", "AGENT@\(target)"])
             } else if let bun {
-                ("bun", [bun, "add", "-g", "moltbot@\(target)"])
+                ("bun", [bun, "add", "-g", "AGENT@\(target)"])
             } else {
-                ("npm", ["npm", "install", "-g", "moltbot@\(target)"])
+                ("npm", ["npm", "install", "-g", "AGENT@\(target)"])
             }
 
-        statusHandler("Installing moltbot@\(target) via \(label)…")
+        statusHandler("Installing AGENT@\(target) via \(label)…")
 
         func summarize(_ text: String) -> String? {
             let lines = text
@@ -270,7 +270,7 @@ enum GatewayEnvironment {
 
         let response = await ShellExecutor.runDetailed(command: cmd, cwd: nil, env: ["PATH": preferred], timeout: 300)
         if response.success {
-            statusHandler("Installed moltbot@\(target)")
+            statusHandler("Installed AGENT@\(target)")
         } else {
             if response.timedOut {
                 statusHandler("Install failed: timed out. Check your internet connection and try again.")

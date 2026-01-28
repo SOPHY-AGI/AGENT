@@ -17,7 +17,7 @@ struct TailscaleIntegrationSectionTests {
         let service = TailscaleService(
             isInstalled: true,
             isRunning: true,
-            tailscaleHostname: "moltbot.tailnet.ts.net",
+            tailscaleHostname: "AGENT.tailnet.ts.net",
             tailscaleIP: "100.64.0.1")
         var view = TailscaleIntegrationSection(connectionMode: .local, isPaused: false)
         view.setTestingService(service)

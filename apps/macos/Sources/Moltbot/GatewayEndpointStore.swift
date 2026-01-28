@@ -243,7 +243,7 @@ actor GatewayEndpointStore {
         if let modeRaw {
             initialMode = AppState.ConnectionMode(rawValue: modeRaw) ?? .local
         } else {
-            let seen = UserDefaults.standard.bool(forKey: "moltbot.onboardingSeen")
+            let seen = UserDefaults.standard.bool(forKey: "AGENT.onboardingSeen")
             initialMode = seen ? .local : .unconfigured
         }
 

@@ -31,11 +31,11 @@ import Testing
         let tmp = try makeTempDir()
         CommandResolver.setProjectRoot(tmp.path)
 
-        let moltbotPath = tmp.appendingPathComponent("node_modules/.bin/moltbot")
-        try self.makeExec(at: moltbotPath)
+        let AGENTPath = tmp.appendingPathComponent("node_modules/.bin/AGENT")
+        try self.makeExec(at: AGENTPath)
 
-        let cmd = CommandResolver.moltbotCommand(subcommand: "gateway", defaults: defaults, configRoot: [:])
-        #expect(cmd.prefix(2).elementsEqual([moltbotPath.path, "gateway"]))
+        let cmd = CommandResolver.AGENTCommand(subcommand: "gateway", defaults: defaults, configRoot: [:])
+        #expect(cmd.prefix(2).elementsEqual([AGENTPath.path, "gateway"]))
     }
 
     @Test func fallsBackToNodeAndScript() async throws {
@@ -46,13 +46,13 @@ import Testing
         CommandResolver.setProjectRoot(tmp.path)
 
         let nodePath = tmp.appendingPathComponent("node_modules/.bin/node")
-        let scriptPath = tmp.appendingPathComponent("bin/moltbot.js")
+        let scriptPath = tmp.appendingPathComponent("bin/AGENT.js")
         try self.makeExec(at: nodePath)
         try "#!/bin/sh\necho v22.0.0\n".write(to: nodePath, atomically: true, encoding: .utf8)
         try FileManager().setAttributes([.posixPermissions: 0o755], ofItemAtPath: nodePath.path)
         try self.makeExec(at: scriptPath)
 
-        let cmd = CommandResolver.moltbotCommand(
+        let cmd = CommandResolver.AGENTCommand(
             subcommand: "rpc",
             defaults: defaults,
             configRoot: [:],
@@ -76,9 +76,9 @@ import Testing
         let pnpmPath = tmp.appendingPathComponent("node_modules/.bin/pnpm")
         try self.makeExec(at: pnpmPath)
 
-        let cmd = CommandResolver.moltbotCommand(subcommand: "rpc", defaults: defaults, configRoot: [:])
+        let cmd = CommandResolver.AGENTCommand(subcommand: "rpc", defaults: defaults, configRoot: [:])
 
-        #expect(cmd.prefix(4).elementsEqual([pnpmPath.path, "--silent", "moltbot", "rpc"]))
+        #expect(cmd.prefix(4).elementsEqual([pnpmPath.path, "--silent", "AGENT", "rpc"]))
     }
 
     @Test func pnpmKeepsExtraArgsAfterSubcommand() async throws {
@@ -91,13 +91,13 @@ import Testing
         let pnpmPath = tmp.appendingPathComponent("node_modules/.bin/pnpm")
         try self.makeExec(at: pnpmPath)
 
-        let cmd = CommandResolver.moltbotCommand(
+        let cmd = CommandResolver.AGENTCommand(
             subcommand: "health",
             extraArgs: ["--json", "--timeout", "5"],
             defaults: defaults,
             configRoot: [:])
 
-        #expect(cmd.prefix(5).elementsEqual([pnpmPath.path, "--silent", "moltbot", "health", "--json"]))
+        #expect(cmd.prefix(5).elementsEqual([pnpmPath.path, "--silent", "AGENT", "health", "--json"]))
         #expect(cmd.suffix(2).elementsEqual(["--timeout", "5"]))
     }
 
@@ -114,9 +114,9 @@ import Testing
         defaults.set(AppState.ConnectionMode.remote.rawValue, forKey: connectionModeKey)
         defaults.set("clawd@example.com:2222", forKey: remoteTargetKey)
         defaults.set("/tmp/id_ed25519", forKey: remoteIdentityKey)
-        defaults.set("/srv/moltbot", forKey: remoteProjectRootKey)
+        defaults.set("/srv/AGENT", forKey: remoteProjectRootKey)
 
-        let cmd = CommandResolver.moltbotCommand(
+        let cmd = CommandResolver.AGENTCommand(
             subcommand: "status",
             extraArgs: ["--json"],
             defaults: defaults,
@@ -131,9 +131,9 @@ import Testing
         #expect(cmd.contains("-i"))
         #expect(cmd.contains("/tmp/id_ed25519"))
         if let script = cmd.last {
-            #expect(script.contains("PRJ='/srv/moltbot'"))
+            #expect(script.contains("PRJ='/srv/AGENT'"))
             #expect(script.contains("cd \"$PRJ\""))
-            #expect(script.contains("moltbot"))
+            #expect(script.contains("AGENT"))
             #expect(script.contains("status"))
             #expect(script.contains("--json"))
             #expect(script.contains("CLI="))
@@ -154,15 +154,15 @@ import Testing
         let tmp = try makeTempDir()
         CommandResolver.setProjectRoot(tmp.path)
 
-        let moltbotPath = tmp.appendingPathComponent("node_modules/.bin/moltbot")
-        try self.makeExec(at: moltbotPath)
+        let AGENTPath = tmp.appendingPathComponent("node_modules/.bin/AGENT")
+        try self.makeExec(at: AGENTPath)
 
-        let cmd = CommandResolver.moltbotCommand(
+        let cmd = CommandResolver.AGENTCommand(
             subcommand: "daemon",
             defaults: defaults,
             configRoot: ["gateway": ["mode": "local"]])
 
-        #expect(cmd.first == moltbotPath.path)
+        #expect(cmd.first == AGENTPath.path)
         #expect(cmd.count >= 2)
         if cmd.count >= 2 {
             #expect(cmd[1] == "daemon")

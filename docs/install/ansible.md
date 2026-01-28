@@ -8,19 +8,19 @@ read_when:
 
 # Ansible Installation
 
-The recommended way to deploy Moltbot to production servers is via **[moltbot-ansible](https://github.com/moltbot/moltbot-ansible)** — an automated installer with security-first architecture.
+The recommended way to deploy Moltbot to production servers is via **[AGENT-ansible](https://github.com/SOPHY-AGI/AGENT-ansible)** — an automated installer with security-first architecture.
 
 ## Quick Start
 
 One-command install:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/moltbot/moltbot-ansible/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/SOPHY-AGI/AGENT-ansible/main/install.sh | bash
 ```
 
-> **📦 Full guide: [github.com/moltbot/moltbot-ansible](https://github.com/moltbot/moltbot-ansible)**
+> **📦 Full guide: [github.com/SOPHY-AGI/AGENT-ansible](https://github.com/SOPHY-AGI/AGENT-ansible)**
 >
-> The moltbot-ansible repo is the source of truth for Ansible deployment. This page is a quick overview.
+> The AGENT-ansible repo is the source of truth for Ansible deployment. This page is a quick overview.
 
 ## What You Get
 
@@ -53,10 +53,10 @@ Note: The gateway runs **directly on the host** (not in Docker), but agent sandb
 
 ## Post-Install Setup
 
-After installation completes, switch to the moltbot user:
+After installation completes, switch to the AGENT user:
 
 ```bash
-sudo -i -u moltbot
+sudo -i -u AGENT
 ```
 
 The post-install script will guide you through:
@@ -70,17 +70,17 @@ The post-install script will guide you through:
 
 ```bash
 # Check service status
-sudo systemctl status moltbot
+sudo systemctl status AGENT
 
 # View live logs
-sudo journalctl -u moltbot -f
+sudo journalctl -u AGENT -f
 
 # Restart gateway
-sudo systemctl restart moltbot
+sudo systemctl restart AGENT
 
-# Provider login (run as moltbot user)
-sudo -i -u moltbot
-moltbot channels login
+# Provider login (run as AGENT user)
+sudo -i -u AGENT
+AGENT channels login
 ```
 
 ## Security Architecture
@@ -117,8 +117,8 @@ If you prefer manual control over the automation:
 sudo apt update && sudo apt install -y ansible git
 
 # 2. Clone repository
-git clone https://github.com/moltbot/moltbot-ansible.git
-cd moltbot-ansible
+git clone https://github.com/SOPHY-AGI/AGENT-ansible.git
+cd AGENT-ansible
 
 # 3. Install Ansible collections
 ansible-galaxy collection install -r requirements.yml
@@ -126,7 +126,7 @@ ansible-galaxy collection install -r requirements.yml
 # 4. Run playbook
 ./run-playbook.sh
 
-# Or run directly (then manually execute /tmp/moltbot-setup.sh after)
+# Or run directly (then manually execute /tmp/AGENT-setup.sh after)
 # ansible-playbook playbook.yml --ask-become-pass
 ```
 
@@ -137,7 +137,7 @@ The Ansible installer sets up Moltbot for manual updates. See [Updating](/instal
 To re-run the Ansible playbook (e.g., for configuration changes):
 
 ```bash
-cd moltbot-ansible
+cd AGENT-ansible
 ./run-playbook.sh
 ```
 
@@ -156,14 +156,14 @@ If you're locked out:
 
 ```bash
 # Check logs
-sudo journalctl -u moltbot -n 100
+sudo journalctl -u AGENT -n 100
 
 # Verify permissions
-sudo ls -la /opt/moltbot
+sudo ls -la /opt/AGENT
 
 # Test manual start
-sudo -i -u moltbot
-cd ~/moltbot
+sudo -i -u AGENT
+cd ~/AGENT
 pnpm start
 ```
 
@@ -174,32 +174,32 @@ pnpm start
 sudo systemctl status docker
 
 # Check sandbox image
-sudo docker images | grep moltbot-sandbox
+sudo docker images | grep AGENT-sandbox
 
 # Build sandbox image if missing
-cd /opt/moltbot/moltbot
-sudo -u moltbot ./scripts/sandbox-setup.sh
+cd /opt/AGENT/AGENT
+sudo -u AGENT ./scripts/sandbox-setup.sh
 ```
 
 ### Provider login fails
 
-Make sure you're running as the `moltbot` user:
+Make sure you're running as the `AGENT` user:
 
 ```bash
-sudo -i -u moltbot
-moltbot channels login
+sudo -i -u AGENT
+AGENT channels login
 ```
 
 ## Advanced Configuration
 
 For detailed security architecture and troubleshooting:
-- [Security Architecture](https://github.com/moltbot/moltbot-ansible/blob/main/docs/security.md)
-- [Technical Details](https://github.com/moltbot/moltbot-ansible/blob/main/docs/architecture.md)
-- [Troubleshooting Guide](https://github.com/moltbot/moltbot-ansible/blob/main/docs/troubleshooting.md)
+- [Security Architecture](https://github.com/SOPHY-AGI/AGENT-ansible/blob/main/docs/security.md)
+- [Technical Details](https://github.com/SOPHY-AGI/AGENT-ansible/blob/main/docs/architecture.md)
+- [Troubleshooting Guide](https://github.com/SOPHY-AGI/AGENT-ansible/blob/main/docs/troubleshooting.md)
 
 ## Related
 
-- [moltbot-ansible](https://github.com/moltbot/moltbot-ansible) — full deployment guide
+- [AGENT-ansible](https://github.com/SOPHY-AGI/AGENT-ansible) — full deployment guide
 - [Docker](/install/docker) — containerized gateway setup
 - [Sandboxing](/gateway/sandboxing) — agent sandbox configuration
 - [Multi-Agent Sandbox & Tools](/multi-agent-sandbox-tools) — per-agent isolation

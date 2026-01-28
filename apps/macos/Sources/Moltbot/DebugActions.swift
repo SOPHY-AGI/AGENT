@@ -3,9 +3,9 @@ import Foundation
 import SwiftUI
 
 enum DebugActions {
-    private static let verboseDefaultsKey = "moltbot.debug.verboseMain"
+    private static let verboseDefaultsKey = "AGENT.debug.verboseMain"
     private static let sessionMenuLimit = 12
-    private static let onboardingSeenKey = "moltbot.onboardingSeen"
+    private static let onboardingSeenKey = "AGENT.onboardingSeen"
 
     @MainActor
     static func openAgentEventsWindow() {
@@ -196,7 +196,7 @@ enum DebugActions {
     private static func resolveSessionStorePath() -> String {
         let defaultPath = SessionLoader.defaultStorePath
         let configURL = FileManager().homeDirectoryForCurrentUser
-            .appendingPathComponent(".clawdbot/moltbot.json")
+            .appendingPathComponent(".clawdbot/AGENT.json")
         guard
             let data = try? Data(contentsOf: configURL),
             let parsed = try? JSONSerialization.jsonObject(with: data) as? [String: Any],

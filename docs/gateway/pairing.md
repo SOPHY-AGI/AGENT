@@ -35,11 +35,11 @@ Pending requests expire automatically after **5 minutes**.
 ## CLI workflow (headless friendly)
 
 ```bash
-moltbot nodes pending
-moltbot nodes approve <requestId>
-moltbot nodes reject <requestId>
-moltbot nodes status
-moltbot nodes rename --node <id|name|ip> --name "Living Room iPad"
+AGENT nodes pending
+AGENT nodes approve <requestId>
+AGENT nodes reject <requestId>
+AGENT nodes status
+AGENT nodes rename --node <id|name|ip> --name "Living Room iPad"
 ```
 
 `nodes status` shows paired/connected nodes and their capabilities.

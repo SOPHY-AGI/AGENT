@@ -34,7 +34,7 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt --fix-broken install -y  # if there are dependency errors
 ```
 
-Then update your Moltbot config (`~/.clawdbot/moltbot.json`):
+Then update your Moltbot config (`~/.clawdbot/AGENT.json`):
 
 ```json
 {
@@ -119,7 +119,7 @@ You’re using the `chrome` profile (extension relay). It expects the Moltbot
 browser extension to be attached to a live tab.
 
 Fix options:
-1. **Use the managed browser:** `moltbot browser start --browser-profile clawd`
+1. **Use the managed browser:** `AGENT browser start --browser-profile clawd`
    (or set `browser.defaultProfile: "clawd"`).
 2. **Use the extension relay:** install the extension, open a tab, and click the
    Moltbot extension icon to attach it.

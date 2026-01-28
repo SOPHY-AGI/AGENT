@@ -228,7 +228,7 @@ extension OnboardingView {
                                         Text("Project root")
                                             .font(.callout.weight(.semibold))
                                             .frame(width: labelWidth, alignment: .leading)
-                                        TextField("/home/you/Projects/moltbot", text: self.$state.remoteProjectRoot)
+                                        TextField("/home/you/Projects/AGENT", text: self.$state.remoteProjectRoot)
                                             .textFieldStyle(.roundedBorder)
                                             .frame(width: fieldWidth)
                                     }
@@ -237,7 +237,7 @@ extension OnboardingView {
                                             .font(.callout.weight(.semibold))
                                             .frame(width: labelWidth, alignment: .leading)
                                         TextField(
-                                            "/Applications/Moltbot.app/.../moltbot",
+                                            "/Applications/Moltbot.app/.../AGENT",
                                             text: self.$state.remoteCliPath)
                                             .textFieldStyle(.roundedBorder)
                                             .frame(width: fieldWidth)
@@ -534,7 +534,7 @@ extension OnboardingView {
         self.onboardingPage {
             Text("Install the CLI")
                 .font(.largeTitle.weight(.semibold))
-            Text("Required for local mode: installs `moltbot` so launchd can run the gateway.")
+            Text("Required for local mode: installs `AGENT` so launchd can run the gateway.")
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -651,7 +651,7 @@ extension OnboardingView {
                                     let saved = await self.saveAgentWorkspace(AgentWorkspace.displayPath(for: url))
                                     if saved {
                                         self.workspaceStatus =
-                                            "Saved to ~/.clawdbot/moltbot.json (agents.defaults.workspace)"
+                                            "Saved to ~/.clawdbot/AGENT.json (agents.defaults.workspace)"
                                     }
                                 }
                             }
@@ -719,7 +719,7 @@ extension OnboardingView {
                     self.featureRow(
                         title: "Remote gateway checklist",
                         subtitle: """
-                        On your gateway host: install/update the `moltbot` package and make sure credentials exist
+                        On your gateway host: install/update the `AGENT` package and make sure credentials exist
                         (typically `~/.clawdbot/credentials/oauth.json`). Then connect again if needed.
                         """,
                         systemImage: "network")

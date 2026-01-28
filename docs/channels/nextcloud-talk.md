@@ -12,12 +12,12 @@ Nextcloud Talk ships as a plugin and is not bundled with the core install.
 
 Install via CLI (npm registry):
 ```bash
-moltbot plugins install @moltbot/nextcloud-talk
+AGENT plugins install @AGENT/nextcloud-talk
 ```
 
 Local checkout (when running from a git repo):
 ```bash
-moltbot plugins install ./extensions/nextcloud-talk
+AGENT plugins install ./extensions/nextcloud-talk
 ```
 
 If you choose Nextcloud Talk during configure/onboarding and a git checkout is detected,
@@ -60,8 +60,8 @@ Minimal config:
 ## Access control (DMs)
 - Default: `channels.nextcloud-talk.dmPolicy = "pairing"`. Unknown senders get a pairing code.
 - Approve via:
-  - `moltbot pairing list nextcloud-talk`
-  - `moltbot pairing approve nextcloud-talk <CODE>`
+  - `AGENT pairing list nextcloud-talk`
+  - `AGENT pairing approve nextcloud-talk <CODE>`
 - Public DMs: `channels.nextcloud-talk.dmPolicy="open"` plus `channels.nextcloud-talk.allowFrom=["*"]`.
 
 ## Rooms (groups)

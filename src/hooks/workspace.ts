@@ -22,7 +22,7 @@ import type {
 
 type HookPackageManifest = {
   name?: string;
-  moltbot?: { hooks?: string[] };
+  AGENT?: { hooks?: string[] };
   [LEGACY_MANIFEST_KEY]?: { hooks?: string[] };
 };
 
@@ -46,7 +46,7 @@ function readHookPackageManifest(dir: string): HookPackageManifest | null {
 }
 
 function resolvePackageHooks(manifest: HookPackageManifest): string[] {
-  const raw = manifest.moltbot?.hooks ?? manifest[LEGACY_MANIFEST_KEY]?.hooks;
+  const raw = manifest.AGENT?.hooks ?? manifest[LEGACY_MANIFEST_KEY]?.hooks;
   if (!Array.isArray(raw)) return [];
   return raw.map((entry) => (typeof entry === "string" ? entry.trim() : "")).filter(Boolean);
 }
@@ -195,23 +195,23 @@ function loadHookEntries(
   const bundledHooks = bundledHooksDir
     ? loadHooksFromDir({
         dir: bundledHooksDir,
-        source: "moltbot-bundled",
+        source: "AGENT-bundled",
       })
     : [];
   const extraHooks = extraDirs.flatMap((dir) => {
     const resolved = resolveUserPath(dir);
     return loadHooksFromDir({
       dir: resolved,
-      source: "moltbot-workspace", // Extra dirs treated as workspace
+      source: "AGENT-workspace", // Extra dirs treated as workspace
     });
   });
   const managedHooks = loadHooksFromDir({
     dir: managedHooksDir,
-    source: "moltbot-managed",
+    source: "AGENT-managed",
   });
   const workspaceHooks = loadHooksFromDir({
     dir: workspaceHooksDir,
-    source: "moltbot-workspace",
+    source: "AGENT-workspace",
   });
 
   const merged = new Map<string, Hook>();

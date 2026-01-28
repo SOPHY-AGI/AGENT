@@ -21,7 +21,7 @@ Moltbot features that can generate provider usage or paid API calls.
 - `/usage tokens` shows tokens only; OAuth flows hide dollar cost.
 
 **CLI usage windows (provider quotas)**
-- `moltbot status --usage` and `moltbot channels list` show provider **usage windows**
+- `AGENT status --usage` and `AGENT channels list` show provider **usage windows**
   (quota snapshots, not per-message costs).
 
 See [Token use & costs](/token-use) for details and examples.
@@ -86,8 +86,8 @@ See [Web tools](/tools/web).
 ### 6) Provider usage snapshots (status/health)
 Some status commands call **provider usage endpoints** to display quota windows or auth health.
 These are typically low-volume calls but still hit provider APIs:
-- `moltbot status --usage`
-- `moltbot models status --json`
+- `AGENT status --usage`
+- `AGENT models status --json`
 
 See [Models CLI](/cli/models).
 
@@ -98,7 +98,7 @@ invokes provider APIs when it runs.
 See [Session management + compaction](/reference/session-management-compaction).
 
 ### 8) Model scan / probe
-`moltbot models scan` can probe OpenRouter models and uses `OPENROUTER_API_KEY` when
+`AGENT models scan` can probe OpenRouter models and uses `OPENROUTER_API_KEY` when
 probing is enabled.
 
 See [Models CLI](/cli/models).

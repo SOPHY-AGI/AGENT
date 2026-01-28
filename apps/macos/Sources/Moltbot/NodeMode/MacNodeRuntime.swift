@@ -345,7 +345,7 @@ actor MacNodeRuntime {
         let sessionKey = self.mainSessionKey
         let json = try await CanvasManager.shared.eval(sessionKey: sessionKey, javaScript: """
         (() => {
-          if (!globalThis.clawdbotA2UI) return JSON.stringify({ ok: false, error: "missing moltbotA2UI" });
+          if (!globalThis.clawdbotA2UI) return JSON.stringify({ ok: false, error: "missing AGENTA2UI" });
           return JSON.stringify(globalThis.clawdbotA2UI.reset());
         })()
         """)
@@ -374,7 +374,7 @@ actor MacNodeRuntime {
         let js = """
         (() => {
           try {
-            if (!globalThis.clawdbotA2UI) return JSON.stringify({ ok: false, error: "missing moltbotA2UI" });
+            if (!globalThis.clawdbotA2UI) return JSON.stringify({ ok: false, error: "missing AGENTA2UI" });
             const messages = \(messagesJSON);
             return JSON.stringify(globalThis.clawdbotA2UI.applyMessages(messages));
           } catch (e) {
@@ -408,7 +408,7 @@ actor MacNodeRuntime {
         guard let raw = await GatewayConnection.shared.canvasHostUrl() else { return nil }
         let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, let baseUrl = URL(string: trimmed) else { return nil }
-        return baseUrl.appendingPathComponent("__moltbot__/a2ui/").absoluteString + "?platform=macos"
+        return baseUrl.appendingPathComponent("__AGENT__/a2ui/").absoluteString + "?platform=macos"
     }
 
     private func isA2UIReady(poll: Bool = false) async -> Bool {

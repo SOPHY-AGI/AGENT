@@ -102,25 +102,25 @@ function defaultIndexHTML() {
     !!(
       window.webkit &&
       window.webkit.messageHandlers &&
-      (window.webkit.messageHandlers.moltbotCanvasA2UIAction ||
+      (window.webkit.messageHandlers.AGENTCanvasA2UIAction ||
         window.webkit.messageHandlers.clawdbotCanvasA2UIAction)
     );
   const hasAndroid = () =>
     !!(
-      (window.moltbotCanvasA2UIAction &&
-        typeof window.moltbotCanvasA2UIAction.postMessage === "function") ||
+      (window.AGENTCanvasA2UIAction &&
+        typeof window.AGENTCanvasA2UIAction.postMessage === "function") ||
       (window.clawdbotCanvasA2UIAction &&
         typeof window.clawdbotCanvasA2UIAction.postMessage === "function")
     );
   const legacySend = typeof window.clawdbotSendUserAction === "function" ? window.clawdbotSendUserAction : undefined;
-  if (!window.moltbotSendUserAction && legacySend) {
-    window.moltbotSendUserAction = legacySend;
+  if (!window.AGENTSendUserAction && legacySend) {
+    window.AGENTSendUserAction = legacySend;
   }
-  if (!window.clawdbotSendUserAction && typeof window.moltbotSendUserAction === "function") {
-    window.clawdbotSendUserAction = window.moltbotSendUserAction;
+  if (!window.clawdbotSendUserAction && typeof window.AGENTSendUserAction === "function") {
+    window.clawdbotSendUserAction = window.AGENTSendUserAction;
   }
   const hasHelper = () =>
-    typeof window.moltbotSendUserAction === "function" ||
+    typeof window.AGENTSendUserAction === "function" ||
     typeof window.clawdbotSendUserAction === "function";
   statusEl.innerHTML =
     "Bridge: " +
@@ -128,7 +128,7 @@ function defaultIndexHTML() {
     " · iOS=" + (hasIOS() ? "yes" : "no") +
     " · Android=" + (hasAndroid() ? "yes" : "no");
 
-  window.addEventListener("moltbot:a2ui-action-status", (ev) => {
+  window.addEventListener("AGENT:a2ui-action-status", (ev) => {
     const d = ev && ev.detail || {};
     log("Action status: id=" + (d.id || "?") + " ok=" + String(!!d.ok) + (d.error ? (" error=" + d.error) : ""));
   });
@@ -139,8 +139,8 @@ function defaultIndexHTML() {
       return;
     }
     const sendUserAction =
-      typeof window.moltbotSendUserAction === "function"
-        ? window.moltbotSendUserAction
+      typeof window.AGENTSendUserAction === "function"
+        ? window.AGENTSendUserAction
         : window.clawdbotSendUserAction;
     const ok = sendUserAction({
       name,

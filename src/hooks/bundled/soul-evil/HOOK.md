@@ -4,7 +4,7 @@ description: "Swap SOUL.md with SOUL_EVIL.md during a purge window or by random 
 homepage: https://docs.molt.bot/hooks/soul-evil
 metadata:
   {
-    "moltbot":
+    "AGENT":
       {
         "emoji": "😈",
         "events": ["agent:bootstrap"],
@@ -31,7 +31,7 @@ You can change the filename via hook config.
 
 ## Configuration
 
-Add this to your config (`~/.clawdbot/moltbot.json`):
+Add this to your config (`~/.clawdbot/AGENT.json`):
 
 ```json
 {
@@ -67,5 +67,5 @@ Add this to your config (`~/.clawdbot/moltbot.json`):
 ## Enable
 
 ```bash
-moltbot hooks enable soul-evil
+AGENT hooks enable soul-evil
 ```

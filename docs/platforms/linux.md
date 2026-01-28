@@ -14,8 +14,8 @@ Native Linux companion apps are planned. Contributions are welcome if you want t
 ## Beginner quick path (VPS)
 
 1) Install Node 22+  
-2) `npm i -g moltbot@latest`  
-3) `moltbot onboard --install-daemon`  
+2) `npm i -g AGENT@latest`  
+3) `AGENT onboard --install-daemon`  
 4) From your laptop: `ssh -N -L 18789:127.0.0.1:18789 <user>@<host>`  
 5) Open `http://127.0.0.1:18789/` and paste your token
 
@@ -35,19 +35,19 @@ Step-by-step VPS guide: [exe.dev](/platforms/exe-dev)
 Use one of these:
 
 ```
-moltbot onboard --install-daemon
+AGENT onboard --install-daemon
 ```
 
 Or:
 
 ```
-moltbot gateway install
+AGENT gateway install
 ```
 
 Or:
 
 ```
-moltbot configure
+AGENT configure
 ```
 
 Select **Gateway service** when prompted.
@@ -55,7 +55,7 @@ Select **Gateway service** when prompted.
 Repair/migrate:
 
 ```
-moltbot doctor
+AGENT doctor
 ```
 
 ## System control (systemd user unit)
@@ -65,7 +65,7 @@ live in the [Gateway runbook](/gateway).
 
 Minimal setup:
 
-Create `~/.config/systemd/user/moltbot-gateway[-<profile>].service`:
+Create `~/.config/systemd/user/AGENT-gateway[-<profile>].service`:
 
 ```
 [Unit]
@@ -74,7 +74,7 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/moltbot gateway --port 18789
+ExecStart=/usr/local/bin/AGENT gateway --port 18789
 Restart=always
 RestartSec=5
 
@@ -85,5 +85,5 @@ WantedBy=default.target
 Enable it:
 
 ```
-systemctl --user enable --now moltbot-gateway[-<profile>].service
+systemctl --user enable --now AGENT-gateway[-<profile>].service
 ```

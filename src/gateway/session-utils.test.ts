@@ -79,7 +79,7 @@ describe("gateway session utils", () => {
   test("resolveGatewaySessionStoreTarget uses canonical key for main alias", () => {
     const storeTemplate = path.join(
       os.tmpdir(),
-      "moltbot-session-utils",
+      "AGENT-session-utils",
       "{agentId}",
       "sessions.json",
     );

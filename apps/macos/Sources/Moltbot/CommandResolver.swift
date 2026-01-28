@@ -1,13 +1,13 @@
 import Foundation
 
 enum CommandResolver {
-    private static let projectRootDefaultsKey = "moltbot.gatewayProjectRootPath"
-    private static let helperName = "moltbot"
+    private static let projectRootDefaultsKey = "AGENT.gatewayProjectRootPath"
+    private static let helperName = "AGENT"
 
     static func gatewayEntrypoint(in root: URL) -> String? {
         let distEntry = root.appendingPathComponent("dist/index.js").path
         if FileManager().isReadableFile(atPath: distEntry) { return distEntry }
-        let binEntry = root.appendingPathComponent("bin/moltbot.js").path
+        let binEntry = root.appendingPathComponent("bin/AGENT.js").path
         if FileManager().isReadableFile(atPath: binEntry) { return binEntry }
         return nil
     }
@@ -52,7 +52,7 @@ enum CommandResolver {
             return url
         }
         let fallback = FileManager().homeDirectoryForCurrentUser
-            .appendingPathComponent("Projects/moltbot")
+            .appendingPathComponent("Projects/AGENT")
         if FileManager().fileExists(atPath: fallback.path) {
             return fallback
         }
@@ -87,17 +87,17 @@ enum CommandResolver {
         // Dev-only convenience. Avoid project-local PATH hijacking in release builds.
         extras.insert(projectRoot.appendingPathComponent("node_modules/.bin").path, at: 0)
         #endif
-        let moltbotPaths = self.moltbotManagedPaths(home: home)
-        if !moltbotPaths.isEmpty {
-            extras.insert(contentsOf: moltbotPaths, at: 1)
+        let AGENTPaths = self.AGENTManagedPaths(home: home)
+        if !AGENTPaths.isEmpty {
+            extras.insert(contentsOf: AGENTPaths, at: 1)
         }
-        extras.insert(contentsOf: self.nodeManagerBinPaths(home: home), at: 1 + moltbotPaths.count)
+        extras.insert(contentsOf: self.nodeManagerBinPaths(home: home), at: 1 + AGENTPaths.count)
         var seen = Set<String>()
         // Preserve order while stripping duplicates so PATH lookups remain deterministic.
         return (extras + current).filter { seen.insert($0).inserted }
     }
 
-    private static func moltbotManagedPaths(home: URL) -> [String] {
+    private static func AGENTManagedPaths(home: URL) -> [String] {
         let base = home.appendingPathComponent(".clawdbot")
         let bin = base.appendingPathComponent("bin")
         let nodeBin = base.appendingPathComponent("tools/node/bin")
@@ -187,7 +187,7 @@ enum CommandResolver {
         return nil
     }
 
-    static func moltbotExecutable(searchPaths: [String]? = nil) -> String? {
+    static func AGENTExecutable(searchPaths: [String]? = nil) -> String? {
         self.findExecutable(named: self.helperName, searchPaths: searchPaths)
     }
 
@@ -202,12 +202,12 @@ enum CommandResolver {
     }
 
     static func nodeCliPath() -> String? {
-        let candidate = self.projectRoot().appendingPathComponent("bin/moltbot.js").path
+        let candidate = self.projectRoot().appendingPathComponent("bin/AGENT.js").path
         return FileManager().isReadableFile(atPath: candidate) ? candidate : nil
     }
 
     static func hasAnyMoltbotInvoker(searchPaths: [String]? = nil) -> Bool {
-        if self.moltbotExecutable(searchPaths: searchPaths) != nil { return true }
+        if self.AGENTExecutable(searchPaths: searchPaths) != nil { return true }
         if self.findExecutable(named: "pnpm", searchPaths: searchPaths) != nil { return true }
         if self.findExecutable(named: "node", searchPaths: searchPaths) != nil,
            self.nodeCliPath() != nil
@@ -217,7 +217,7 @@ enum CommandResolver {
         return false
     }
 
-    static func moltbotNodeCommand(
+    static func AGENTNodeCommand(
         subcommand: String,
         extraArgs: [String] = [],
         defaults: UserDefaults = .standard,
@@ -238,8 +238,8 @@ enum CommandResolver {
         switch runtimeResult {
         case let .success(runtime):
             let root = self.projectRoot()
-            if let moltbotPath = self.projectMoltbotExecutable(projectRoot: root) {
-                return [moltbotPath, subcommand] + extraArgs
+            if let AGENTPath = self.projectMoltbotExecutable(projectRoot: root) {
+                return [AGENTPath, subcommand] + extraArgs
             }
 
             if let entry = self.gatewayEntrypoint(in: root) {
@@ -251,14 +251,14 @@ enum CommandResolver {
             }
             if let pnpm = self.findExecutable(named: "pnpm", searchPaths: searchPaths) {
                 // Use --silent to avoid pnpm lifecycle banners that would corrupt JSON outputs.
-                return [pnpm, "--silent", "moltbot", subcommand] + extraArgs
+                return [pnpm, "--silent", "AGENT", subcommand] + extraArgs
             }
-            if let moltbotPath = self.moltbotExecutable(searchPaths: searchPaths) {
-                return [moltbotPath, subcommand] + extraArgs
+            if let AGENTPath = self.AGENTExecutable(searchPaths: searchPaths) {
+                return [AGENTPath, subcommand] + extraArgs
             }
 
             let missingEntry = """
-            moltbot entrypoint missing (looked for dist/index.js or bin/moltbot.js); run pnpm build.
+            AGENT entrypoint missing (looked for dist/index.js or bin/AGENT.js); run pnpm build.
             """
             return self.errorCommand(with: missingEntry)
 
@@ -267,15 +267,15 @@ enum CommandResolver {
         }
     }
 
-    // Existing callers still refer to moltbotCommand; keep it as node alias.
-    static func moltbotCommand(
+    // Existing callers still refer to AGENTCommand; keep it as node alias.
+    static func AGENTCommand(
         subcommand: String,
         extraArgs: [String] = [],
         defaults: UserDefaults = .standard,
         configRoot: [String: Any]? = nil,
         searchPaths: [String]? = nil) -> [String]
     {
-        self.moltbotNodeCommand(
+        self.AGENTNodeCommand(
             subcommand: subcommand,
             extraArgs: extraArgs,
             defaults: defaults,
@@ -289,7 +289,7 @@ enum CommandResolver {
         guard !settings.target.isEmpty else { return nil }
         guard let parsed = self.parseSSHTarget(settings.target) else { return nil }
 
-        // Run the real moltbot CLI on the remote host.
+        // Run the real AGENT CLI on the remote host.
         let exportedPath = [
             "/opt/homebrew/bin",
             "/usr/local/bin",
@@ -306,7 +306,7 @@ enum CommandResolver {
 
         let projectSection = if userPRJ.isEmpty {
             """
-            DEFAULT_PRJ="$HOME/Projects/moltbot"
+            DEFAULT_PRJ="$HOME/Projects/AGENT"
             if [ -d "$DEFAULT_PRJ" ]; then
               PRJ="$DEFAULT_PRJ"
               cd "$PRJ" || { echo "Project root not found: $PRJ"; exit 127; }
@@ -345,9 +345,9 @@ enum CommandResolver {
         CLI="";
         \(cliSection)
         \(projectSection)
-        if command -v moltbot >/dev/null 2>&1; then
-          CLI="$(command -v moltbot)"
-          moltbot \(quotedArgs);
+        if command -v AGENT >/dev/null 2>&1; then
+          CLI="$(command -v AGENT)"
+          AGENT \(quotedArgs);
         elif [ -n "${PRJ:-}" ] && [ -f "$PRJ/dist/index.js" ]; then
           if command -v node >/dev/null 2>&1; then
             CLI="node $PRJ/dist/index.js"
@@ -355,18 +355,18 @@ enum CommandResolver {
           else
             echo "Node >=22 required on remote host"; exit 127;
           fi
-        elif [ -n "${PRJ:-}" ] && [ -f "$PRJ/bin/moltbot.js" ]; then
+        elif [ -n "${PRJ:-}" ] && [ -f "$PRJ/bin/AGENT.js" ]; then
           if command -v node >/dev/null 2>&1; then
-            CLI="node $PRJ/bin/moltbot.js"
-            node "$PRJ/bin/moltbot.js" \(quotedArgs);
+            CLI="node $PRJ/bin/AGENT.js"
+            node "$PRJ/bin/AGENT.js" \(quotedArgs);
           else
             echo "Node >=22 required on remote host"; exit 127;
           fi
         elif command -v pnpm >/dev/null 2>&1; then
-          CLI="pnpm --silent moltbot"
-          pnpm --silent moltbot \(quotedArgs);
+          CLI="pnpm --silent AGENT"
+          pnpm --silent AGENT \(quotedArgs);
         else
-          echo "moltbot CLI missing on remote host"; exit 127;
+          echo "AGENT CLI missing on remote host"; exit 127;
         fi
         """
         let options: [String] = [

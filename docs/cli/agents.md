@@ -1,10 +1,10 @@
 ---
-summary: "CLI reference for `moltbot agents` (list/add/delete/set identity)"
+summary: "CLI reference for `AGENT agents` (list/add/delete/set identity)"
 read_when:
   - You want multiple isolated agents (workspaces + routing + auth)
 ---
 
-# `moltbot agents`
+# `AGENT agents`
 
 Manage isolated agents (workspaces + auth + routing).
 
@@ -15,11 +15,11 @@ Related:
 ## Examples
 
 ```bash
-moltbot agents list
-moltbot agents add work --workspace ~/clawd-work
-moltbot agents set-identity --workspace ~/clawd --from-identity
-moltbot agents set-identity --agent main --avatar avatars/clawd.png
-moltbot agents delete work
+AGENT agents list
+AGENT agents add work --workspace ~/clawd-work
+AGENT agents set-identity --workspace ~/clawd --from-identity
+AGENT agents set-identity --agent main --avatar avatars/clawd.png
+AGENT agents delete work
 ```
 
 ## Identity files
@@ -41,13 +41,13 @@ Avatar paths resolve relative to the workspace root.
 Load from `IDENTITY.md`:
 
 ```bash
-moltbot agents set-identity --workspace ~/clawd --from-identity
+AGENT agents set-identity --workspace ~/clawd --from-identity
 ```
 
 Override fields explicitly:
 
 ```bash
-moltbot agents set-identity --agent main --name "Clawd" --emoji "🦞" --avatar avatars/clawd.png
+AGENT agents set-identity --agent main --name "Clawd" --emoji "🦞" --avatar avatars/clawd.png
 ```
 
 Config sample:

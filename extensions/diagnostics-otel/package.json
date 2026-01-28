@@ -1,9 +1,9 @@
 {
-  "name": "@moltbot/diagnostics-otel",
+  "name": "@AGENT/diagnostics-otel",
   "version": "2026.1.26",
   "type": "module",
   "description": "Moltbot diagnostics OpenTelemetry exporter",
-  "moltbot": {
+  "AGENT": {
     "extensions": [
       "./index.ts"
     ]

@@ -471,7 +471,7 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
     lastGood: hostStore.lastGood ? { ...hostStore.lastGood } : undefined,
     usageStats: hostStore.usageStats ? { ...hostStore.usageStats } : undefined,
   };
-  tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-live-state-"));
+  tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-live-state-"));
   process.env.CLAWDBOT_STATE_DIR = tempStateDir;
   tempAgentDir = path.join(tempStateDir, "agents", DEFAULT_AGENT_ID, "agent");
   saveAuthProfileStore(sanitizedStore, tempAgentDir);
@@ -499,8 +499,8 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
     candidates: params.candidates,
     providerOverrides: params.providerOverrides,
   });
-  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-live-"));
-  const tempConfigPath = path.join(tempDir, "moltbot.json");
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-live-"));
+  const tempConfigPath = path.join(tempDir, "AGENT.json");
   await fs.writeFile(tempConfigPath, `${JSON.stringify(nextCfg, null, 2)}\n`);
   process.env.CLAWDBOT_CONFIG_PATH = tempConfigPath;
 

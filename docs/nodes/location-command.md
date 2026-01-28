@@ -85,7 +85,7 @@ Notes:
 
 ## Model/tooling integration
 - Tool surface: `nodes` tool adds `location_get` action (node required).
-- CLI: `moltbot nodes location get --node <id>`.
+- CLI: `AGENT nodes location get --node <id>`.
 - Agent guidelines: only call when user enabled location and understands the scope.
 
 ## UX copy (suggested)

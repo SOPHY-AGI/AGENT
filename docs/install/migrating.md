@@ -31,7 +31,7 @@ But it may be different if you use:
 If you’re not sure, run on the **old** machine:
 
 ```bash
-moltbot status
+AGENT status
 ```
 
 Look for mentions of `CLAWDBOT_STATE_DIR` / profile in the output. If you run multiple gateways, repeat for each profile.
@@ -49,7 +49,7 @@ Your workspace is where files like `MEMORY.md`, `USER.md`, and `memory/*.md` liv
 
 If you copy **both** the state dir and workspace, you keep:
 
-- Gateway configuration (`moltbot.json`)
+- Gateway configuration (`AGENT.json`)
 - Auth profiles / API keys / OAuth tokens
 - Session history + agent state
 - Channel state (e.g. WhatsApp login/session)
@@ -70,7 +70,7 @@ Those live under `$CLAWDBOT_STATE_DIR`.
 On the **old** machine, stop the gateway first so files aren’t changing mid-copy:
 
 ```bash
-moltbot gateway stop
+AGENT gateway stop
 ```
 
 (Optional but recommended) archive the state dir and workspace:
@@ -78,7 +78,7 @@ moltbot gateway stop
 ```bash
 # Adjust paths if you use a profile or custom locations
 cd ~
-tar -czf moltbot-state.tgz .clawdbot
+tar -czf AGENT-state.tgz .clawdbot
 
 tar -czf clawd-workspace.tgz clawd
 ```
@@ -116,7 +116,7 @@ After copying, ensure:
 On the **new** machine:
 
 ```bash
-moltbot doctor
+AGENT doctor
 ```
 
 Doctor is the “safe boring” command. It repairs services, applies config migrations, and warns about mismatches.
@@ -124,8 +124,8 @@ Doctor is the “safe boring” command. It repairs services, applies config mig
 Then:
 
 ```bash
-moltbot gateway restart
-moltbot status
+AGENT gateway restart
+AGENT status
 ```
 
 ## Common footguns (and how to avoid them)
@@ -141,12 +141,12 @@ If you ran the old gateway with a profile (or `CLAWDBOT_STATE_DIR`), and the new
 Fix: run the gateway/service using the **same** profile/state dir you migrated, then rerun:
 
 ```bash
-moltbot doctor
+AGENT doctor
 ```
 
-### Footgun: copying only `moltbot.json`
+### Footgun: copying only `AGENT.json`
 
-`moltbot.json` is not enough. Many providers store state under:
+`AGENT.json` is not enough. Many providers store state under:
 
 - `$CLAWDBOT_STATE_DIR/credentials/`
 - `$CLAWDBOT_STATE_DIR/agents/<agentId>/...`
@@ -178,7 +178,7 @@ If you’re in remote mode, migrate the **gateway host**.
 
 On the new machine, confirm:
 
-- `moltbot status` shows the gateway running
+- `AGENT status` shows the gateway running
 - Your channels are still connected (e.g. WhatsApp doesn’t require re-pair)
 - The dashboard opens and shows existing sessions
 - Your workspace files (memory, configs) are present
@@ -187,4 +187,4 @@ On the new machine, confirm:
 
 - [Doctor](/gateway/doctor)
 - [Gateway troubleshooting](/gateway/troubleshooting)
-- [Where does Moltbot store its data?](/help/faq#where-does-moltbot-store-its-data)
+- [Where does Moltbot store its data?](/help/faq#where-does-AGENT-store-its-data)

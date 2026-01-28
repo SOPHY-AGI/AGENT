@@ -12,7 +12,7 @@ let package = Package(
         .library(name: "MoltbotIPC", targets: ["MoltbotIPC"]),
         .library(name: "MoltbotDiscovery", targets: ["MoltbotDiscovery"]),
         .executable(name: "Moltbot", targets: ["Moltbot"]),
-        .executable(name: "moltbot-mac", targets: ["MoltbotMacCLI"]),
+        .executable(name: "AGENT-mac", targets: ["MoltbotMacCLI"]),
     ],
     dependencies: [
         .package(url: "https://github.com/orchetect/MenuBarExtraAccess", exact: "1.2.2"),

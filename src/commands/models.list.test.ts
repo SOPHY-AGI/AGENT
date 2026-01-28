@@ -2,13 +2,13 @@ import { describe, expect, it, vi } from "vitest";
 
 const loadConfig = vi.fn();
 const ensureMoltbotModelsJson = vi.fn().mockResolvedValue(undefined);
-const resolveMoltbotAgentDir = vi.fn().mockReturnValue("/tmp/moltbot-agent");
+const resolveMoltbotAgentDir = vi.fn().mockReturnValue("/tmp/AGENT-agent");
 const ensureAuthProfileStore = vi.fn().mockReturnValue({ version: 1, profiles: {} });
 const listProfilesForProvider = vi.fn().mockReturnValue([]);
 const resolveAuthProfileDisplayLabel = vi.fn(({ profileId }: { profileId: string }) => profileId);
 const resolveAuthStorePathForDisplay = vi
   .fn()
-  .mockReturnValue("/tmp/moltbot-agent/auth-profiles.json");
+  .mockReturnValue("/tmp/AGENT-agent/auth-profiles.json");
 const resolveProfileUnusableUntilForDisplay = vi.fn().mockReturnValue(null);
 const resolveEnvApiKey = vi.fn().mockReturnValue(undefined);
 const resolveAwsSdkEnvVarName = vi.fn().mockReturnValue(undefined);
@@ -17,8 +17,8 @@ const discoverAuthStorage = vi.fn().mockReturnValue({});
 const discoverModels = vi.fn();
 
 vi.mock("../config/config.js", () => ({
-  CONFIG_PATH: "/tmp/moltbot.json",
-  STATE_DIR: "/tmp/moltbot-state",
+  CONFIG_PATH: "/tmp/AGENT.json",
+  STATE_DIR: "/tmp/AGENT-state",
   loadConfig,
 }));
 

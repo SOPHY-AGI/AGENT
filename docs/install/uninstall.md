@@ -8,7 +8,7 @@ read_when:
 # Uninstall
 
 Two paths:
-- **Easy path** if `moltbot` is still installed.
+- **Easy path** if `AGENT` is still installed.
 - **Manual service removal** if the CLI is gone but the service is still running.
 
 ## Easy path (CLI still installed)
@@ -16,14 +16,14 @@ Two paths:
 Recommended: use the built-in uninstaller:
 
 ```bash
-moltbot uninstall
+AGENT uninstall
 ```
 
 Non-interactive (automation / npx):
 
 ```bash
-moltbot uninstall --all --yes --non-interactive
-npx -y moltbot uninstall --all --yes --non-interactive
+AGENT uninstall --all --yes --non-interactive
+npx -y AGENT uninstall --all --yes --non-interactive
 ```
 
 Manual steps (same result):
@@ -31,13 +31,13 @@ Manual steps (same result):
 1) Stop the gateway service:
 
 ```bash
-moltbot gateway stop
+AGENT gateway stop
 ```
 
 2) Uninstall the gateway service (launchd/systemd/schtasks):
 
 ```bash
-moltbot gateway uninstall
+AGENT gateway uninstall
 ```
 
 3) Delete state + config:
@@ -57,9 +57,9 @@ rm -rf ~/clawd
 5) Remove the CLI install (pick the one you used):
 
 ```bash
-npm rm -g moltbot
-pnpm remove -g moltbot
-bun remove -g moltbot
+npm rm -g AGENT
+pnpm remove -g AGENT
+bun remove -g AGENT
 ```
 
 6) If you installed the macOS app:
@@ -74,7 +74,7 @@ Notes:
 
 ## Manual service removal (CLI not installed)
 
-Use this if the gateway service keeps running but `moltbot` is missing.
+Use this if the gateway service keeps running but `AGENT` is missing.
 
 ### macOS (launchd)
 
@@ -89,11 +89,11 @@ If you used a profile, replace the label and plist name with `bot.molt.<profile>
 
 ### Linux (systemd user unit)
 
-Default unit name is `moltbot-gateway.service` (or `moltbot-gateway-<profile>.service`):
+Default unit name is `AGENT-gateway.service` (or `AGENT-gateway-<profile>.service`):
 
 ```bash
-systemctl --user disable --now moltbot-gateway.service
-rm -f ~/.config/systemd/user/moltbot-gateway.service
+systemctl --user disable --now AGENT-gateway.service
+rm -f ~/.config/systemd/user/AGENT-gateway.service
 systemctl --user daemon-reload
 ```
 
@@ -113,12 +113,12 @@ If you used a profile, delete the matching task name and `~\.clawdbot-<profile>\
 
 ### Normal install (install.sh / npm / pnpm / bun)
 
-If you used `https://molt.bot/install.sh` or `install.ps1`, the CLI was installed with `npm install -g moltbot@latest`.
-Remove it with `npm rm -g moltbot` (or `pnpm remove -g` / `bun remove -g` if you installed that way).
+If you used `https://molt.bot/install.sh` or `install.ps1`, the CLI was installed with `npm install -g AGENT@latest`.
+Remove it with `npm rm -g AGENT` (or `pnpm remove -g` / `bun remove -g` if you installed that way).
 
 ### Source checkout (git clone)
 
-If you run from a repo checkout (`git clone` + `moltbot ...` / `bun run moltbot ...`):
+If you run from a repo checkout (`git clone` + `AGENT ...` / `bun run AGENT ...`):
 
 1) Uninstall the gateway service **before** deleting the repo (use the easy path above or manual service removal).
 2) Delete the repo directory.

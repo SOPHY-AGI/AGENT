@@ -7,7 +7,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 const tempDirs: string[] = [];
 
 function makeTempDir() {
-  const dir = path.join(os.tmpdir(), `moltbot-plugins-${randomUUID()}`);
+  const dir = path.join(os.tmpdir(), `AGENT-plugins-${randomUUID()}`);
   fs.mkdirSync(dir, { recursive: true });
   tempDirs.push(dir);
   return dir;
@@ -78,7 +78,7 @@ describe("discoverMoltbotPlugins", () => {
       path.join(globalExt, "package.json"),
       JSON.stringify({
         name: "pack",
-        moltbot: { extensions: ["./src/one.ts", "./src/two.ts"] },
+        AGENT: { extensions: ["./src/one.ts", "./src/two.ts"] },
       }),
       "utf-8",
     );
@@ -111,8 +111,8 @@ describe("discoverMoltbotPlugins", () => {
     fs.writeFileSync(
       path.join(globalExt, "package.json"),
       JSON.stringify({
-        name: "@moltbot/voice-call",
-        moltbot: { extensions: ["./src/index.ts"] },
+        name: "@AGENT/voice-call",
+        AGENT: { extensions: ["./src/index.ts"] },
       }),
       "utf-8",
     );
@@ -139,8 +139,8 @@ describe("discoverMoltbotPlugins", () => {
     fs.writeFileSync(
       path.join(packDir, "package.json"),
       JSON.stringify({
-        name: "@moltbot/demo-plugin-dir",
-        moltbot: { extensions: ["./index.js"] },
+        name: "@AGENT/demo-plugin-dir",
+        AGENT: { extensions: ["./index.js"] },
       }),
       "utf-8",
     );

@@ -113,13 +113,13 @@ export async function maybeRemoveDeprecatedCliAuthProfiles(
   const lines = ["Deprecated external CLI auth profiles detected (no longer supported):"];
   if (deprecated.has(CLAUDE_CLI_PROFILE_ID)) {
     lines.push(
-      `- ${CLAUDE_CLI_PROFILE_ID} (Anthropic): use setup-token → ${formatCliCommand("moltbot models auth setup-token")}`,
+      `- ${CLAUDE_CLI_PROFILE_ID} (Anthropic): use setup-token → ${formatCliCommand("AGENT models auth setup-token")}`,
     );
   }
   if (deprecated.has(CODEX_CLI_PROFILE_ID)) {
     lines.push(
       `- ${CODEX_CLI_PROFILE_ID} (OpenAI Codex): use OAuth → ${formatCliCommand(
-        "moltbot models auth login --provider openai-codex",
+        "AGENT models auth login --provider openai-codex",
       )}`,
     );
   }
@@ -190,16 +190,16 @@ type AuthIssue = {
 
 function formatAuthIssueHint(issue: AuthIssue): string | null {
   if (issue.provider === "anthropic" && issue.profileId === CLAUDE_CLI_PROFILE_ID) {
-    return `Deprecated profile. Use ${formatCliCommand("moltbot models auth setup-token")} or ${formatCliCommand(
-      "moltbot configure",
+    return `Deprecated profile. Use ${formatCliCommand("AGENT models auth setup-token")} or ${formatCliCommand(
+      "AGENT configure",
     )}.`;
   }
   if (issue.provider === "openai-codex" && issue.profileId === CODEX_CLI_PROFILE_ID) {
     return `Deprecated profile. Use ${formatCliCommand(
-      "moltbot models auth login --provider openai-codex",
-    )} or ${formatCliCommand("moltbot configure")}.`;
+      "AGENT models auth login --provider openai-codex",
+    )} or ${formatCliCommand("AGENT configure")}.`;
   }
-  return `Re-auth via \`${formatCliCommand("moltbot configure")}\` or \`${formatCliCommand("moltbot onboard")}\`.`;
+  return `Re-auth via \`${formatCliCommand("AGENT configure")}\` or \`${formatCliCommand("AGENT onboard")}\`.`;
 }
 
 function formatAuthIssueLine(issue: AuthIssue): string {

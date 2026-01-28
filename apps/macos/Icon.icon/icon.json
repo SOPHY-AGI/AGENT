@@ -6,8 +6,8 @@
     {
       "layers" : [
         {
-          "image-name" : "moltbot-mac.png",
-          "name" : "moltbot-mac",
+          "image-name" : "AGENT-mac.png",
+          "name" : "AGENT-mac",
           "position" : {
             "scale" : 1.07,
             "translation-in-points" : [

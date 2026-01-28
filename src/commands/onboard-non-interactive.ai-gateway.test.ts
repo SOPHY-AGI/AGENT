@@ -25,10 +25,10 @@ describe("onboard (non-interactive): Vercel AI Gateway", () => {
     delete process.env.CLAWDBOT_GATEWAY_TOKEN;
     delete process.env.CLAWDBOT_GATEWAY_PASSWORD;
 
-    const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-onboard-gateway-"));
+    const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-onboard-gateway-"));
     process.env.HOME = tempHome;
     process.env.CLAWDBOT_STATE_DIR = tempHome;
-    process.env.CLAWDBOT_CONFIG_PATH = path.join(tempHome, "moltbot.json");
+    process.env.CLAWDBOT_CONFIG_PATH = path.join(tempHome, "AGENT.json");
     vi.resetModules();
 
     const runtime = {

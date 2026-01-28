@@ -44,7 +44,7 @@ describe("createMoltbotCodingTools safeBins", () => {
   it("threads tools.exec.safeBins into exec allowlist checks", async () => {
     if (process.platform === "win32") return;
 
-    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "moltbot-safe-bins-"));
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "AGENT-safe-bins-"));
     const cfg: MoltbotConfig = {
       tools: {
         exec: {

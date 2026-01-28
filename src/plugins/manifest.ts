@@ -4,7 +4,7 @@ import path from "node:path";
 import { LEGACY_MANIFEST_KEY, LEGACY_PLUGIN_MANIFEST_FILENAME } from "../compat/legacy-names.js";
 import type { PluginConfigUiHint, PluginKind } from "./types.js";
 
-export const PLUGIN_MANIFEST_FILENAME = "moltbot.plugin.json";
+export const PLUGIN_MANIFEST_FILENAME = "AGENT.plugin.json";
 export const PLUGIN_MANIFEST_FILENAMES = [
   PLUGIN_MANIFEST_FILENAME,
   LEGACY_PLUGIN_MANIFEST_FILENAME,
@@ -102,7 +102,7 @@ export function loadPluginManifest(rootDir: string): PluginManifestLoadResult {
   };
 }
 
-// package.json "moltbot" metadata (used for onboarding/catalog)
+// package.json "AGENT" metadata (used for onboarding/catalog)
 export type PluginPackageChannel = {
   id?: string;
   label?: string;
@@ -140,7 +140,7 @@ export type PackageManifest = {
   name?: string;
   version?: string;
   description?: string;
-  moltbot?: MoltbotPackageManifest;
+  AGENT?: MoltbotPackageManifest;
   [LEGACY_MANIFEST_KEY]?: MoltbotPackageManifest;
 };
 
@@ -148,5 +148,5 @@ export function getPackageManifestMetadata(
   manifest: PackageManifest | undefined,
 ): MoltbotPackageManifest | undefined {
   if (!manifest) return undefined;
-  return manifest.moltbot ?? manifest[LEGACY_MANIFEST_KEY];
+  return manifest.AGENT ?? manifest[LEGACY_MANIFEST_KEY];
 }

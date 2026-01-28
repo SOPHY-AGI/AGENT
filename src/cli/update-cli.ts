@@ -5,7 +5,7 @@ import path from "node:path";
 import type { Command } from "commander";
 
 import { readConfigFileSnapshot, writeConfigFile } from "../config/config.js";
-import { resolveMoltbotPackageRoot } from "../infra/moltbot-root.js";
+import { resolveMoltbotPackageRoot } from "../infra/AGENT-root.js";
 import {
   checkUpdateStatus,
   compareSemverStrings,
@@ -81,7 +81,7 @@ const STEP_LABELS: Record<string, string> = {
   "deps install": "Installing dependencies",
   build: "Building",
   "ui:build": "Building UI",
-  "moltbot doctor": "Running doctor checks",
+  "AGENT doctor": "Running doctor checks",
   "git rev-parse HEAD (after)": "Verifying update",
   "global update": "Updating via package manager",
   "global install": "Installing global package",
@@ -111,17 +111,17 @@ const UPDATE_QUIPS = [
 ];
 
 const MAX_LOG_CHARS = 8000;
-const DEFAULT_PACKAGE_NAME = "moltbot";
-const CORE_PACKAGE_NAMES = new Set([DEFAULT_PACKAGE_NAME, "moltbot"]);
+const DEFAULT_PACKAGE_NAME = "AGENT";
+const CORE_PACKAGE_NAMES = new Set([DEFAULT_PACKAGE_NAME, "AGENT"]);
 const CLI_NAME = resolveCliName();
-const CLAWDBOT_REPO_URL = "https://github.com/moltbot/moltbot.git";
-const DEFAULT_GIT_DIR = path.join(os.homedir(), "moltbot");
+const CLAWDBOT_REPO_URL = "https://github.com/SOPHY-AGI/AGENT.git";
+const DEFAULT_GIT_DIR = path.join(os.homedir(), "AGENT");
 
 function normalizeTag(value?: string | null): string | null {
   if (!value) return null;
   const trimmed = value.trim();
   if (!trimmed) return null;
-  if (trimmed.startsWith("moltbot@")) return trimmed.slice("moltbot@".length);
+  if (trimmed.startsWith("AGENT@")) return trimmed.slice("AGENT@".length);
   if (trimmed.startsWith(`${DEFAULT_PACKAGE_NAME}@`)) {
     return trimmed.slice(`${DEFAULT_PACKAGE_NAME}@`.length);
   }
@@ -271,7 +271,7 @@ async function ensureGitCheckout(params: {
     const empty = await isEmptyDir(params.dir);
     if (!empty) {
       throw new Error(
-        `CLAWDBOT_GIT_DIR points at a non-git directory: ${params.dir}. Set CLAWDBOT_GIT_DIR to an empty folder or a moltbot checkout.`,
+        `CLAWDBOT_GIT_DIR points at a non-git directory: ${params.dir}. Set CLAWDBOT_GIT_DIR to an empty folder or a AGENT checkout.`,
       );
     }
     return await runUpdateStep({
@@ -823,12 +823,12 @@ export async function updateCommand(opts: UpdateCommandOptions): Promise<void> {
     if (result.reason === "not-git-install") {
       defaultRuntime.log(
         theme.warn(
-          `Skipped: this Moltbot install isn't a git checkout, and the package manager couldn't be detected. Update via your package manager, then run \`${replaceCliName(formatCliCommand("moltbot doctor"), CLI_NAME)}\` and \`${replaceCliName(formatCliCommand("moltbot gateway restart"), CLI_NAME)}\`.`,
+          `Skipped: this Moltbot install isn't a git checkout, and the package manager couldn't be detected. Update via your package manager, then run \`${replaceCliName(formatCliCommand("AGENT doctor"), CLI_NAME)}\` and \`${replaceCliName(formatCliCommand("AGENT gateway restart"), CLI_NAME)}\`.`,
         ),
       );
       defaultRuntime.log(
         theme.muted(
-          `Examples: \`${replaceCliName("npm i -g moltbot@latest", CLI_NAME)}\` or \`${replaceCliName("pnpm add -g moltbot@latest", CLI_NAME)}\``,
+          `Examples: \`${replaceCliName("npm i -g AGENT@latest", CLI_NAME)}\` or \`${replaceCliName("pnpm add -g AGENT@latest", CLI_NAME)}\``,
         ),
       );
     }
@@ -945,7 +945,7 @@ export async function updateCommand(opts: UpdateCommandOptions): Promise<void> {
         defaultRuntime.log(theme.warn(`Daemon restart failed: ${String(err)}`));
         defaultRuntime.log(
           theme.muted(
-            `You may need to restart the service manually: ${replaceCliName(formatCliCommand("moltbot gateway restart"), CLI_NAME)}`,
+            `You may need to restart the service manually: ${replaceCliName(formatCliCommand("AGENT gateway restart"), CLI_NAME)}`,
           ),
         );
       }
@@ -955,13 +955,13 @@ export async function updateCommand(opts: UpdateCommandOptions): Promise<void> {
     if (result.mode === "npm" || result.mode === "pnpm") {
       defaultRuntime.log(
         theme.muted(
-          `Tip: Run \`${replaceCliName(formatCliCommand("moltbot doctor"), CLI_NAME)}\`, then \`${replaceCliName(formatCliCommand("moltbot gateway restart"), CLI_NAME)}\` to apply updates to a running gateway.`,
+          `Tip: Run \`${replaceCliName(formatCliCommand("AGENT doctor"), CLI_NAME)}\`, then \`${replaceCliName(formatCliCommand("AGENT gateway restart"), CLI_NAME)}\` to apply updates to a running gateway.`,
         ),
       );
     } else {
       defaultRuntime.log(
         theme.muted(
-          `Tip: Run \`${replaceCliName(formatCliCommand("moltbot gateway restart"), CLI_NAME)}\` to apply updates to a running gateway.`,
+          `Tip: Run \`${replaceCliName(formatCliCommand("AGENT gateway restart"), CLI_NAME)}\` to apply updates to a running gateway.`,
         ),
       );
     }
@@ -975,7 +975,7 @@ export async function updateCommand(opts: UpdateCommandOptions): Promise<void> {
 export async function updateWizardCommand(opts: UpdateWizardOptions = {}): Promise<void> {
   if (!process.stdin.isTTY) {
     defaultRuntime.error(
-      "Update wizard requires a TTY. Use `moltbot update --channel <stable|beta|dev>` instead.",
+      "Update wizard requires a TTY. Use `AGENT update --channel <stable|beta|dev>` instead.",
     );
     defaultRuntime.exit(1);
     return;
@@ -1066,7 +1066,7 @@ export async function updateWizardCommand(opts: UpdateWizardOptions = {}): Promi
         const empty = await isEmptyDir(gitDir);
         if (!empty) {
           defaultRuntime.error(
-            `CLAWDBOT_GIT_DIR points at a non-git directory: ${gitDir}. Set CLAWDBOT_GIT_DIR to an empty folder or a moltbot checkout.`,
+            `CLAWDBOT_GIT_DIR points at a non-git directory: ${gitDir}. Set CLAWDBOT_GIT_DIR to an empty folder or a AGENT checkout.`,
           );
           defaultRuntime.exit(1);
           return;
@@ -1120,15 +1120,15 @@ export function registerUpdateCli(program: Command) {
     .option("--yes", "Skip confirmation prompts (non-interactive)", false)
     .addHelpText("after", () => {
       const examples = [
-        ["moltbot update", "Update a source checkout (git)"],
-        ["moltbot update --channel beta", "Switch to beta channel (git + npm)"],
-        ["moltbot update --channel dev", "Switch to dev channel (git + npm)"],
-        ["moltbot update --tag beta", "One-off update to a dist-tag or version"],
-        ["moltbot update --no-restart", "Update without restarting the service"],
-        ["moltbot update --json", "Output result as JSON"],
-        ["moltbot update --yes", "Non-interactive (accept downgrade prompts)"],
-        ["moltbot update wizard", "Interactive update wizard"],
-        ["moltbot --update", "Shorthand for moltbot update"],
+        ["AGENT update", "Update a source checkout (git)"],
+        ["AGENT update --channel beta", "Switch to beta channel (git + npm)"],
+        ["AGENT update --channel dev", "Switch to dev channel (git + npm)"],
+        ["AGENT update --tag beta", "One-off update to a dist-tag or version"],
+        ["AGENT update --no-restart", "Update without restarting the service"],
+        ["AGENT update --json", "Output result as JSON"],
+        ["AGENT update --yes", "Non-interactive (accept downgrade prompts)"],
+        ["AGENT update wizard", "Interactive update wizard"],
+        ["AGENT --update", "Shorthand for AGENT update"],
       ] as const;
       const fmtExamples = examples
         .map(([cmd, desc]) => `  ${theme.command(cmd)} ${theme.muted(`# ${desc}`)}`)
@@ -1140,7 +1140,7 @@ ${theme.heading("What this does:")}
 
 ${theme.heading("Switch channels:")}
   - Use --channel stable|beta|dev to persist the update channel in config
-  - Run moltbot update status to see the active channel and source
+  - Run AGENT update status to see the active channel and source
   - Use --tag <dist-tag|version> for a one-off npm update without persisting
 
 ${theme.heading("Non-interactive:")}
@@ -1200,9 +1200,9 @@ ${theme.muted("Docs:")} ${formatDocsLink("/cli/update", "docs.molt.bot/cli/updat
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["moltbot update status", "Show channel + version status."],
-          ["moltbot update status --json", "JSON output."],
-          ["moltbot update status --timeout 10", "Custom timeout."],
+          ["AGENT update status", "Show channel + version status."],
+          ["AGENT update status --json", "JSON output."],
+          ["AGENT update status --timeout 10", "Custom timeout."],
         ])}\n\n${theme.heading("Notes:")}\n${theme.muted(
           "- Shows current update channel (stable/beta/dev) and source",
         )}\n${theme.muted("- Includes git tag/branch/SHA for source checkouts")}\n\n${theme.muted(

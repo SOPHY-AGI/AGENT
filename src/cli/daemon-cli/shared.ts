@@ -131,7 +131,7 @@ export function renderRuntimeHints(
     }
   })();
   if (runtime.missingUnit) {
-    hints.push(`Service not installed. Run: ${formatCliCommand("moltbot gateway install", env)}`);
+    hints.push(`Service not installed. Run: ${formatCliCommand("AGENT gateway install", env)}`);
     if (fileLog) hints.push(`File logs: ${fileLog}`);
     return hints;
   }
@@ -154,8 +154,8 @@ export function renderRuntimeHints(
 
 export function renderGatewayServiceStartHints(env: NodeJS.ProcessEnv = process.env): string[] {
   const base = [
-    formatCliCommand("moltbot gateway install", env),
-    formatCliCommand("moltbot gateway", env),
+    formatCliCommand("AGENT gateway install", env),
+    formatCliCommand("AGENT gateway", env),
   ];
   const profile = env.CLAWDBOT_PROFILE;
   switch (process.platform) {

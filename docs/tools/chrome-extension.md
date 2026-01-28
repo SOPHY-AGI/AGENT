@@ -26,13 +26,13 @@ Moltbot then controls the attached tab through the normal `browser` tool surface
 1) Install the extension to a stable local path:
 
 ```bash
-moltbot browser extension install
+AGENT browser extension install
 ```
 
 2) Print the installed extension directory path:
 
 ```bash
-moltbot browser extension path
+AGENT browser extension path
 ```
 
 3) Chrome → `chrome://extensions`
@@ -46,7 +46,7 @@ moltbot browser extension path
 The extension ships inside the Moltbot release (npm package) as static files. There is no separate “build” step.
 
 After upgrading Moltbot:
-- Re-run `moltbot browser extension install` to refresh the installed files under your Moltbot state directory.
+- Re-run `AGENT browser extension install` to refresh the installed files under your Moltbot state directory.
 - Chrome → `chrome://extensions` → click “Reload” on the extension.
 
 ## Use it (no extra config)
@@ -54,13 +54,13 @@ After upgrading Moltbot:
 Moltbot ships with a built-in browser profile named `chrome` that targets the extension relay on the default port.
 
 Use it:
-- CLI: `moltbot browser --browser-profile chrome tabs`
+- CLI: `AGENT browser --browser-profile chrome tabs`
 - Agent tool: `browser` with `profile="chrome"`
 
 If you want a different name or a different relay port, create your own profile:
 
 ```bash
-moltbot browser create-profile \
+AGENT browser create-profile \
   --name my-chrome \
   --driver extension \
   --cdp-url http://127.0.0.1:18792 \
@@ -131,7 +131,7 @@ Options:
 
 Then ensure the tool isn’t denied by tool policy, and (if needed) call `browser` with `target="host"`.
 
-Debugging: `moltbot sandbox explain`
+Debugging: `AGENT sandbox explain`
 
 ## Remote access tips
 
@@ -140,9 +140,9 @@ Debugging: `moltbot sandbox explain`
 
 ## How “extension path” works
 
-`moltbot browser extension path` prints the **installed** on-disk directory containing the extension files.
+`AGENT browser extension path` prints the **installed** on-disk directory containing the extension files.
 
-The CLI intentionally does **not** print a `node_modules` path. Always run `moltbot browser extension install` first to copy the extension to a stable location under your Moltbot state directory.
+The CLI intentionally does **not** print a `node_modules` path. Always run `AGENT browser extension install` first to copy the extension to a stable location under your Moltbot state directory.
 
 If you move or delete that install directory, Chrome will mark the extension as broken until you reload it from a valid path.
 

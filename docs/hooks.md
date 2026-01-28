@@ -13,7 +13,7 @@ Hooks provide an extensible event-driven system for automating actions in respon
 Hooks are small scripts that run when something happens. There are two kinds:
 
 - **Hooks** (this page): run inside the Gateway when agent events fire, like `/new`, `/reset`, `/stop`, or lifecycle events.
-- **Webhooks**: external HTTP webhooks that let other systems trigger work in Moltbot. See [Webhook Hooks](/automation/webhook) or use `moltbot webhooks` for Gmail helper commands.
+- **Webhooks**: external HTTP webhooks that let other systems trigger work in Moltbot. See [Webhook Hooks](/automation/webhook) or use `AGENT webhooks` for Gmail helper commands.
   
 Hooks can also be bundled inside plugins; see [Plugins](/plugin#plugin-hooks).
 
@@ -47,30 +47,30 @@ Moltbot ships with four bundled hooks that are automatically discovered:
 List available hooks:
 
 ```bash
-moltbot hooks list
+AGENT hooks list
 ```
 
 Enable a hook:
 
 ```bash
-moltbot hooks enable session-memory
+AGENT hooks enable session-memory
 ```
 
 Check hook status:
 
 ```bash
-moltbot hooks check
+AGENT hooks check
 ```
 
 Get detailed information:
 
 ```bash
-moltbot hooks info session-memory
+AGENT hooks info session-memory
 ```
 
 ### Onboarding
 
-During onboarding (`moltbot onboard`), you'll be prompted to enable recommended hooks. The wizard automatically discovers eligible hooks and presents them for selection.
+During onboarding (`AGENT onboard`), you'll be prompted to enable recommended hooks. The wizard automatically discovers eligible hooks and presents them for selection.
 
 ## Hook Discovery
 
@@ -78,7 +78,7 @@ Hooks are automatically discovered from three directories (in order of precedenc
 
 1. **Workspace hooks**: `<workspace>/hooks/` (per-agent, highest precedence)
 2. **Managed hooks**: `~/.clawdbot/hooks/` (user-installed, shared across workspaces)
-3. **Bundled hooks**: `<moltbot>/dist/hooks/bundled/` (shipped with Moltbot)
+3. **Bundled hooks**: `<AGENT>/dist/hooks/bundled/` (shipped with Moltbot)
 
 Managed hook directories can be either a **single hook** or a **hook pack** (package directory).
 
@@ -92,11 +92,11 @@ my-hook/
 
 ## Hook Packs (npm/archives)
 
-Hook packs are standard npm packages that export one or more hooks via `moltbot.hooks` in
+Hook packs are standard npm packages that export one or more hooks via `AGENT.hooks` in
 `package.json`. Install them with:
 
 ```bash
-moltbot hooks install <path-or-spec>
+AGENT hooks install <path-or-spec>
 ```
 
 Example `package.json`:
@@ -105,7 +105,7 @@ Example `package.json`:
 {
   "name": "@acme/my-hooks",
   "version": "0.1.0",
-  "moltbot": {
+  "AGENT": {
     "hooks": ["./hooks/my-hook", "./hooks/other-hook"]
   }
 }
@@ -125,7 +125,7 @@ The `HOOK.md` file contains metadata in YAML frontmatter plus Markdown documenta
 name: my-hook
 description: "Short description of what this hook does"
 homepage: https://docs.molt.bot/hooks#my-hook
-metadata: {"moltbot":{"emoji":"🔗","events":["command:new"],"requires":{"bins":["node"]}}}
+metadata: {"AGENT":{"emoji":"🔗","events":["command:new"],"requires":{"bins":["node"]}}}
 ---
 
 # My Hook
@@ -271,7 +271,7 @@ cd ~/.clawdbot/hooks/my-hook
 ---
 name: my-hook
 description: "Does something useful"
-metadata: {"moltbot":{"emoji":"🎯","events":["command:new"]}}
+metadata: {"AGENT":{"emoji":"🎯","events":["command:new"]}}
 ---
 
 # My Custom Hook
@@ -300,10 +300,10 @@ export default handler;
 
 ```bash
 # Verify hook is discovered
-moltbot hooks list
+AGENT hooks list
 
 # Enable it
-moltbot hooks enable my-hook
+AGENT hooks enable my-hook
 
 # Restart your gateway process (menu bar app restart on macOS, or restart your dev process)
 
@@ -397,46 +397,46 @@ The old config format still works for backwards compatibility:
 
 ```bash
 # List all hooks
-moltbot hooks list
+AGENT hooks list
 
 # Show only eligible hooks
-moltbot hooks list --eligible
+AGENT hooks list --eligible
 
 # Verbose output (show missing requirements)
-moltbot hooks list --verbose
+AGENT hooks list --verbose
 
 # JSON output
-moltbot hooks list --json
+AGENT hooks list --json
 ```
 
 ### Hook Information
 
 ```bash
 # Show detailed info about a hook
-moltbot hooks info session-memory
+AGENT hooks info session-memory
 
 # JSON output
-moltbot hooks info session-memory --json
+AGENT hooks info session-memory --json
 ```
 
 ### Check Eligibility
 
 ```bash
 # Show eligibility summary
-moltbot hooks check
+AGENT hooks check
 
 # JSON output
-moltbot hooks check --json
+AGENT hooks check --json
 ```
 
 ### Enable/Disable
 
 ```bash
 # Enable a hook
-moltbot hooks enable session-memory
+AGENT hooks enable session-memory
 
 # Disable a hook
-moltbot hooks disable command-logger
+AGENT hooks disable command-logger
 ```
 
 ## Bundled Hooks
@@ -475,7 +475,7 @@ Saves session context to memory when you issue `/new`.
 **Enable**:
 
 ```bash
-moltbot hooks enable session-memory
+AGENT hooks enable session-memory
 ```
 
 ### command-logger
@@ -516,7 +516,7 @@ grep '"action":"new"' ~/.clawdbot/logs/commands.log | jq .
 **Enable**:
 
 ```bash
-moltbot hooks enable command-logger
+AGENT hooks enable command-logger
 ```
 
 ### soul-evil
@@ -532,7 +532,7 @@ Swaps injected `SOUL.md` content with `SOUL_EVIL.md` during a purge window or by
 **Enable**:
 
 ```bash
-moltbot hooks enable soul-evil
+AGENT hooks enable soul-evil
 ```
 
 **Config**:
@@ -572,7 +572,7 @@ Internal hooks must be enabled for this to run.
 **Enable**:
 
 ```bash
-moltbot hooks enable boot-md
+AGENT hooks enable boot-md
 ```
 
 ## Best Practices
@@ -629,13 +629,13 @@ const handler: HookHandler = async (event) => {
 Specify exact events in metadata when possible:
 
 ```yaml
-metadata: {"moltbot":{"events":["command:new"]}}  # Specific
+metadata: {"AGENT":{"events":["command:new"]}}  # Specific
 ```
 
 Rather than:
 
 ```yaml
-metadata: {"moltbot":{"events":["command"]}}      # General - more overhead
+metadata: {"AGENT":{"events":["command"]}}      # General - more overhead
 ```
 
 ## Debugging
@@ -655,7 +655,7 @@ Registered hook: boot-md -> gateway:startup
 List all discovered hooks:
 
 ```bash
-moltbot hooks list --verbose
+AGENT hooks list --verbose
 ```
 
 ### Check Registration
@@ -674,7 +674,7 @@ const handler: HookHandler = async (event) => {
 Check why a hook isn't eligible:
 
 ```bash
-moltbot hooks info my-hook
+AGENT hooks info my-hook
 ```
 
 Look for missing requirements in the output.
@@ -777,7 +777,7 @@ Session reset
 
 3. List all discovered hooks:
    ```bash
-   moltbot hooks list
+   AGENT hooks list
    ```
 
 ### Hook Not Eligible
@@ -785,7 +785,7 @@ Session reset
 Check requirements:
 
 ```bash
-moltbot hooks info my-hook
+AGENT hooks info my-hook
 ```
 
 Look for missing:
@@ -798,7 +798,7 @@ Look for missing:
 
 1. Verify hook is enabled:
    ```bash
-   moltbot hooks list
+   AGENT hooks list
    # Should show ✓ next to enabled hooks
    ```
 
@@ -853,7 +853,7 @@ node -e "import('./path/to/handler.ts').then(console.log)"
    ---
    name: my-hook
    description: "My custom hook"
-   metadata: {"moltbot":{"emoji":"🎯","events":["command:new"]}}
+   metadata: {"AGENT":{"emoji":"🎯","events":["command:new"]}}
    ---
 
    # My Hook
@@ -877,7 +877,7 @@ node -e "import('./path/to/handler.ts').then(console.log)"
 
 4. Verify and restart your gateway process:
    ```bash
-   moltbot hooks list
+   AGENT hooks list
    # Should show: 🎯 my-hook ✓
    ```
 
@@ -891,6 +891,6 @@ node -e "import('./path/to/handler.ts').then(console.log)"
 ## See Also
 
 - [CLI Reference: hooks](/cli/hooks)
-- [Bundled Hooks README](https://github.com/moltbot/moltbot/tree/main/src/hooks/bundled)
+- [Bundled Hooks README](https://github.com/SOPHY-AGI/AGENT/tree/main/src/hooks/bundled)
 - [Webhook Hooks](/automation/webhook)
 - [Configuration](/gateway/configuration#hooks)

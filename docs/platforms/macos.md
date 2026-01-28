@@ -19,12 +19,12 @@ capabilities to the agent as a node.
 - Exposes macOS‑only tools (Canvas, Camera, Screen Recording, `system.run`).
 - Starts the local node host service in **remote** mode (launchd), and stops it in **local** mode.
 - Optionally hosts **PeekabooBridge** for UI automation.
-- Installs the global CLI (`moltbot`) via npm/pnpm on request (bun not recommended for the Gateway runtime).
+- Installs the global CLI (`AGENT`) via npm/pnpm on request (bun not recommended for the Gateway runtime).
 
 ## Local vs remote mode
 
 - **Local** (default): the app attaches to a running local Gateway if present;
-  otherwise it enables the launchd service via `moltbot gateway install`.
+  otherwise it enables the launchd service via `AGENT gateway install`.
 - **Remote**: the app connects to a Gateway over SSH/Tailscale and never starts
   a local process.
   The app starts the local **node host service** so the remote Gateway can reach this Mac.
@@ -43,7 +43,7 @@ launchctl bootout gui/$UID/bot.molt.gateway
 Replace the label with `bot.molt.<profile>` when running a named profile.
 
 If the LaunchAgent isn’t installed, enable it from the app or run
-`moltbot gateway install`.
+`AGENT gateway install`.
 
 ## Node capabilities (mac)
 
@@ -105,14 +105,14 @@ Notes:
 
 ## Deep links
 
-The app registers the `moltbot://` URL scheme for local actions.
+The app registers the `AGENT://` URL scheme for local actions.
 
-### `moltbot://agent`
+### `AGENT://agent`
 
 Triggers a Gateway `agent` request.
 
 ```bash
-open 'moltbot://agent?message=Hello%20from%20deep%20link'
+open 'AGENT://agent?message=Hello%20from%20deep%20link'
 ```
 
 Query parameters:
@@ -147,8 +147,8 @@ logic that the macOS app uses, without launching the app.
 
 ```bash
 cd apps/macos
-swift run moltbot-mac connect --json
-swift run moltbot-mac discover --timeout 3000 --json
+swift run AGENT-mac connect --json
+swift run AGENT-mac discover --timeout 3000 --json
 ```
 
 Connect options:
@@ -163,7 +163,7 @@ Discovery options:
 - `--timeout <ms>`: overall discovery window (default: `2000`)
 - `--json`: structured output for diffing
 
-Tip: compare against `moltbot gateway discover --json` to see whether the
+Tip: compare against `AGENT gateway discover --json` to see whether the
 macOS app’s discovery pipeline (NWBrowser + tailnet DNS‑SD fallback) differs from
 the Node CLI’s `dns-sd` based discovery.
 

@@ -76,7 +76,7 @@ export async function createAcpClient(opts: AcpClientOptions = {}): Promise<AcpC
   const log = verbose ? (msg: string) => console.error(`[acp-client] ${msg}`) : () => {};
 
   ensureMoltbotCliOnPath({ cwd });
-  const serverCommand = opts.serverCommand ?? "moltbot";
+  const serverCommand = opts.serverCommand ?? "AGENT";
   const serverArgs = buildServerArgs(opts);
 
   log(`spawning: ${serverCommand} ${serverArgs.join(" ")}`);
@@ -122,7 +122,7 @@ export async function createAcpClient(opts: AcpClientOptions = {}): Promise<AcpC
       fs: { readTextFile: true, writeTextFile: true },
       terminal: true,
     },
-    clientInfo: { name: "moltbot-acp-client", version: "1.0.0" },
+    clientInfo: { name: "AGENT-acp-client", version: "1.0.0" },
   });
 
   log("creating session");

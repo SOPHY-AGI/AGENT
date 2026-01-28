@@ -18,10 +18,10 @@ Moltbot has three related (but different) controls:
 Use the inspector to see what Moltbot is *actually* doing:
 
 ```bash
-moltbot sandbox explain
-moltbot sandbox explain --session agent:main:main
-moltbot sandbox explain --agent work
-moltbot sandbox explain --json
+AGENT sandbox explain
+AGENT sandbox explain --session agent:main:main
+AGENT sandbox explain --agent work
+AGENT sandbox explain --json
 ```
 
 It prints:
@@ -88,7 +88,7 @@ Available groups:
 - `group:automation`: `cron`, `gateway`
 - `group:messaging`: `message`
 - `group:nodes`: `nodes`
-- `group:moltbot`: all built-in Moltbot tools (excludes provider plugins)
+- `group:AGENT`: all built-in Moltbot tools (excludes provider plugins)
 
 ## Elevated: exec-only “run on host”
 

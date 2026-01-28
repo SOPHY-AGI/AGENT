@@ -94,13 +94,13 @@ under `hooks.transformsDir` (see [Webhooks](/automation/webhook)).
 Use the Moltbot helper to wire everything together (installs deps on macOS via brew):
 
 ```bash
-moltbot webhooks gmail setup \
-  --account moltbot@gmail.com
+AGENT webhooks gmail setup \
+  --account AGENT@gmail.com
 ```
 
 Defaults:
 - Uses Tailscale Funnel for the public push endpoint.
-- Writes `hooks.gmail` config for `moltbot webhooks gmail run`.
+- Writes `hooks.gmail` config for `AGENT webhooks gmail run`.
 - Enables the Gmail hook preset (`hooks.presets: ["gmail"]`).
 
 Path note: when `tailscale.mode` is enabled, Moltbot automatically sets
@@ -126,7 +126,7 @@ Gateway auto-start (recommended):
 Manual daemon (starts `gog gmail watch serve` + auto-renew):
 
 ```bash
-moltbot webhooks gmail run
+AGENT webhooks gmail run
 ```
 
 ## One-time setup
@@ -164,7 +164,7 @@ gcloud pubsub topics add-iam-policy-binding gog-gmail-watch \
 
 ```bash
 gog gmail watch start \
-  --account moltbot@gmail.com \
+  --account AGENT@gmail.com \
   --label INBOX \
   --topic projects/<project-id>/topics/gog-gmail-watch
 ```
@@ -177,7 +177,7 @@ Local example (shared token auth):
 
 ```bash
 gog gmail watch serve \
-  --account moltbot@gmail.com \
+  --account AGENT@gmail.com \
   --bind 127.0.0.1 \
   --port 8788 \
   --path /gmail-pubsub \
@@ -193,7 +193,7 @@ Notes:
 - `--hook-url` points to Moltbot `/hooks/gmail` (mapped; isolated run + summary to main).
 - `--include-body` and `--max-bytes` control the body snippet sent to Moltbot.
 
-Recommended: `moltbot webhooks gmail run` wraps the same flow and auto-renews the watch.
+Recommended: `AGENT webhooks gmail run` wraps the same flow and auto-renews the watch.
 
 ## Expose the handler (advanced, unsupported)
 
@@ -224,8 +224,8 @@ Send a message to the watched inbox:
 
 ```bash
 gog gmail send \
-  --account moltbot@gmail.com \
-  --to moltbot@gmail.com \
+  --account AGENT@gmail.com \
+  --to AGENT@gmail.com \
   --subject "watch test" \
   --body "ping"
 ```
@@ -233,8 +233,8 @@ gog gmail send \
 Check watch state and history:
 
 ```bash
-gog gmail watch status --account moltbot@gmail.com
-gog gmail history --account moltbot@gmail.com --since <historyId>
+gog gmail watch status --account AGENT@gmail.com
+gog gmail history --account AGENT@gmail.com --since <historyId>
 ```
 
 ## Troubleshooting
@@ -246,7 +246,7 @@ gog gmail history --account moltbot@gmail.com --since <historyId>
 ## Cleanup
 
 ```bash
-gog gmail watch stop --account moltbot@gmail.com
+gog gmail watch stop --account AGENT@gmail.com
 gcloud pubsub subscriptions delete gog-gmail-watch-push
 gcloud pubsub topics delete gog-gmail-watch
 ```

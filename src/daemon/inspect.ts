@@ -25,7 +25,7 @@ export type FindExtraGatewayServicesOptions = {
   deep?: boolean;
 };
 
-const EXTRA_MARKERS = ["moltbot"];
+const EXTRA_MARKERS = ["AGENT"];
 const execFileAsync = promisify(execFile);
 
 export function renderGatewayServiceCleanupHints(
@@ -67,9 +67,9 @@ function containsMarker(content: string): boolean {
 function hasGatewayServiceMarker(content: string): boolean {
   const lower = content.toLowerCase();
   return (
-    lower.includes("moltbot_service_marker") &&
+    lower.includes("AGENT_service_marker") &&
     lower.includes(GATEWAY_SERVICE_MARKER.toLowerCase()) &&
-    lower.includes("moltbot_service_kind") &&
+    lower.includes("AGENT_service_kind") &&
     lower.includes(GATEWAY_SERVICE_KIND.toLowerCase())
   );
 }
@@ -83,7 +83,7 @@ function isMoltbotGatewayLaunchdService(label: string, contents: string): boolea
 
 function isMoltbotGatewaySystemdService(name: string, contents: string): boolean {
   if (hasGatewayServiceMarker(contents)) return true;
-  if (!name.startsWith("moltbot-gateway")) return false;
+  if (!name.startsWith("AGENT-gateway")) return false;
   return contents.toLowerCase().includes("gateway");
 }
 
@@ -91,7 +91,7 @@ function isMoltbotGatewayTaskName(name: string): boolean {
   const normalized = name.trim().toLowerCase();
   if (!normalized) return false;
   const defaultName = resolveGatewayWindowsTaskName().toLowerCase();
-  return normalized === defaultName || normalized.startsWith("moltbot gateway");
+  return normalized === defaultName || normalized.startsWith("AGENT gateway");
 }
 
 function tryExtractPlistLabel(contents: string): string | null {

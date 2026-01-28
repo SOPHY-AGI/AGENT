@@ -35,7 +35,7 @@ Ask your agent to "refresh skills" or restart the gateway. Moltbot will discover
 ## Best Practices
 - **Be Concise**: Instruct the model on *what* to do, not how to be an AI.
 - **Safety First**: If your skill uses `bash`, ensure the prompts don't allow arbitrary command injection from untrusted user input.
-- **Test Locally**: Use `moltbot agent --message "use my new skill"` to test.
+- **Test Locally**: Use `AGENT agent --message "use my new skill"` to test.
 
 ## Shared Skills
 You can also browse and contribute skills to [ClawdHub](https://clawdhub.com).

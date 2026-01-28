@@ -134,7 +134,7 @@ Architecture:
 ```
 ┌──────────────────────────────┐          SSH (imsg rpc)          ┌──────────────────────────┐
 │ Gateway host (Linux/VM)      │──────────────────────────────────▶│ Mac with Messages + imsg │
-│ - moltbot gateway           │          SCP (attachments)        │ - Messages signed in     │
+│ - AGENT gateway           │          SCP (attachments)        │ - Messages signed in     │
 │ - channels.imessage.cliPath  │◀──────────────────────────────────│ - Remote Login enabled   │
 └──────────────────────────────┘                                   └──────────────────────────┘
               ▲
@@ -169,15 +169,15 @@ Notes:
 - Use SSH keys so `ssh bot@mac-mini.tailnet-1234.ts.net` works without prompts.
 - `remoteHost` should match the SSH target so SCP can fetch attachments.
 
-Multi-account support: use `channels.imessage.accounts` with per-account config and optional `name`. See [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) for the shared pattern. Don't commit `~/.clawdbot/moltbot.json` (it often contains tokens).
+Multi-account support: use `channels.imessage.accounts` with per-account config and optional `name`. See [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) for the shared pattern. Don't commit `~/.clawdbot/AGENT.json` (it often contains tokens).
 
 ## Access control (DMs + groups)
 DMs:
 - Default: `channels.imessage.dmPolicy = "pairing"`.
 - Unknown senders receive a pairing code; messages are ignored until approved (codes expire after 1 hour).
 - Approve via:
-  - `moltbot pairing list imessage`
-  - `moltbot pairing approve imessage <CODE>`
+  - `AGENT pairing list imessage`
+  - `AGENT pairing approve imessage <CODE>`
 - Pairing is the default token exchange for iMessage DMs. Details: [Pairing](/start/pairing)
 
 Groups:

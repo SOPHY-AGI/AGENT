@@ -1,9 +1,9 @@
 {
-  "name": "@moltbot/imessage",
+  "name": "@AGENT/imessage",
   "version": "2026.1.26",
   "type": "module",
   "description": "Moltbot iMessage channel plugin",
-  "moltbot": {
+  "AGENT": {
     "extensions": [
       "./index.ts"
     ]

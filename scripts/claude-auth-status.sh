@@ -17,7 +17,7 @@ NC='\033[0m' # No Color
 OUTPUT_MODE="${1:-full}"
 
 fetch_models_status_json() {
-    moltbot models status --json 2>/dev/null || true
+    AGENT models status --json 2>/dev/null || true
 }
 
 STATUS_JSON="$(fetch_models_status_json)"
@@ -103,7 +103,7 @@ check_claude_code_auth() {
     calc_status_from_expires "$expires_at"
 }
 
-check_moltbot_auth() {
+check_AGENT_auth() {
     if [ "$USE_JSON" -eq 1 ]; then
         local api_keys
         api_keys=$(json_anthropic_api_key_count)
@@ -139,26 +139,26 @@ check_moltbot_auth() {
 # JSON output mode
 if [ "$OUTPUT_MODE" = "json" ]; then
     claude_status=$(check_claude_code_auth 2>/dev/null || true)
-    moltbot_status=$(check_moltbot_auth 2>/dev/null || true)
+    AGENT_status=$(check_AGENT_auth 2>/dev/null || true)
 
     claude_expires=0
-    moltbot_expires=0
+    AGENT_expires=0
     if [ "$USE_JSON" -eq 1 ]; then
         claude_expires=$(json_expires_for_claude_cli)
-        moltbot_expires=$(json_expires_for_anthropic_any)
+        AGENT_expires=$(json_expires_for_anthropic_any)
     else
         claude_expires=$(jq -r '.claudeAiOauth.expiresAt // 0' "$CLAUDE_CREDS" 2>/dev/null || echo "0")
-        moltbot_expires=$(jq -r '.profiles["anthropic:default"].expires // 0' "$CLAWDBOT_AUTH" 2>/dev/null || echo "0")
+        AGENT_expires=$(jq -r '.profiles["anthropic:default"].expires // 0' "$CLAWDBOT_AUTH" 2>/dev/null || echo "0")
     fi
 
     jq -n \
         --arg cs "$claude_status" \
         --arg ce "$claude_expires" \
-        --arg bs "$moltbot_status" \
-        --arg be "$moltbot_expires" \
+        --arg bs "$AGENT_status" \
+        --arg be "$AGENT_expires" \
         '{
             claude_code: {status: $cs, expires_at_ms: ($ce | tonumber)},
-            moltbot: {status: $bs, expires_at_ms: ($be | tonumber)},
+            AGENT: {status: $bs, expires_at_ms: ($be | tonumber)},
             needs_reauth: (($cs | startswith("EXPIRED") or startswith("EXPIRING") or startswith("MISSING")) or ($bs | startswith("EXPIRED") or startswith("EXPIRING") or startswith("MISSING")))
         }'
     exit 0
@@ -167,18 +167,18 @@ fi
 # Simple output mode (for scripts/widgets)
 if [ "$OUTPUT_MODE" = "simple" ]; then
     claude_status=$(check_claude_code_auth 2>/dev/null || true)
-    moltbot_status=$(check_moltbot_auth 2>/dev/null || true)
+    AGENT_status=$(check_AGENT_auth 2>/dev/null || true)
 
     if [[ "$claude_status" == EXPIRED* ]] || [[ "$claude_status" == MISSING* ]]; then
         echo "CLAUDE_EXPIRED"
         exit 1
-    elif [[ "$moltbot_status" == EXPIRED* ]] || [[ "$moltbot_status" == MISSING* ]]; then
+    elif [[ "$AGENT_status" == EXPIRED* ]] || [[ "$AGENT_status" == MISSING* ]]; then
         echo "CLAWDBOT_EXPIRED"
         exit 1
     elif [[ "$claude_status" == EXPIRING* ]]; then
         echo "CLAUDE_EXPIRING"
         exit 2
-    elif [[ "$moltbot_status" == EXPIRING* ]]; then
+    elif [[ "$AGENT_status" == EXPIRING* ]]; then
         echo "CLAWDBOT_EXPIRING"
         exit 2
     else
@@ -253,7 +253,7 @@ if [ "$expires" -le 0 ] && [ "$api_keys" -gt 0 ]; then
     echo -e "  Status: ${GREEN}OK${NC} (API key)"
 elif [ "$expires" -le 0 ]; then
     echo -e "  Status: ${RED}NOT FOUND${NC}"
-    echo "  Note: Run 'moltbot doctor --yes' to sync from Claude Code"
+    echo "  Note: Run 'AGENT doctor --yes' to sync from Claude Code"
 else
     now_ms=$(( $(date +%s) * 1000 ))
     diff_ms=$((expires - now_ms))
@@ -262,7 +262,7 @@ else
 
     if [ "$diff_ms" -lt 0 ]; then
         echo -e "  Status: ${RED}EXPIRED${NC}"
-        echo "  Note: Run 'moltbot doctor --yes' to sync from Claude Code"
+        echo "  Note: Run 'AGENT doctor --yes' to sync from Claude Code"
     elif [ "$diff_ms" -lt 3600000 ]; then
         echo -e "  Status: ${YELLOW}EXPIRING SOON (${mins}m remaining)${NC}"
     else
@@ -273,7 +273,7 @@ fi
 
 echo ""
 echo "=== Service Status ==="
-if systemctl --user is-active moltbot >/dev/null 2>&1; then
+if systemctl --user is-active AGENT >/dev/null 2>&1; then
     echo -e "Moltbot service: ${GREEN}running${NC}"
 else
     echo -e "Moltbot service: ${RED}NOT running${NC}"

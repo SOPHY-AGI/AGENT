@@ -87,8 +87,8 @@ All steps can be done via the web UI at https://console.cloud.google.com
 **CLI:**
 
 ```bash
-gcloud projects create my-moltbot-project --name="Moltbot Gateway"
-gcloud config set project my-moltbot-project
+gcloud projects create my-AGENT-project --name="Moltbot Gateway"
+gcloud config set project my-AGENT-project
 ```
 
 Enable billing at https://console.cloud.google.com/billing (required for Compute Engine).
@@ -120,7 +120,7 @@ gcloud services enable compute.googleapis.com
 **CLI:**
 
 ```bash
-gcloud compute instances create moltbot-gateway \
+gcloud compute instances create AGENT-gateway \
   --zone=us-central1-a \
   --machine-type=e2-small \
   --boot-disk-size=20GB \
@@ -131,7 +131,7 @@ gcloud compute instances create moltbot-gateway \
 **Console:**
 
 1. Go to Compute Engine > VM instances > Create instance
-2. Name: `moltbot-gateway`
+2. Name: `AGENT-gateway`
 3. Region: `us-central1`, Zone: `us-central1-a`
 4. Machine type: `e2-small`
 5. Boot disk: Debian 12, 20GB
@@ -144,7 +144,7 @@ gcloud compute instances create moltbot-gateway \
 **CLI:**
 
 ```bash
-gcloud compute ssh moltbot-gateway --zone=us-central1-a
+gcloud compute ssh AGENT-gateway --zone=us-central1-a
 ```
 
 **Console:**
@@ -173,7 +173,7 @@ exit
 Then SSH back in:
 
 ```bash
-gcloud compute ssh moltbot-gateway --zone=us-central1-a
+gcloud compute ssh AGENT-gateway --zone=us-central1-a
 ```
 
 Verify:
@@ -188,8 +188,8 @@ docker compose version
 ## 6) Clone the Moltbot repository
 
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/SOPHY-AGI/AGENT.git
+cd AGENT
 ```
 
 This guide assumes you will build a custom image to guarantee binary persistence.
@@ -213,7 +213,7 @@ mkdir -p ~/clawd
 Create `.env` in the repository root.
 
 ```bash
-CLAWDBOT_IMAGE=moltbot:latest
+CLAWDBOT_IMAGE=AGENT:latest
 CLAWDBOT_GATEWAY_TOKEN=change-me-now
 CLAWDBOT_GATEWAY_BIND=lan
 CLAWDBOT_GATEWAY_PORT=18789
@@ -241,7 +241,7 @@ Create or update `docker-compose.yml`.
 
 ```yaml
 services:
-  moltbot-gateway:
+  AGENT-gateway:
     image: ${CLAWDBOT_IMAGE}
     build: .
     restart: unless-stopped
@@ -347,15 +347,15 @@ CMD ["node","dist/index.js"]
 
 ```bash
 docker compose build
-docker compose up -d moltbot-gateway
+docker compose up -d AGENT-gateway
 ```
 
 Verify binaries:
 
 ```bash
-docker compose exec moltbot-gateway which gog
-docker compose exec moltbot-gateway which goplaces
-docker compose exec moltbot-gateway which wacli
+docker compose exec AGENT-gateway which gog
+docker compose exec AGENT-gateway which goplaces
+docker compose exec AGENT-gateway which wacli
 ```
 
 Expected output:
@@ -371,7 +371,7 @@ Expected output:
 ## 12) Verify Gateway
 
 ```bash
-docker compose logs -f moltbot-gateway
+docker compose logs -f AGENT-gateway
 ```
 
 Success:
@@ -387,7 +387,7 @@ Success:
 Create an SSH tunnel to forward the Gateway port:
 
 ```bash
-gcloud compute ssh moltbot-gateway --zone=us-central1-a -- -L 18789:127.0.0.1:18789
+gcloud compute ssh AGENT-gateway --zone=us-central1-a -- -L 18789:127.0.0.1:18789
 ```
 
 Open in your browser:
@@ -405,7 +405,7 @@ All long-lived state must survive restarts, rebuilds, and reboots.
 
 | Component | Location | Persistence mechanism | Notes |
 |---|---|---|---|
-| Gateway config | `/home/node/.clawdbot/` | Host volume mount | Includes `moltbot.json`, tokens |
+| Gateway config | `/home/node/.clawdbot/` | Host volume mount | Includes `AGENT.json`, tokens |
 | Model auth profiles | `/home/node/.clawdbot/` | Host volume mount | OAuth tokens, API keys |
 | Skill configs | `/home/node/.clawdbot/skills/` | Host volume mount | Skill-level state |
 | Agent workspace | `/home/node/clawd/` | Host volume mount | Code and agent artifacts |
@@ -423,7 +423,7 @@ All long-lived state must survive restarts, rebuilds, and reboots.
 To update Moltbot on the VM:
 
 ```bash
-cd ~/moltbot
+cd ~/AGENT
 git pull
 docker compose build
 docker compose up -d
@@ -453,15 +453,15 @@ If using e2-micro and hitting OOM, upgrade to e2-small or e2-medium:
 
 ```bash
 # Stop the VM first
-gcloud compute instances stop moltbot-gateway --zone=us-central1-a
+gcloud compute instances stop AGENT-gateway --zone=us-central1-a
 
 # Change machine type
-gcloud compute instances set-machine-type moltbot-gateway \
+gcloud compute instances set-machine-type AGENT-gateway \
   --zone=us-central1-a \
   --machine-type=e2-small
 
 # Start the VM
-gcloud compute instances start moltbot-gateway --zone=us-central1-a
+gcloud compute instances start AGENT-gateway --zone=us-central1-a
 ```
 
 ---
@@ -474,14 +474,14 @@ For automation or CI/CD pipelines, create a dedicated service account with minim
 
 1. Create a service account:
    ```bash
-   gcloud iam service-accounts create moltbot-deploy \
+   gcloud iam service-accounts create AGENT-deploy \
      --display-name="Moltbot Deployment"
    ```
 
 2. Grant Compute Instance Admin role (or narrower custom role):
    ```bash
-   gcloud projects add-iam-policy-binding my-moltbot-project \
-     --member="serviceAccount:moltbot-deploy@my-moltbot-project.iam.gserviceaccount.com" \
+   gcloud projects add-iam-policy-binding my-AGENT-project \
+     --member="serviceAccount:AGENT-deploy@my-AGENT-project.iam.gserviceaccount.com" \
      --role="roles/compute.instanceAdmin.v1"
    ```
 

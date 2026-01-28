@@ -38,7 +38,7 @@ const runtime: RuntimeEnv = {
 const configSpy = vi.spyOn(configModule, "loadConfig");
 
 async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
-  return withTempHomeBase(fn, { prefix: "moltbot-agent-" });
+  return withTempHomeBase(fn, { prefix: "AGENT-agent-" });
 }
 
 function mockConfig(

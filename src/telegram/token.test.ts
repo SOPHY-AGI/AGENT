@@ -8,7 +8,7 @@ import type { MoltbotConfig } from "../config/config.js";
 import { resolveTelegramToken } from "./token.js";
 
 function withTempDir(): string {
-  return fs.mkdtempSync(path.join(os.tmpdir(), "moltbot-telegram-token-"));
+  return fs.mkdtempSync(path.join(os.tmpdir(), "AGENT-telegram-token-"));
 }
 
 describe("resolveTelegramToken", () => {

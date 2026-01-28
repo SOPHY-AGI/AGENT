@@ -154,7 +154,7 @@ final class NodeAppModel {
         guard let raw = await self.gateway.currentCanvasHostUrl() else { return nil }
         let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, let base = URL(string: trimmed) else { return nil }
-        return base.appendingPathComponent("__moltbot__/a2ui/").absoluteString + "?platform=ios"
+        return base.appendingPathComponent("__AGENT__/a2ui/").absoluteString + "?platform=ios"
     }
 
     private func showA2UIOnConnectIfNeeded() async {
@@ -487,7 +487,7 @@ final class NodeAppModel {
         }
 
         // iOS gateway forwards to the gateway; no local auth prompts here.
-        // (Key-based unattended auth is handled on macOS for moltbot:// links.)
+        // (Key-based unattended auth is handled on macOS for AGENT:// links.)
         let data = try JSONEncoder().encode(link)
         guard let json = String(bytes: data, encoding: .utf8) else {
             throw NSError(domain: "NodeAppModel", code: 2, userInfo: [
@@ -699,7 +699,7 @@ final class NodeAppModel {
 
             let json = try await self.screen.eval(javaScript: """
             (() => {
-              if (!globalThis.clawdbotA2UI) return JSON.stringify({ ok: false, error: "missing moltbotA2UI" });
+              if (!globalThis.clawdbotA2UI) return JSON.stringify({ ok: false, error: "missing AGENTA2UI" });
               return JSON.stringify(globalThis.clawdbotA2UI.reset());
             })()
             """)
@@ -742,7 +742,7 @@ final class NodeAppModel {
             let js = """
             (() => {
               try {
-                if (!globalThis.clawdbotA2UI) return JSON.stringify({ ok: false, error: "missing moltbotA2UI" });
+                if (!globalThis.clawdbotA2UI) return JSON.stringify({ ok: false, error: "missing AGENTA2UI" });
                 const messages = \(messagesJSON);
                 return JSON.stringify(globalThis.clawdbotA2UI.applyMessages(messages));
               } catch (e) {

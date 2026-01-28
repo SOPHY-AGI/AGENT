@@ -6,7 +6,7 @@
 termux-toast "Syncing Moltbot auth..."
 
 # Run sync on l36 server
-RESULT=$(ssh l36 '/home/admin/moltbot/scripts/sync-claude-code-auth.sh' 2>&1)
+RESULT=$(ssh l36 '/home/admin/AGENT/scripts/sync-claude-code-auth.sh' 2>&1)
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then
@@ -16,8 +16,8 @@ if [ $EXIT_CODE -eq 0 ]; then
     termux-vibrate -d 100
     termux-toast "Moltbot synced! Expires:${EXPIRY}"
 
-    # Optional: restart moltbot service
-    ssh l36 'systemctl --user restart moltbot' 2>/dev/null
+    # Optional: restart AGENT service
+    ssh l36 'systemctl --user restart AGENT' 2>/dev/null
 else
     termux-vibrate -d 300
     termux-toast "Sync failed: ${RESULT}"

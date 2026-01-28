@@ -23,18 +23,18 @@ Profiles auto-scope `CLAWDBOT_STATE_DIR` + `CLAWDBOT_CONFIG_PATH` and suffix ser
 
 ```bash
 # main
-moltbot --profile main setup
-moltbot --profile main gateway --port 18789
+AGENT --profile main setup
+AGENT --profile main gateway --port 18789
 
 # rescue
-moltbot --profile rescue setup
-moltbot --profile rescue gateway --port 19001
+AGENT --profile rescue setup
+AGENT --profile rescue gateway --port 19001
 ```
 
 Per-profile services:
 ```bash
-moltbot --profile main gateway install
-moltbot --profile rescue gateway install
+AGENT --profile main gateway install
+AGENT --profile rescue gateway install
 ```
 
 ## Rescue-bot guide
@@ -54,11 +54,11 @@ Port spacing: leave at least 20 ports between base ports so the derived browser/
 ```bash
 # Main bot (existing or fresh, without --profile param)
 # Runs on port 18789 + Chrome CDC/Canvas/... Ports 
-moltbot onboard
-moltbot gateway install
+AGENT onboard
+AGENT gateway install
 
 # Rescue bot (isolated profile + ports)
-moltbot --profile rescue onboard
+AGENT --profile rescue onboard
 # Notes: 
 # - workspace name will be postfixed with -rescue per default
 # - Port should be at least 18789 + 20 Ports, 
@@ -66,7 +66,7 @@ moltbot --profile rescue onboard
 # - rest of the onboarding is the same as normal
 
 # To install the service (if not happened automatically during onboarding)
-moltbot --profile rescue gateway install
+AGENT --profile rescue gateway install
 ```
 
 ## Port mapping (derived)
@@ -91,17 +91,17 @@ If you override any of these in config or env, you must keep them unique per ins
 ```bash
 CLAWDBOT_CONFIG_PATH=~/.clawdbot/main.json \
 CLAWDBOT_STATE_DIR=~/.clawdbot-main \
-moltbot gateway --port 18789
+AGENT gateway --port 18789
 
 CLAWDBOT_CONFIG_PATH=~/.clawdbot/rescue.json \
 CLAWDBOT_STATE_DIR=~/.clawdbot-rescue \
-moltbot gateway --port 19001
+AGENT gateway --port 19001
 ```
 
 ## Quick checks
 
 ```bash
-moltbot --profile main status
-moltbot --profile rescue status
-moltbot --profile rescue browser status
+AGENT --profile main status
+AGENT --profile rescue status
+AGENT --profile rescue browser status
 ```

@@ -204,8 +204,8 @@ vi.mock("../gateway/call.js", async (importOriginal) => {
 vi.mock("../gateway/session-utils.js", () => ({
   listAgentsForGateway: mocks.listAgentsForGateway,
 }));
-vi.mock("../infra/moltbot-root.js", () => ({
-  resolveMoltbotPackageRoot: vi.fn().mockResolvedValue("/tmp/moltbot"),
+vi.mock("../infra/AGENT-root.js", () => ({
+  resolveMoltbotPackageRoot: vi.fn().mockResolvedValue("/tmp/AGENT"),
 }));
 vi.mock("../infra/os-summary.js", () => ({
   resolveOsSummary: () => ({
@@ -217,11 +217,11 @@ vi.mock("../infra/os-summary.js", () => ({
 }));
 vi.mock("../infra/update-check.js", () => ({
   checkUpdateStatus: vi.fn().mockResolvedValue({
-    root: "/tmp/moltbot",
+    root: "/tmp/AGENT",
     installKind: "git",
     packageManager: "pnpm",
     git: {
-      root: "/tmp/moltbot",
+      root: "/tmp/AGENT",
       branch: "main",
       upstream: "origin/main",
       dirty: false,
@@ -232,8 +232,8 @@ vi.mock("../infra/update-check.js", () => ({
     deps: {
       manager: "pnpm",
       status: "ok",
-      lockfilePath: "/tmp/moltbot/pnpm-lock.yaml",
-      markerPath: "/tmp/moltbot/node_modules/.modules.yaml",
+      lockfilePath: "/tmp/AGENT/pnpm-lock.yaml",
+      markerPath: "/tmp/AGENT/node_modules/.modules.yaml",
     },
     registry: { latestVersion: "0.0.0" },
   }),
@@ -330,10 +330,10 @@ describe("statusCommand", () => {
     expect(
       logs.some(
         (l) =>
-          l.includes("moltbot status --all") ||
-          l.includes("moltbot --profile isolated status --all") ||
-          l.includes("moltbot status --all") ||
-          l.includes("moltbot --profile isolated status --all"),
+          l.includes("AGENT status --all") ||
+          l.includes("AGENT --profile isolated status --all") ||
+          l.includes("AGENT status --all") ||
+          l.includes("AGENT --profile isolated status --all"),
       ),
     ).toBe(true);
   });

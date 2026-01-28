@@ -213,8 +213,8 @@ Implementation: `ensurePiCompactionReserveTokens()` in `src/agents/pi-settings.t
 You can observe compaction and session state via:
 
 - `/status` (in any chat session)
-- `moltbot status` (CLI)
-- `moltbot sessions` / `sessions --json`
+- `AGENT status` (CLI)
+- `AGENT sessions` / `sessions --json`
 - Verbose mode: `🧹 Auto-compaction complete` + compaction count
 
 ---
@@ -265,7 +265,7 @@ flush logic lives on the Gateway side today.
 ## Troubleshooting checklist
 
 - Session key wrong? Start with [/concepts/session](/concepts/session) and confirm the `sessionKey` in `/status`.
-- Store vs transcript mismatch? Confirm the Gateway host and the store path from `moltbot status`.
+- Store vs transcript mismatch? Confirm the Gateway host and the store path from `AGENT status`.
 - Compaction spam? Check:
   - model context window (too small)
   - compaction settings (`reserveTokens` too high for the model window can cause earlier compaction)

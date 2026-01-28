@@ -88,13 +88,13 @@ struct GatewayDiscoveryModelTests {
             "tailnetDns": "  peters-mac-studio-1.ts.net  ",
             "sshPort": " 2222 ",
             "gatewayPort": " 18799 ",
-            "cliPath": " /opt/moltbot ",
+            "cliPath": " /opt/AGENT ",
         ])
         #expect(parsed.lanHost == "studio.local")
         #expect(parsed.tailnetDns == "peters-mac-studio-1.ts.net")
         #expect(parsed.sshPort == 2222)
         #expect(parsed.gatewayPort == 18799)
-        #expect(parsed.cliPath == "/opt/moltbot")
+        #expect(parsed.cliPath == "/opt/AGENT")
     }
 
     @Test func parsesGatewayTXTDefaults() {

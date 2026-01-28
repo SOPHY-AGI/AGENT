@@ -529,7 +529,7 @@ class NodeRuntime(context: Context) {
       caps = buildCapabilities(),
       commands = buildInvokeCommands(),
       permissions = emptyMap(),
-      client = buildClientInfo(clientId = "moltbot-android", clientMode = "node"),
+      client = buildClientInfo(clientId = "AGENT-android", clientMode = "node"),
       userAgent = buildUserAgent(),
     )
   }
@@ -541,7 +541,7 @@ class NodeRuntime(context: Context) {
       caps = emptyList(),
       commands = emptyList(),
       permissions = emptyMap(),
-      client = buildClientInfo(clientId = "moltbot-control-ui", clientMode = "ui"),
+      client = buildClientInfo(clientId = "AGENT-control-ui", clientMode = "ui"),
       userAgent = buildUserAgent(),
     )
   }
@@ -1115,7 +1115,7 @@ class NodeRuntime(context: Context) {
     val raw = if (nodeRaw.isNotBlank()) nodeRaw else operatorRaw
     if (raw.isBlank()) return null
     val base = raw.trimEnd('/')
-    return "${base}/__moltbot__/a2ui/?platform=android"
+    return "${base}/__AGENT__/a2ui/?platform=android"
   }
 
   private suspend fun ensureA2uiReady(a2uiUrl: String): Boolean {
@@ -1218,7 +1218,7 @@ private const val a2uiResetJS: String =
   """
   (() => {
     try {
-      if (!globalThis.clawdbotA2UI) return { ok: false, error: "missing moltbotA2UI" };
+      if (!globalThis.clawdbotA2UI) return { ok: false, error: "missing AGENTA2UI" };
       return globalThis.clawdbotA2UI.reset();
     } catch (e) {
       return { ok: false, error: String(e?.message ?? e) };
@@ -1230,7 +1230,7 @@ private fun a2uiApplyMessagesJS(messagesJson: String): String {
   return """
     (() => {
       try {
-        if (!globalThis.clawdbotA2UI) return { ok: false, error: "missing moltbotA2UI" };
+        if (!globalThis.clawdbotA2UI) return { ok: false, error: "missing AGENTA2UI" };
         const messages = $messagesJson;
         return globalThis.clawdbotA2UI.applyMessages(messages);
       } catch (e) {
