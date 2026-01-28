@@ -1,5 +1,5 @@
 # Repository Guidelines
-- Repo: https://github.com/AGENT/AGENT
+- Repo: https://github.com/SOPHY-AGI/AGENT
 - GitHub issues/comments/PR comments: use literal multiline strings or `-F - <<'EOF'` (or $'...') for real newlines; never embed "\\n".
 
 ## Project Structure & Module Organization

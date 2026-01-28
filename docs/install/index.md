@@ -88,7 +88,7 @@ AGENT onboard --install-daemon
 ### 3) From source (contributors/dev)
 
 ```bash
-git clone https://github.com/AGENT/AGENT.git
+git clone https://github.com/SOPHY-AGI/AGENT.git
 cd AGENT
 pnpm install
 pnpm ui:build # auto-installs UI deps on first run

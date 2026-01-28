@@ -25,7 +25,7 @@ description: Deploy Moltbot on Fly.io
 
 ```bash
 # Clone the repo
-git clone https://github.com/AGENT/AGENT.git
+git clone https://github.com/SOPHY-AGI/AGENT.git
 cd AGENT
 
 # Create a new Fly app (pick your own name)

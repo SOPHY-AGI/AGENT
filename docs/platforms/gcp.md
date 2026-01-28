@@ -188,7 +188,7 @@ docker compose version
 ## 6) Clone the Moltbot repository
 
 ```bash
-git clone https://github.com/AGENT/AGENT.git
+git clone https://github.com/SOPHY-AGI/AGENT.git
 cd AGENT
 ```
 

@@ -116,7 +116,7 @@ curl -fsSL https://molt.bot/install.sh | bash
 ### Option B: Hackable Install (For tinkering)
 
 ```bash
-git clone https://github.com/AGENT/AGENT.git
+git clone https://github.com/SOPHY-AGI/AGENT.git
 cd AGENT
 npm install
 npm run build
