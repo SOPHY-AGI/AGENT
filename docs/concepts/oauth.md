@@ -18,7 +18,7 @@ Moltbot also supports **provider plugins** that ship their own OAuth or API‑ke
 flows. Run them via:
 
 ```bash
-moltbot models auth login --provider <id>
+AGENT models auth login --provider <id>
 ```
 
 ## The token sink (why it exists)
@@ -49,19 +49,19 @@ All of the above also respect `$CLAWDBOT_STATE_DIR` (state dir override). Full r
 Run `claude setup-token` on any machine, then paste it into Moltbot:
 
 ```bash
-moltbot models auth setup-token --provider anthropic
+AGENT models auth setup-token --provider anthropic
 ```
 
 If you generated the token elsewhere, paste it manually:
 
 ```bash
-moltbot models auth paste-token --provider anthropic
+AGENT models auth paste-token --provider anthropic
 ```
 
 Verify:
 
 ```bash
-moltbot models status
+AGENT models status
 ```
 
 ## OAuth exchange (how login works)
@@ -76,7 +76,7 @@ Flow shape:
 2) paste the token into Moltbot
 3) store as a token auth profile (no refresh)
 
-The wizard path is `moltbot onboard` → auth choice `setup-token` (Anthropic).
+The wizard path is `AGENT onboard` → auth choice `setup-token` (Anthropic).
 
 ### OpenAI Codex (ChatGPT OAuth)
 
@@ -89,7 +89,7 @@ Flow shape (PKCE):
 5) exchange at `https://auth.openai.com/oauth/token`
 6) extract `accountId` from the access token and store `{ access, refresh, expires, accountId }`
 
-Wizard path is `moltbot onboard` → auth choice `openai-codex`.
+Wizard path is `AGENT onboard` → auth choice `openai-codex`.
 
 ## Refresh + expiry
 
@@ -110,8 +110,8 @@ Two patterns:
 If you want “personal” and “work” to never interact, use isolated agents (separate sessions + credentials + workspace):
 
 ```bash
-moltbot agents add work
-moltbot agents add personal
+AGENT agents add work
+AGENT agents add personal
 ```
 
 Then configure auth per-agent (wizard) and route chats to the right agent.
@@ -128,7 +128,7 @@ Example (session override):
 - `/model Opus@anthropic:work`
 
 How to see what profile IDs exist:
-- `moltbot channels list --json` (shows `auth[]`)
+- `AGENT channels list --json` (shows `auth[]`)
 
 Related docs:
 - [/concepts/model-failover](/concepts/model-failover) (rotation + cooldown rules)

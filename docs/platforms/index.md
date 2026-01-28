@@ -34,17 +34,17 @@ Native companion apps for Windows are also planned; the Gateway is recommended v
 - Install guide: [Getting Started](/start/getting-started)
 - Gateway runbook: [Gateway](/gateway)
 - Gateway configuration: [Configuration](/gateway/configuration)
-- Service status: `moltbot gateway status`
+- Service status: `AGENT gateway status`
 
 ## Gateway service install (CLI)
 
 Use one of these (all supported):
 
-- Wizard (recommended): `moltbot onboard --install-daemon`
-- Direct: `moltbot gateway install`
-- Configure flow: `moltbot configure` → select **Gateway service**
-- Repair/migrate: `moltbot doctor` (offers to install or fix the service)
+- Wizard (recommended): `AGENT onboard --install-daemon`
+- Direct: `AGENT gateway install`
+- Configure flow: `AGENT configure` → select **Gateway service**
+- Repair/migrate: `AGENT doctor` (offers to install or fix the service)
 
 The service target depends on OS:
 - macOS: LaunchAgent (`bot.molt.gateway` or `bot.molt.<profile>`; legacy `com.clawdbot.*`)
-- Linux/WSL2: systemd user service (`moltbot-gateway[-<profile>].service`)
+- Linux/WSL2: systemd user service (`AGENT-gateway[-<profile>].service`)

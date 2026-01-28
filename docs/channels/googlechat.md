@@ -13,7 +13,7 @@ Status: ready for DMs + spaces via Google Chat API webhooks (HTTP only).
    - Enable the API if it is not already enabled.
 2) Create a **Service Account**:
    - Press **Create Credentials** > **Service Account**.
-   - Name it whatever you want (e.g., `moltbot-chat`).
+   - Name it whatever you want (e.g., `AGENT-chat`).
    - Leave permissions blank (press **Continue**).
    - Leave principals with access blank (press **Done**).
 3) Create and download the **JSON Key**:
@@ -31,7 +31,7 @@ Status: ready for DMs + spaces via Google Chat API webhooks (HTTP only).
    - Under **Functionality**, check **Join spaces and group conversations**.
    - Under **Connection settings**, select **HTTP endpoint URL**.
    - Under **Triggers**, select **Use a common HTTP endpoint URL for all triggers** and set it to your gateway's public URL followed by `/googlechat`.
-     - *Tip: Run `moltbot status` to find your gateway's public URL.*
+     - *Tip: Run `AGENT status` to find your gateway's public URL.*
    - Under **Visibility**, check **Make this Chat app available to specific people and groups in &lt;Your Domain&gt;**.
    - Enter your email address (e.g. `user@example.com`) in the text box.
    - Click **Save** at the bottom.
@@ -129,7 +129,7 @@ Configure your tunnel's ingress rules to only route the webhook path:
    - DMs use session key `agent:<agentId>:googlechat:dm:<spaceId>`.
    - Spaces use session key `agent:<agentId>:googlechat:group:<spaceId>`.
 4. DM access is pairing by default. Unknown senders receive a pairing code; approve with:
-   - `moltbot pairing approve googlechat <code>`
+   - `AGENT pairing approve googlechat <code>`
 5. Group spaces require @-mention by default. Use `botUser` if mention detection needs the app’s user name.
 
 ## Targets
@@ -187,32 +187,32 @@ status code: 405, reason phrase: HTTP error response: HTTP/1.1 405 Method Not Al
 This means the webhook handler isn't registered. Common causes:
 1. **Channel not configured**: The `channels.googlechat` section is missing from your config. Verify with:
    ```bash
-   moltbot config get channels.googlechat
+   AGENT config get channels.googlechat
    ```
    If it returns "Config path not found", add the configuration (see [Config highlights](#config-highlights)).
 
 2. **Plugin not enabled**: Check plugin status:
    ```bash
-   moltbot plugins list | grep googlechat
+   AGENT plugins list | grep googlechat
    ```
    If it shows "disabled", add `plugins.entries.googlechat.enabled: true` to your config.
 
 3. **Gateway not restarted**: After adding config, restart the gateway:
    ```bash
-   moltbot gateway restart
+   AGENT gateway restart
    ```
 
 Verify the channel is running:
 ```bash
-moltbot channels status
+AGENT channels status
 # Should show: Google Chat default: enabled, configured, ...
 ```
 
 ### Other issues
-- Check `moltbot channels status --probe` for auth errors or missing audience config.
+- Check `AGENT channels status --probe` for auth errors or missing audience config.
 - If no messages arrive, confirm the Chat app's webhook URL + event subscriptions.
 - If mention gating blocks replies, set `botUser` to the app's user resource name and verify `requireMention`.
-- Use `moltbot logs --follow` while sending a test message to see if requests reach the gateway.
+- Use `AGENT logs --follow` while sending a test message to see if requests reach the gateway.
 
 Related docs:
 - [Gateway configuration](/gateway/configuration)

@@ -68,13 +68,13 @@ apt install -y nodejs
 curl -fsSL https://molt.bot/install.sh | bash
 
 # Verify
-moltbot --version
+AGENT --version
 ```
 
 ## 4) Run Onboarding
 
 ```bash
-moltbot onboard --install-daemon
+AGENT onboard --install-daemon
 ```
 
 The wizard will walk you through:
@@ -87,13 +87,13 @@ The wizard will walk you through:
 
 ```bash
 # Check status
-moltbot status
+AGENT status
 
 # Check service
-systemctl --user status moltbot-gateway.service
+systemctl --user status AGENT-gateway.service
 
 # View logs
-journalctl --user -u moltbot-gateway.service -f
+journalctl --user -u AGENT-gateway.service -f
 ```
 
 ## 6) Access the Dashboard
@@ -115,8 +115,8 @@ curl -fsSL https://tailscale.com/install.sh | sh
 tailscale up
 
 # Configure Gateway to use Tailscale Serve
-moltbot config set gateway.tailscale.mode serve
-moltbot gateway restart
+AGENT config set gateway.tailscale.mode serve
+AGENT gateway restart
 ```
 
 Open: `https://<magicdns>/`
@@ -127,8 +127,8 @@ Notes:
 
 **Option C: Tailnet bind (no Serve)**
 ```bash
-moltbot config set gateway.bind tailnet
-moltbot gateway restart
+AGENT config set gateway.bind tailnet
+AGENT gateway restart
 ```
 
 Open: `http://<tailscale-ip>:18789` (token required).
@@ -137,13 +137,13 @@ Open: `http://<tailscale-ip>:18789` (token required).
 
 ### Telegram
 ```bash
-moltbot pairing list telegram
-moltbot pairing approve telegram <CODE>
+AGENT pairing list telegram
+AGENT pairing approve telegram <CODE>
 ```
 
 ### WhatsApp
 ```bash
-moltbot channels login whatsapp
+AGENT channels login whatsapp
 # Scan QR code
 ```
 
@@ -185,7 +185,7 @@ All state lives in:
 
 These survive reboots. Back them up periodically:
 ```bash
-tar -czvf moltbot-backup.tar.gz ~/.clawdbot ~/clawd
+tar -czvf AGENT-backup.tar.gz ~/.clawdbot ~/clawd
 ```
 
 ---
@@ -213,9 +213,9 @@ For the full setup guide, see [Oracle Cloud](/platforms/oracle). For signup tips
 
 ### Gateway won't start
 ```bash
-moltbot gateway status
-moltbot doctor --non-interactive
-journalctl -u moltbot --no-pager -n 50
+AGENT gateway status
+AGENT doctor --non-interactive
+journalctl -u AGENT --no-pager -n 50
 ```
 
 ### Port already in use

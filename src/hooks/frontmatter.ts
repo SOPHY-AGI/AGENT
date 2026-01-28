@@ -69,11 +69,11 @@ export function resolveMoltbotMetadata(
   const raw = getFrontmatterValue(frontmatter, "metadata");
   if (!raw) return undefined;
   try {
-    const parsed = JSON5.parse(raw) as { moltbot?: unknown } & Partial<
+    const parsed = JSON5.parse(raw) as { AGENT?: unknown } & Partial<
       Record<typeof LEGACY_MANIFEST_KEY, unknown>
     >;
     if (!parsed || typeof parsed !== "object") return undefined;
-    const metadataRaw = parsed.moltbot ?? parsed[LEGACY_MANIFEST_KEY];
+    const metadataRaw = parsed.AGENT ?? parsed[LEGACY_MANIFEST_KEY];
     if (!metadataRaw || typeof metadataRaw !== "object") return undefined;
     const metadataObj = metadataRaw as Record<string, unknown>;
     const requiresRaw =

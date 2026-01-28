@@ -4,7 +4,7 @@ import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 
 import "./test-helpers/fast-core-tools.js";
-import { createMoltbotTools } from "./moltbot-tools.js";
+import { createMoltbotTools } from "./AGENT-tools.js";
 
 vi.mock("./tools/gateway.js", () => ({
   callGatewayTool: vi.fn(async (method: string) => {
@@ -21,7 +21,7 @@ describe("gateway tool", () => {
     const kill = vi.spyOn(process, "kill").mockImplementation(() => true);
     const previousStateDir = process.env.CLAWDBOT_STATE_DIR;
     const previousProfile = process.env.CLAWDBOT_PROFILE;
-    const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-test-"));
+    const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-test-"));
     process.env.CLAWDBOT_STATE_DIR = stateDir;
     process.env.CLAWDBOT_PROFILE = "isolated";
 
@@ -50,7 +50,7 @@ describe("gateway tool", () => {
       };
       expect(parsed.payload?.kind).toBe("restart");
       expect(parsed.payload?.doctorHint).toBe(
-        "Run: moltbot --profile isolated doctor --non-interactive",
+        "Run: AGENT --profile isolated doctor --non-interactive",
       );
 
       expect(kill).not.toHaveBeenCalled();

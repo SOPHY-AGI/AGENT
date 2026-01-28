@@ -380,7 +380,7 @@ enum AppleScriptPermission {
     static func isAuthorized() -> Bool {
         let script = """
         tell application "Terminal"
-            return "moltbot-ok"
+            return "AGENT-ok"
         end tell
         """
 

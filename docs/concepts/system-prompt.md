@@ -107,4 +107,4 @@ local Moltbot docs directory (either `docs/` in the repo workspace or the bundle
 package docs) and also notes the public mirror, source repo, community Discord, and
 ClawdHub (https://clawdhub.com) for skills discovery. The prompt instructs the model to consult local docs first
 for Moltbot behavior, commands, configuration, or architecture, and to run
-`moltbot status` itself when possible (asking the user only when it lacks access).
+`AGENT status` itself when possible (asking the user only when it lacks access).

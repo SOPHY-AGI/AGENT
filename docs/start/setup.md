@@ -10,7 +10,7 @@ read_when:
 Last updated: 2026-01-01
 
 ## TL;DR
-- **Tailoring lives outside the repo:** `~/clawd` (workspace) + `~/.clawdbot/moltbot.json` (config).
+- **Tailoring lives outside the repo:** `~/clawd` (workspace) + `~/.clawdbot/AGENT.json` (config).
 - **Stable workflow:** install the macOS app; let it run the bundled Gateway.
 - **Bleeding edge workflow:** run the Gateway yourself via `pnpm gateway:watch`, then let the macOS app attach in Local mode.
 
@@ -23,22 +23,22 @@ Last updated: 2026-01-01
 
 If you want “100% tailored to me” *and* easy updates, keep your customization in:
 
-- **Config:** `~/.clawdbot/moltbot.json` (JSON/JSON5-ish)
+- **Config:** `~/.clawdbot/AGENT.json` (JSON/JSON5-ish)
 - **Workspace:** `~/clawd` (skills, prompts, memories; make it a private git repo)
 
 Bootstrap once:
 
 ```bash
-moltbot setup
+AGENT setup
 ```
 
 From inside this repo, use the local CLI entry:
 
 ```bash
-moltbot setup
+AGENT setup
 ```
 
-If you don’t have a global install yet, run it via `pnpm moltbot setup`.
+If you don’t have a global install yet, run it via `pnpm AGENT setup`.
 
 ## Stable workflow (macOS app first)
 
@@ -48,17 +48,17 @@ If you don’t have a global install yet, run it via `pnpm moltbot setup`.
 4) Link surfaces (example: WhatsApp):
 
 ```bash
-moltbot channels login
+AGENT channels login
 ```
 
 5) Sanity check:
 
 ```bash
-moltbot health
+AGENT health
 ```
 
 If onboarding is not available in your build:
-- Run `moltbot setup`, then `moltbot channels login`, then start the Gateway manually (`moltbot gateway`).
+- Run `AGENT setup`, then `AGENT channels login`, then start the Gateway manually (`AGENT gateway`).
 
 ## Bleeding edge workflow (Gateway in a terminal)
 
@@ -94,7 +94,7 @@ The app will attach to the running gateway on the configured port.
 - Or via CLI:
 
 ```bash
-moltbot health
+AGENT health
 ```
 
 ### Common footguns
@@ -102,7 +102,7 @@ moltbot health
 - **Where state lives:**
   - Credentials: `~/.clawdbot/credentials/`
   - Sessions: `~/.clawdbot/agents/<agentId>/sessions/`
-  - Logs: `/tmp/moltbot/`
+  - Logs: `/tmp/AGENT/`
 
 ## Credential storage map
 
@@ -119,7 +119,7 @@ More detail: [Security](/gateway/security#credential-storage-map).
 
 ## Updating (without wrecking your setup)
 
-- Keep `~/clawd` and `~/.clawdbot/` as “your stuff”; don’t put personal prompts/config into the `moltbot` repo.
+- Keep `~/clawd` and `~/.clawdbot/` as “your stuff”; don’t put personal prompts/config into the `AGENT` repo.
 - Updating source: `git pull` + `pnpm install` (when lockfile changed) + keep using `pnpm gateway:watch`.
 
 ## Linux (systemd user service)

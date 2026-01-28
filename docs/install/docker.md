@@ -61,9 +61,9 @@ Running on a VPS? See [Hetzner (Docker VPS)](/platforms/hetzner).
 ### Manual flow (compose)
 
 ```bash
-docker build -t moltbot:local -f Dockerfile .
-docker compose run --rm moltbot-cli onboard
-docker compose up -d moltbot-gateway
+docker build -t AGENT:local -f Dockerfile .
+docker compose run --rm AGENT-cli onboard
+docker compose up -d AGENT-gateway
 ```
 
 ### Extra mounts (optional)
@@ -71,7 +71,7 @@ docker compose up -d moltbot-gateway
 If you want to mount additional host directories into the containers, set
 `CLAWDBOT_EXTRA_MOUNTS` before running `docker-setup.sh`. This accepts a
 comma-separated list of Docker bind mounts and applies them to both
-`moltbot-gateway` and `moltbot-cli` by generating `docker-compose.extra.yml`.
+`AGENT-gateway` and `AGENT-cli` by generating `docker-compose.extra.yml`.
 
 Example:
 
@@ -97,14 +97,14 @@ named volume here (not a bind path); for bind mounts, use
 Example:
 
 ```bash
-export CLAWDBOT_HOME_VOLUME="moltbot_home"
+export CLAWDBOT_HOME_VOLUME="AGENT_home"
 ./docker-setup.sh
 ```
 
 You can combine this with extra mounts:
 
 ```bash
-export CLAWDBOT_HOME_VOLUME="moltbot_home"
+export CLAWDBOT_HOME_VOLUME="AGENT_home"
 export CLAWDBOT_EXTRA_MOUNTS="$HOME/.codex:/home/node/.codex:ro,$HOME/github:/home/node/github:rw"
 ./docker-setup.sh
 ```
@@ -172,17 +172,17 @@ Use the CLI container to configure channels, then restart the gateway if needed.
 
 WhatsApp (QR):
 ```bash
-docker compose run --rm moltbot-cli channels login
+docker compose run --rm AGENT-cli channels login
 ```
 
 Telegram (bot token):
 ```bash
-docker compose run --rm moltbot-cli channels add --channel telegram --token "<token>"
+docker compose run --rm AGENT-cli channels add --channel telegram --token "<token>"
 ```
 
 Discord (bot token):
 ```bash
-docker compose run --rm moltbot-cli channels add --channel discord --token "<token>"
+docker compose run --rm AGENT-cli channels add --channel discord --token "<token>"
 ```
 
 Docs: [WhatsApp](/channels/whatsapp), [Telegram](/channels/telegram), [Discord](/channels/discord)
@@ -190,7 +190,7 @@ Docs: [WhatsApp](/channels/whatsapp), [Telegram](/channels/telegram), [Discord](
 ### Health check
 
 ```bash
-docker compose exec moltbot-gateway node dist/index.js health --token "$CLAWDBOT_GATEWAY_TOKEN"
+docker compose exec AGENT-gateway node dist/index.js health --token "$CLAWDBOT_GATEWAY_TOKEN"
 ```
 
 ### E2E smoke test (Docker)
@@ -242,7 +242,7 @@ precedence, and troubleshooting.
 
 ### Default behavior
 
-- Image: `moltbot-sandbox:bookworm-slim`
+- Image: `AGENT-sandbox:bookworm-slim`
 - One container per agent
 - Agent workspace access: `workspaceAccess: "none"` (default) uses `~/.clawdbot/sandboxes`
   - `"ro"` keeps the sandbox workspace at `/workspace` and mounts the agent workspace read-only at `/agent` (disables `write`/`edit`/`apply_patch`)
@@ -260,7 +260,7 @@ If you plan to install packages in `setupCommand`, note:
 - `user` must be root for `apt-get` (omit `user` or set `user: "0:0"`).
 Moltbot auto-recreates containers when `setupCommand` (or docker config) changes
 unless the container was **recently used** (within ~5 minutes). Hot containers
-log a warning with the exact `moltbot sandbox recreate ...` command.
+log a warning with the exact `AGENT sandbox recreate ...` command.
 
 ```json5
 {
@@ -272,7 +272,7 @@ log a warning with the exact `moltbot sandbox recreate ...` command.
         workspaceAccess: "none", // none | ro | rw
         workspaceRoot: "~/.clawdbot/sandboxes",
         docker: {
-          image: "moltbot-sandbox:bookworm-slim",
+          image: "AGENT-sandbox:bookworm-slim",
           workdir: "/workspace",
           readOnlyRoot: true,
           tmpfs: ["/tmp", "/var/tmp", "/run"],
@@ -290,7 +290,7 @@ log a warning with the exact `moltbot sandbox recreate ...` command.
             nproc: 256
           },
           seccompProfile: "/path/to/seccomp.json",
-          apparmorProfile: "moltbot-sandbox",
+          apparmorProfile: "AGENT-sandbox",
           dns: ["1.1.1.1", "8.8.8.8"],
           extraHosts: ["internal.service:10.0.0.5"]
         },
@@ -325,7 +325,7 @@ Multi-agent: override `agents.defaults.sandbox.{docker,browser,prune}.*` per age
 scripts/sandbox-setup.sh
 ```
 
-This builds `moltbot-sandbox:bookworm-slim` using `Dockerfile.sandbox`.
+This builds `AGENT-sandbox:bookworm-slim` using `Dockerfile.sandbox`.
 
 ### Sandbox common image (optional)
 If you want a sandbox image with common build tooling (Node, Go, Rust, etc.), build the common image:
@@ -334,11 +334,11 @@ If you want a sandbox image with common build tooling (Node, Go, Rust, etc.), bu
 scripts/sandbox-common-setup.sh
 ```
 
-This builds `moltbot-sandbox-common:bookworm-slim`. To use it:
+This builds `AGENT-sandbox-common:bookworm-slim`. To use it:
 
 ```json5
 {
-  agents: { defaults: { sandbox: { docker: { image: "moltbot-sandbox-common:bookworm-slim" } } } }
+  agents: { defaults: { sandbox: { docker: { image: "AGENT-sandbox-common:bookworm-slim" } } } }
 }
 ```
 
@@ -350,7 +350,7 @@ To run the browser tool inside the sandbox, build the browser image:
 scripts/sandbox-browser-setup.sh
 ```
 
-This builds `moltbot-sandbox-browser:bookworm-slim` using
+This builds `AGENT-sandbox-browser:bookworm-slim` using
 `Dockerfile.sandbox-browser`. The container runs Chromium with CDP enabled and
 an optional noVNC observer (headful via Xvfb).
 
@@ -379,7 +379,7 @@ Custom browser image:
 {
   agents: {
     defaults: {
-      sandbox: { browser: { image: "my-moltbot-browser" } }
+      sandbox: { browser: { image: "my-AGENT-browser" } }
     }
   }
 }
@@ -398,14 +398,14 @@ Prune rules (`agents.defaults.sandbox.prune`) apply to browser containers too.
 Build your own image and point config to it:
 
 ```bash
-docker build -t my-moltbot-sbx -f Dockerfile.sandbox .
+docker build -t my-AGENT-sbx -f Dockerfile.sandbox .
 ```
 
 ```json5
 {
   agents: {
     defaults: {
-      sandbox: { docker: { image: "my-moltbot-sbx" } }
+      sandbox: { docker: { image: "my-AGENT-sbx" } }
     }
   }
 }
@@ -437,7 +437,7 @@ Example:
 
 ## Troubleshooting
 
-- Image missing: build with [`scripts/sandbox-setup.sh`](https://github.com/moltbot/moltbot/blob/main/scripts/sandbox-setup.sh) or set `agents.defaults.sandbox.docker.image`.
+- Image missing: build with [`scripts/sandbox-setup.sh`](https://github.com/AGENT/AGENT/blob/main/scripts/sandbox-setup.sh) or set `agents.defaults.sandbox.docker.image`.
 - Container not running: it will auto-create per session on demand.
 - Permission errors in sandbox: set `docker.user` to a UID:GID that matches your
   mounted workspace ownership (or chown the workspace folder).

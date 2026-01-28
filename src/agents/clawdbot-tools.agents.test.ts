@@ -17,7 +17,7 @@ vi.mock("../config/config.js", async (importOriginal) => {
 });
 
 import "./test-helpers/fast-core-tools.js";
-import { createMoltbotTools } from "./moltbot-tools.js";
+import { createMoltbotTools } from "./AGENT-tools.js";
 
 describe("agents_list", () => {
   beforeEach(() => {

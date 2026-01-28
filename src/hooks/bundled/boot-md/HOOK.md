@@ -4,7 +4,7 @@ description: "Run BOOT.md on gateway startup"
 homepage: https://docs.molt.bot/hooks#boot-md
 metadata:
   {
-    "moltbot":
+    "AGENT":
       {
         "emoji": "🚀",
         "events": ["gateway:startup"],

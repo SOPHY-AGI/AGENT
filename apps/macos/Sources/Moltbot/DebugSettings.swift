@@ -203,7 +203,7 @@ struct DebugSettings: View {
                     Button("Copy sample URL") {
                         let msg = "Hello from deep link"
                         let encoded = msg.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? msg
-                        let url = "moltbot://agent?message=\(encoded)&key=\(key)"
+                        let url = "AGENT://agent?message=\(encoded)&key=\(key)"
                         NSPasteboard.general.clearContents()
                         NSPasteboard.general.setString(url, forType: .string)
                     }
@@ -211,7 +211,7 @@ struct DebugSettings: View {
                     Spacer(minLength: 0)
                 }
 
-                Text("Deep links (moltbot://…) are always enabled; the key controls unattended runs.")
+                Text("Deep links (AGENT://…) are always enabled; the key controls unattended runs.")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
 
@@ -385,7 +385,7 @@ struct DebugSettings: View {
                     Text("Moltbot project root")
                         .font(.caption.weight(.semibold))
                     HStack(spacing: 8) {
-                        TextField("Path to moltbot repo", text: self.$gatewayRootInput)
+                        TextField("Path to AGENT repo", text: self.$gatewayRootInput)
                             .textFieldStyle(.roundedBorder)
                             .font(.caption.monospaced())
                             .onSubmit { self.saveRelayRoot() }
@@ -393,7 +393,7 @@ struct DebugSettings: View {
                             .buttonStyle(.borderedProminent)
                         Button("Reset") {
                             let def = FileManager().homeDirectoryForCurrentUser
-                                .appendingPathComponent("Projects/moltbot").path
+                                .appendingPathComponent("Projects/AGENT").path
                             self.gatewayRootInput = def
                             self.saveRelayRoot()
                         }
@@ -423,7 +423,7 @@ struct DebugSettings: View {
                                     .font(.footnote)
                                     .foregroundStyle(.secondary)
                             } else {
-                                Text("Used by the CLI session loader; stored in ~/.clawdbot/moltbot.json.")
+                                Text("Used by the CLI session loader; stored in ~/.clawdbot/AGENT.json.")
                                     .font(.footnote)
                                     .foregroundStyle(.secondary)
                             }
@@ -832,7 +832,7 @@ struct DebugSettings: View {
     private func configURL() -> URL {
         FileManager().homeDirectoryForCurrentUser
             .appendingPathComponent(".clawdbot")
-            .appendingPathComponent("moltbot.json")
+            .appendingPathComponent("AGENT.json")
     }
 }
 
@@ -981,7 +981,7 @@ extension DebugSettings {
         view.modelsCount = 3
         view.modelsLoading = false
         view.modelsError = "Failed to load models"
-        view.gatewayRootInput = "/tmp/moltbot"
+        view.gatewayRootInput = "/tmp/AGENT"
         view.sessionStorePath = "/tmp/sessions.json"
         view.sessionStoreSaveError = "Save failed"
         view.debugSendInFlight = true

@@ -1,5 +1,5 @@
 {
-  "name": "@moltbot/twitch",
+  "name": "@AGENT/twitch",
   "version": "2026.1.26",
   "description": "Moltbot Twitch channel plugin",
   "type": "module",
@@ -10,9 +10,9 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
-    "moltbot": "workspace:*"
+    "AGENT": "workspace:*"
   },
-  "moltbot": {
+  "AGENT": {
     "extensions": [
       "./index.ts"
     ]

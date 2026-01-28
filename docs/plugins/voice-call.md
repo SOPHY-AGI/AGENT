@@ -20,7 +20,7 @@ Quick mental model:
 - Install plugin
 - Restart Gateway
 - Configure under `plugins.entries.voice-call.config`
-- Use `moltbot voicecall ...` or the `voice_call` tool
+- Use `AGENT voicecall ...` or the `voice_call` tool
 
 ## Where it runs (local vs remote)
 
@@ -33,7 +33,7 @@ If you use a remote Gateway, install/configure the plugin on the **machine runni
 ### Option A: install from npm (recommended)
 
 ```bash
-moltbot plugins install @moltbot/voice-call
+AGENT plugins install @AGENT/voice-call
 ```
 
 Restart the Gateway afterwards.
@@ -41,7 +41,7 @@ Restart the Gateway afterwards.
 ### Option B: install from a local folder (dev, no copying)
 
 ```bash
-moltbot plugins install ./extensions/voice-call
+AGENT plugins install ./extensions/voice-call
 cd ./extensions/voice-call && pnpm install
 ```
 
@@ -208,13 +208,13 @@ Auto-responses use the agent system. Tune with:
 ## CLI
 
 ```bash
-moltbot voicecall call --to "+15555550123" --message "Hello from Moltbot"
-moltbot voicecall continue --call-id <id> --message "Any questions?"
-moltbot voicecall speak --call-id <id> --message "One moment"
-moltbot voicecall end --call-id <id>
-moltbot voicecall status --call-id <id>
-moltbot voicecall tail
-moltbot voicecall expose --mode funnel
+AGENT voicecall call --to "+15555550123" --message "Hello from Moltbot"
+AGENT voicecall continue --call-id <id> --message "Any questions?"
+AGENT voicecall speak --call-id <id> --message "One moment"
+AGENT voicecall end --call-id <id>
+AGENT voicecall status --call-id <id>
+AGENT voicecall tail
+AGENT voicecall expose --mode funnel
 ```
 
 ## Agent tool

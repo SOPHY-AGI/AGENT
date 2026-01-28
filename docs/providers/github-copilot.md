@@ -2,7 +2,7 @@
 summary: "Sign in to GitHub Copilot from Moltbot using the device flow"
 read_when:
   - You want to use GitHub Copilot as a model provider
-  - You need the `moltbot models auth login-github-copilot` flow
+  - You need the `AGENT models auth login-github-copilot` flow
 ---
 # Github Copilot
 
@@ -34,7 +34,7 @@ profile.
 ## CLI setup
 
 ```bash
-moltbot models auth login-github-copilot
+AGENT models auth login-github-copilot
 ```
 
 You'll be prompted to visit a URL and enter a one-time code. Keep the terminal
@@ -43,14 +43,14 @@ open until it completes.
 ### Optional flags
 
 ```bash
-moltbot models auth login-github-copilot --profile-id github-copilot:work
-moltbot models auth login-github-copilot --yes
+AGENT models auth login-github-copilot --profile-id github-copilot:work
+AGENT models auth login-github-copilot --yes
 ```
 
 ## Set a default model
 
 ```bash
-moltbot models set github-copilot/gpt-4o
+AGENT models set github-copilot/gpt-4o
 ```
 
 ### Config snippet

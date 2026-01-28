@@ -98,7 +98,7 @@ Security notes:
 - See [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated) for how binds interact with tool policy and elevated exec.
 
 ## Images + setup
-Default image: `moltbot-sandbox:bookworm-slim`
+Default image: `AGENT-sandbox:bookworm-slim`
 
 Build it once:
 ```bash
@@ -146,7 +146,7 @@ globally or per-agent, sandboxing doesn’t bring it back.
 `exec`, use tool policy deny (see [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated)).
 
 Debugging:
-- Use `moltbot sandbox explain` to inspect effective sandbox mode, tool policy, and fix-it config keys.
+- Use `AGENT sandbox explain` to inspect effective sandbox mode, tool policy, and fix-it config keys.
 - See [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated) for the “why is this blocked?” mental model.
 Keep it locked down.
 

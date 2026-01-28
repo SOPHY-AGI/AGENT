@@ -74,9 +74,9 @@ export async function setupInternalHooks(
       `Enabled ${selected.length} hook${selected.length > 1 ? "s" : ""}: ${selected.join(", ")}`,
       "",
       "You can manage hooks later with:",
-      `  ${formatCliCommand("moltbot hooks list")}`,
-      `  ${formatCliCommand("moltbot hooks enable <name>")}`,
-      `  ${formatCliCommand("moltbot hooks disable <name>")}`,
+      `  ${formatCliCommand("AGENT hooks list")}`,
+      `  ${formatCliCommand("AGENT hooks enable <name>")}`,
+      `  ${formatCliCommand("AGENT hooks disable <name>")}`,
     ].join("\n"),
     "Hooks Configured",
   );

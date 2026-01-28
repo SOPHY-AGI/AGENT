@@ -1,19 +1,19 @@
 ---
-summary: "Agent tool surface for Moltbot (browser, canvas, nodes, message, cron) replacing legacy `moltbot-*` skills"
+summary: "Agent tool surface for Moltbot (browser, canvas, nodes, message, cron) replacing legacy `AGENT-*` skills"
 read_when:
   - Adding or modifying agent tools
-  - Retiring or changing `moltbot-*` skills
+  - Retiring or changing `AGENT-*` skills
 ---
 
 # Tools (Moltbot)
 
 Moltbot exposes **first-class agent tools** for browser, canvas, nodes, and cron.
-These replace the old `moltbot-*` skills: the tools are typed, no shelling,
+These replace the old `AGENT-*` skills: the tools are typed, no shelling,
 and the agent should rely on them directly.
 
 ## Disabling tools
 
-You can globally allow/deny tools via `tools.allow` / `tools.deny` in `moltbot.json`
+You can globally allow/deny tools via `tools.allow` / `tools.deny` in `AGENT.json`
 (deny wins). This prevents disallowed tools from being sent to model providers.
 
 ```json5
@@ -141,7 +141,7 @@ Available groups:
 - `group:automation`: `cron`, `gateway`
 - `group:messaging`: `message`
 - `group:nodes`: `nodes`
-- `group:moltbot`: all built-in Moltbot tools (excludes provider plugins)
+- `group:AGENT`: all built-in Moltbot tools (excludes provider plugins)
 
 Example (allow only file tools + browser):
 ```json5
@@ -190,7 +190,7 @@ Notes:
 - If `process` is disallowed, `exec` runs synchronously and ignores `yieldMs`/`background`.
 - `elevated` is gated by `tools.elevated` plus any `agents.list[].tools.elevated` override (both must allow) and is an alias for `host=gateway` + `security=full`.
 - `elevated` only changes behavior when the agent is sandboxed (otherwise it’s a no-op).
-- `host=node` can target a macOS companion app or a headless node host (`moltbot node run`).
+- `host=node` can target a macOS companion app or a headless node host (`AGENT node run`).
 - gateway/node approvals and allowlists: [Exec approvals](/tools/exec-approvals).
 
 ### `process`
@@ -212,7 +212,7 @@ Core parameters:
 - `count` (1–10; default from `tools.web.search.maxResults`)
 
 Notes:
-- Requires a Brave API key (recommended: `moltbot configure --section web`, or set `BRAVE_API_KEY`).
+- Requires a Brave API key (recommended: `AGENT configure --section web`, or set `BRAVE_API_KEY`).
 - Enable via `tools.web.search.enabled`.
 - Responses are cached (default 15 min).
 - See [Web tools](/tools/web) for setup.
@@ -279,7 +279,7 @@ Notes:
 - Uses gateway `node.invoke` under the hood.
 - If no `node` is provided, the tool picks a default (single connected node or local mac node).
 - A2UI is v0.8 only (no `createSurface`); the CLI rejects v0.9 JSONL with line errors.
-- Quick smoke: `moltbot nodes canvas a2ui push --node <id> --text "Hello from A2UI"`.
+- Quick smoke: `AGENT nodes canvas a2ui push --node <id> --text "Hello from A2UI"`.
 
 ### `nodes`
 Discover and target paired nodes; send notifications; capture camera/screen.
@@ -366,7 +366,7 @@ Notes:
 Restart or apply updates to the running Gateway process (in-place).
 
 Core actions:
-- `restart` (authorizes + sends `SIGUSR1` for in-process restart; `moltbot gateway` restart in-place)
+- `restart` (authorizes + sends `SIGUSR1` for in-process restart; `AGENT gateway` restart in-place)
 - `config.get` / `config.schema`
 - `config.apply` (validate + write config + restart + wake)
 - `config.patch` (merge partial update + restart + wake)

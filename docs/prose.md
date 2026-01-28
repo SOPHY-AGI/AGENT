@@ -22,12 +22,12 @@ Official site: https://www.prose.md
 Bundled plugins are disabled by default. Enable OpenProse:
 
 ```bash
-moltbot plugins enable open-prose
+AGENT plugins enable open-prose
 ```
 
 Restart the Gateway after enabling the plugin.
 
-Dev/local checkout: `moltbot plugins install ./extensions/open-prose`
+Dev/local checkout: `AGENT plugins install ./extensions/open-prose`
 
 Related docs: [Plugins](/plugin), [Plugin manifest](/plugins/manifest), [Skills](/tools/skills).
 

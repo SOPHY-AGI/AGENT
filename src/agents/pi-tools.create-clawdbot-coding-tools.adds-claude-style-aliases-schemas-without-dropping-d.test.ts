@@ -13,7 +13,7 @@ describe("createMoltbotCodingTools", () => {
     const readTool = defaultTools.find((tool) => tool.name === "read");
     expect(readTool).toBeDefined();
 
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-read-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-read-"));
     try {
       const imagePath = path.join(tmpDir, "sample.png");
       const png = await sharp({
@@ -50,10 +50,10 @@ describe("createMoltbotCodingTools", () => {
     const readTool = tools.find((tool) => tool.name === "read");
     expect(readTool).toBeDefined();
 
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-read-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-read-"));
     try {
       const textPath = path.join(tmpDir, "sample.txt");
-      const contents = "Hello from moltbot read tool.";
+      const contents = "Hello from AGENT read tool.";
       await fs.writeFile(textPath, contents, "utf8");
 
       const result = await readTool?.execute("tool-2", {
@@ -75,14 +75,14 @@ describe("createMoltbotCodingTools", () => {
     const sandbox = {
       enabled: true,
       sessionKey: "sandbox:test",
-      workspaceDir: path.join(os.tmpdir(), "moltbot-sandbox"),
-      agentWorkspaceDir: path.join(os.tmpdir(), "moltbot-workspace"),
+      workspaceDir: path.join(os.tmpdir(), "AGENT-sandbox"),
+      agentWorkspaceDir: path.join(os.tmpdir(), "AGENT-workspace"),
       workspaceAccess: "none",
-      containerName: "moltbot-sbx-test",
+      containerName: "AGENT-sbx-test",
       containerWorkdir: "/workspace",
       docker: {
-        image: "moltbot-sandbox:bookworm-slim",
-        containerPrefix: "moltbot-sbx-",
+        image: "AGENT-sandbox:bookworm-slim",
+        containerPrefix: "AGENT-sbx-",
         workdir: "/workspace",
         readOnlyRoot: true,
         tmpfs: [],
@@ -106,14 +106,14 @@ describe("createMoltbotCodingTools", () => {
     const sandbox = {
       enabled: true,
       sessionKey: "sandbox:test",
-      workspaceDir: path.join(os.tmpdir(), "moltbot-sandbox"),
-      agentWorkspaceDir: path.join(os.tmpdir(), "moltbot-workspace"),
+      workspaceDir: path.join(os.tmpdir(), "AGENT-sandbox"),
+      agentWorkspaceDir: path.join(os.tmpdir(), "AGENT-workspace"),
       workspaceAccess: "ro",
-      containerName: "moltbot-sbx-test",
+      containerName: "AGENT-sbx-test",
       containerWorkdir: "/workspace",
       docker: {
-        image: "moltbot-sandbox:bookworm-slim",
-        containerPrefix: "moltbot-sbx-",
+        image: "AGENT-sandbox:bookworm-slim",
+        containerPrefix: "AGENT-sbx-",
         workdir: "/workspace",
         readOnlyRoot: true,
         tmpfs: [],

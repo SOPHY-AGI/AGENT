@@ -50,7 +50,7 @@ type ExternalCatalogEntry = {
   name?: string;
   version?: string;
   description?: string;
-  moltbot?: MoltbotPackageManifest;
+  AGENT?: MoltbotPackageManifest;
   [LEGACY_MANIFEST_KEY]?: MoltbotPackageManifest;
 };
 
@@ -206,7 +206,7 @@ function buildCatalogEntry(candidate: {
 }
 
 function buildExternalCatalogEntry(entry: ExternalCatalogEntry): ChannelPluginCatalogEntry | null {
-  const manifest = entry.moltbot ?? entry[LEGACY_MANIFEST_KEY];
+  const manifest = entry.AGENT ?? entry[LEGACY_MANIFEST_KEY];
   return buildCatalogEntry({
     packageName: entry.name,
     packageMoltbot: manifest,

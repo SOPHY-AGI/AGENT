@@ -20,13 +20,13 @@ Matrix ships as a plugin and is not bundled with the core install.
 Install via CLI (npm registry):
 
 ```bash
-moltbot plugins install @moltbot/matrix
+AGENT plugins install @AGENT/matrix
 ```
 
 Local checkout (when running from a git repo):
 
 ```bash
-moltbot plugins install ./extensions/matrix
+AGENT plugins install ./extensions/matrix
 ```
 
 If you choose Matrix during configure/onboarding and a git checkout is detected,
@@ -37,8 +37,8 @@ Details: [Plugins](/plugin)
 ## Setup
 
 1) Install the Matrix plugin:
-   - From npm: `moltbot plugins install @moltbot/matrix`
-   - From a local checkout: `moltbot plugins install ./extensions/matrix`
+   - From npm: `AGENT plugins install @AGENT/matrix`
+   - From a local checkout: `AGENT plugins install ./extensions/matrix`
 2) Create a Matrix account on a homeserver:
    - Browse hosting options at [https://matrix.org/ecosystem/hosting/](https://matrix.org/ecosystem/hosting/)
    - Or host it yourself.
@@ -142,8 +142,8 @@ Once verified, the bot can decrypt messages in encrypted rooms.
 
 - Default: `channels.matrix.dm.policy = "pairing"`. Unknown senders get a pairing code.
 - Approve via:
-  - `moltbot pairing list matrix`
-  - `moltbot pairing approve matrix <CODE>`
+  - `AGENT pairing list matrix`
+  - `AGENT pairing approve matrix <CODE>`
 - Public DMs: `channels.matrix.dm.policy="open"` plus `channels.matrix.dm.allowFrom=["*"]`.
 - `channels.matrix.dm.allowFrom` accepts user IDs or display names. The wizard resolves display names to user IDs when directory search is available.
 

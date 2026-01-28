@@ -7,7 +7,7 @@ import { createMoltbotCodingTools } from "./pi-tools.js";
 
 describe("createMoltbotCodingTools", () => {
   it("uses workspaceDir for Read tool path resolution", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-ws-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-ws-"));
     try {
       // Create a test file in the "workspace"
       const testFile = "test-workspace-file.txt";
@@ -34,7 +34,7 @@ describe("createMoltbotCodingTools", () => {
     }
   });
   it("uses workspaceDir for Write tool path resolution", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-ws-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-ws-"));
     try {
       const testFile = "test-write-file.txt";
       const testContent = "written via workspace path";
@@ -58,7 +58,7 @@ describe("createMoltbotCodingTools", () => {
     }
   });
   it("uses workspaceDir for Edit tool path resolution", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-ws-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-ws-"));
     try {
       const testFile = "test-edit-file.txt";
       const originalContent = "hello world";
@@ -85,7 +85,7 @@ describe("createMoltbotCodingTools", () => {
     }
   });
   it("accepts Claude Code parameter aliases for read/write/edit", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-alias-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-alias-"));
     try {
       const tools = createMoltbotCodingTools({ workspaceDir: tmpDir });
       const readTool = tools.find((tool) => tool.name === "read");

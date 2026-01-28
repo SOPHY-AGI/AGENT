@@ -9,7 +9,7 @@ If you believe you've found a security issue in Moltbot, please report it privat
 
 ## Operational Guidance
 
-For threat model + hardening guidance (including `moltbot security audit --deep` and `--fix`), see:
+For threat model + hardening guidance (including `AGENT security audit --deep` and `--fix`), see:
 
 - `https://docs.molt.bot/gateway/security`
 
@@ -44,8 +44,8 @@ Example secure Docker run:
 
 ```bash
 docker run --read-only --cap-drop=ALL \
-  -v moltbot-data:/app/data \
-  moltbot/moltbot:latest
+  -v AGENT-data:/app/data \
+  AGENT/AGENT:latest
 ```
 
 ## Security Scanning

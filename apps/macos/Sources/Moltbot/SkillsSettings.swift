@@ -231,13 +231,13 @@ private struct SkillRow: View {
 
     private var sourceLabel: String {
         switch self.skill.source {
-        case "moltbot-bundled":
+        case "AGENT-bundled":
             "Bundled"
-        case "moltbot-managed":
+        case "AGENT-managed":
             "Managed"
-        case "moltbot-workspace":
+        case "AGENT-workspace":
             "Workspace"
-        case "moltbot-extra":
+        case "AGENT-extra":
             "Extra"
         default:
             self.skill.source
@@ -578,7 +578,7 @@ extension SkillsSettings {
         let skill = SkillStatus(
             name: "Test Skill",
             description: "Test description",
-            source: "moltbot-bundled",
+            source: "AGENT-bundled",
             filePath: "/tmp/skills/test",
             baseDir: "/tmp/skills",
             skillKey: "test",

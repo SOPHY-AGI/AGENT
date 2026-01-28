@@ -85,8 +85,8 @@ Prefer `CLAWDBOT_GATEWAY_PASSWORD` over committing a password to disk.
 ## CLI examples
 
 ```bash
-moltbot gateway --tailscale serve
-moltbot gateway --tailscale funnel --auth password
+AGENT gateway --tailscale serve
+AGENT gateway --tailscale funnel --auth password
 ```
 
 ## Notes

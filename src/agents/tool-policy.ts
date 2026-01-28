@@ -35,7 +35,7 @@ export const TOOL_GROUPS: Record<string, string[]> = {
   // Nodes + device tools
   "group:nodes": ["nodes"],
   // All Moltbot native tools (excludes provider plugins).
-  "group:moltbot": [
+  "group:AGENT": [
     "browser",
     "canvas",
     "nodes",

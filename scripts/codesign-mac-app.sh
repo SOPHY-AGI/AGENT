@@ -6,9 +6,9 @@ IDENTITY="${SIGN_IDENTITY:-}"
 TIMESTAMP_MODE="${CODESIGN_TIMESTAMP:-auto}"
 DISABLE_LIBRARY_VALIDATION="${DISABLE_LIBRARY_VALIDATION:-0}"
 SKIP_TEAM_ID_CHECK="${SKIP_TEAM_ID_CHECK:-0}"
-ENT_TMP_BASE=$(mktemp -t moltbot-entitlements-base.XXXXXX)
-ENT_TMP_APP_BASE=$(mktemp -t moltbot-entitlements-app-base.XXXXXX)
-ENT_TMP_RUNTIME=$(mktemp -t moltbot-entitlements-runtime.XXXXXX)
+ENT_TMP_BASE=$(mktemp -t AGENT-entitlements-base.XXXXXX)
+ENT_TMP_APP_BASE=$(mktemp -t AGENT-entitlements-app-base.XXXXXX)
+ENT_TMP_RUNTIME=$(mktemp -t AGENT-entitlements-runtime.XXXXXX)
 
 if [[ "${APP_BUNDLE}" == "--help" || "${APP_BUNDLE}" == "-h" ]]; then
   cat <<'HELP'

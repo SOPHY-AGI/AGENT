@@ -46,7 +46,7 @@ describe("state + config path candidates", () => {
   it("orders default config candidates as new then legacy", () => {
     const home = "/home/test";
     const candidates = resolveDefaultConfigCandidates({} as NodeJS.ProcessEnv, () => home);
-    expect(candidates[0]).toBe(path.join(home, ".moltbot", "moltbot.json"));
-    expect(candidates[1]).toBe(path.join(home, ".clawdbot", "moltbot.json"));
+    expect(candidates[0]).toBe(path.join(home, ".AGENT", "AGENT.json"));
+    expect(candidates[1]).toBe(path.join(home, ".clawdbot", "AGENT.json"));
   });
 });

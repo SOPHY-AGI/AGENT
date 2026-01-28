@@ -35,7 +35,7 @@ export type ParsedHookFrontmatter = Record<string, string>;
 export type Hook = {
   name: string;
   description: string;
-  source: "moltbot-bundled" | "moltbot-managed" | "moltbot-workspace" | "moltbot-plugin";
+  source: "AGENT-bundled" | "AGENT-managed" | "AGENT-workspace" | "AGENT-plugin";
   pluginId?: string;
   filePath: string; // Path to HOOK.md
   baseDir: string; // Directory containing hook

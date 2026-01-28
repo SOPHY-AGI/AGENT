@@ -22,7 +22,7 @@ vi.mock("../infra/update-runner.js", () => ({
   runGatewayUpdate: vi.fn(),
 }));
 
-vi.mock("../infra/moltbot-root.js", () => ({
+vi.mock("../infra/AGENT-root.js", () => ({
   resolveMoltbotPackageRoot: vi.fn(),
 }));
 
@@ -88,7 +88,7 @@ describe("update-cli", () => {
 
   beforeEach(async () => {
     vi.clearAllMocks();
-    const { resolveMoltbotPackageRoot } = await import("../infra/moltbot-root.js");
+    const { resolveMoltbotPackageRoot } = await import("../infra/AGENT-root.js");
     const { readConfigFileSnapshot } = await import("../config/config.js");
     const { checkUpdateStatus, fetchNpmTagVersion, resolveNpmChannelTag } =
       await import("../infra/update-check.js");
@@ -218,15 +218,15 @@ describe("update-cli", () => {
   });
 
   it("defaults to stable channel for package installs when unset", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-update-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-update-"));
     try {
       await fs.writeFile(
         path.join(tempDir, "package.json"),
-        JSON.stringify({ name: "moltbot", version: "1.0.0" }),
+        JSON.stringify({ name: "AGENT", version: "1.0.0" }),
         "utf-8",
       );
 
-      const { resolveMoltbotPackageRoot } = await import("../infra/moltbot-root.js");
+      const { resolveMoltbotPackageRoot } = await import("../infra/AGENT-root.js");
       const { runGatewayUpdate } = await import("../infra/update-runner.js");
       const { checkUpdateStatus } = await import("../infra/update-check.js");
       const { updateCommand } = await import("./update-cli.js");
@@ -283,15 +283,15 @@ describe("update-cli", () => {
   });
 
   it("falls back to latest when beta tag is older than release", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-update-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-update-"));
     try {
       await fs.writeFile(
         path.join(tempDir, "package.json"),
-        JSON.stringify({ name: "moltbot", version: "1.0.0" }),
+        JSON.stringify({ name: "AGENT", version: "1.0.0" }),
         "utf-8",
       );
 
-      const { resolveMoltbotPackageRoot } = await import("../infra/moltbot-root.js");
+      const { resolveMoltbotPackageRoot } = await import("../infra/AGENT-root.js");
       const { readConfigFileSnapshot } = await import("../config/config.js");
       const { resolveNpmChannelTag } = await import("../infra/update-check.js");
       const { runGatewayUpdate } = await import("../infra/update-runner.js");
@@ -336,15 +336,15 @@ describe("update-cli", () => {
   });
 
   it("honors --tag override", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-update-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-update-"));
     try {
       await fs.writeFile(
         path.join(tempDir, "package.json"),
-        JSON.stringify({ name: "moltbot", version: "1.0.0" }),
+        JSON.stringify({ name: "AGENT", version: "1.0.0" }),
         "utf-8",
       );
 
-      const { resolveMoltbotPackageRoot } = await import("../infra/moltbot-root.js");
+      const { resolveMoltbotPackageRoot } = await import("../infra/AGENT-root.js");
       const { runGatewayUpdate } = await import("../infra/update-runner.js");
       const { updateCommand } = await import("./update-cli.js");
 
@@ -514,16 +514,16 @@ describe("update-cli", () => {
   });
 
   it("requires confirmation on downgrade when non-interactive", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-update-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-update-"));
     try {
       setTty(false);
       await fs.writeFile(
         path.join(tempDir, "package.json"),
-        JSON.stringify({ name: "moltbot", version: "2.0.0" }),
+        JSON.stringify({ name: "AGENT", version: "2.0.0" }),
         "utf-8",
       );
 
-      const { resolveMoltbotPackageRoot } = await import("../infra/moltbot-root.js");
+      const { resolveMoltbotPackageRoot } = await import("../infra/AGENT-root.js");
       const { resolveNpmChannelTag } = await import("../infra/update-check.js");
       const { runGatewayUpdate } = await import("../infra/update-runner.js");
       const { defaultRuntime } = await import("../runtime.js");
@@ -567,16 +567,16 @@ describe("update-cli", () => {
   });
 
   it("allows downgrade with --yes in non-interactive mode", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-update-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-update-"));
     try {
       setTty(false);
       await fs.writeFile(
         path.join(tempDir, "package.json"),
-        JSON.stringify({ name: "moltbot", version: "2.0.0" }),
+        JSON.stringify({ name: "AGENT", version: "2.0.0" }),
         "utf-8",
       );
 
-      const { resolveMoltbotPackageRoot } = await import("../infra/moltbot-root.js");
+      const { resolveMoltbotPackageRoot } = await import("../infra/AGENT-root.js");
       const { resolveNpmChannelTag } = await import("../infra/update-check.js");
       const { runGatewayUpdate } = await import("../infra/update-runner.js");
       const { defaultRuntime } = await import("../runtime.js");
@@ -636,7 +636,7 @@ describe("update-cli", () => {
   });
 
   it("updateWizardCommand offers dev checkout and forwards selections", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-update-wizard-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-update-wizard-"));
     const previousGitDir = process.env.CLAWDBOT_GIT_DIR;
     try {
       setTty(true);

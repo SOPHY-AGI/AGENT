@@ -29,7 +29,7 @@
 	</dict>
 	<key>NSBonjourServices</key>
 	<array>
-		<string>_moltbot-gw._tcp</string>
+		<string>_AGENT-gw._tcp</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Moltbot can capture photos or short video clips when requested via the gateway.</string>

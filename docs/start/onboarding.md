@@ -64,7 +64,7 @@ Onboarding requests TCC permissions needed for:
 
 ## 5) CLI (optional)
 
-The app can install the global `moltbot` CLI via npm/pnpm so terminal
+The app can install the global `AGENT` CLI via npm/pnpm so terminal
 workflows and launchd tasks work out of the box.
 
 ## 6) Onboarding chat (dedicated session)
@@ -87,7 +87,7 @@ On the first agent run, Moltbot bootstraps a workspace (default `~/clawd`):
 Gmail Pub/Sub setup is currently a manual step. Use:
 
 ```bash
-moltbot webhooks gmail setup --account you@gmail.com
+AGENT webhooks gmail setup --account you@gmail.com
 ```
 
 See [/automation/gmail-pubsub](/automation/gmail-pubsub) for details.

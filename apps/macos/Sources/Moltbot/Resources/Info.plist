@@ -27,7 +27,7 @@
             <string>bot.molt.mac.deeplink</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>moltbot</string>
+                <string>AGENT</string>
             </array>
         </dict>
     </array>

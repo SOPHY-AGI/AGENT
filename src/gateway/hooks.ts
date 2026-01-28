@@ -54,7 +54,7 @@ export function extractHookToken(req: IncomingMessage, url: URL): HookTokenResul
     if (token) return { token, fromQuery: false };
   }
   const headerToken =
-    typeof req.headers["x-moltbot-token"] === "string" ? req.headers["x-moltbot-token"].trim() : "";
+    typeof req.headers["x-AGENT-token"] === "string" ? req.headers["x-AGENT-token"].trim() : "";
   if (headerToken) return { token: headerToken, fromQuery: false };
   const queryToken = url.searchParams.get("token");
   if (queryToken) return { token: queryToken.trim(), fromQuery: true };

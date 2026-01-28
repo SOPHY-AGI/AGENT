@@ -163,8 +163,8 @@ Recommendation: **deep integration in Moltbot**, but keep a separable core libra
   - the session model + heartbeats
   - logging + troubleshooting patterns
 - You want the agent itself to call the tools:
-  - `moltbot memory recall "…" --k 25 --since 30d`
-  - `moltbot memory reflect --since 7d`
+  - `AGENT memory recall "…" --k 25 --since 30d`
+  - `AGENT memory reflect --since 7d`
 
 ### Why still split a library?
 - keep memory logic testable without gateway/runtime

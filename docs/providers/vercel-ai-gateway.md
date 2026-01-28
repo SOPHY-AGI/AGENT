@@ -19,7 +19,7 @@ The [Vercel AI Gateway](https://vercel.com/ai-gateway) provides a unified API to
 1) Set the API key (recommended: store it for the Gateway):
 
 ```bash
-moltbot onboard --auth-choice ai-gateway-api-key
+AGENT onboard --auth-choice ai-gateway-api-key
 ```
 
 2) Set a default model:
@@ -37,7 +37,7 @@ moltbot onboard --auth-choice ai-gateway-api-key
 ## Non-interactive example
 
 ```bash
-moltbot onboard --non-interactive \
+AGENT onboard --non-interactive \
   --mode local \
   --auth-choice ai-gateway-api-key \
   --ai-gateway-api-key "$AI_GATEWAY_API_KEY"

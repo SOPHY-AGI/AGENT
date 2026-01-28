@@ -65,7 +65,7 @@ describe("Nix integration (U3, U5, U9)", () => {
       );
     });
 
-    it("CONFIG_PATH defaults to ~/.clawdbot/moltbot.json when env not set", async () => {
+    it("CONFIG_PATH defaults to ~/.clawdbot/AGENT.json when env not set", async () => {
       await withEnvOverride(
         {
           MOLTBOT_CONFIG_PATH: undefined,
@@ -75,17 +75,17 @@ describe("Nix integration (U3, U5, U9)", () => {
         },
         async () => {
           const { CONFIG_PATH } = await import("./config.js");
-          expect(CONFIG_PATH).toMatch(/\.clawdbot[\\/]moltbot\.json$/);
+          expect(CONFIG_PATH).toMatch(/\.clawdbot[\\/]AGENT\.json$/);
         },
       );
     });
 
     it("CONFIG_PATH respects CLAWDBOT_CONFIG_PATH override", async () => {
       await withEnvOverride(
-        { MOLTBOT_CONFIG_PATH: undefined, CLAWDBOT_CONFIG_PATH: "/nix/store/abc/moltbot.json" },
+        { MOLTBOT_CONFIG_PATH: undefined, CLAWDBOT_CONFIG_PATH: "/nix/store/abc/AGENT.json" },
         async () => {
           const { CONFIG_PATH } = await import("./config.js");
-          expect(CONFIG_PATH).toBe(path.resolve("/nix/store/abc/moltbot.json"));
+          expect(CONFIG_PATH).toBe(path.resolve("/nix/store/abc/AGENT.json"));
         },
       );
     });
@@ -93,12 +93,12 @@ describe("Nix integration (U3, U5, U9)", () => {
     it("CONFIG_PATH prefers MOLTBOT_CONFIG_PATH over legacy override", async () => {
       await withEnvOverride(
         {
-          MOLTBOT_CONFIG_PATH: "/nix/store/new/moltbot.json",
-          CLAWDBOT_CONFIG_PATH: "/nix/store/legacy/moltbot.json",
+          MOLTBOT_CONFIG_PATH: "/nix/store/new/AGENT.json",
+          CLAWDBOT_CONFIG_PATH: "/nix/store/legacy/AGENT.json",
         },
         async () => {
           const { CONFIG_PATH } = await import("./config.js");
-          expect(CONFIG_PATH).toBe(path.resolve("/nix/store/new/moltbot.json"));
+          expect(CONFIG_PATH).toBe(path.resolve("/nix/store/new/AGENT.json"));
         },
       );
     });
@@ -125,7 +125,7 @@ describe("Nix integration (U3, U5, U9)", () => {
         },
         async () => {
           const { CONFIG_PATH } = await import("./config.js");
-          expect(CONFIG_PATH).toBe(path.join(path.resolve("/custom/state"), "moltbot.json"));
+          expect(CONFIG_PATH).toBe(path.join(path.resolve("/custom/state"), "AGENT.json"));
         },
       );
     });
@@ -144,7 +144,7 @@ describe("Nix integration (U3, U5, U9)", () => {
           "utf-8",
         );
         await fs.writeFile(
-          path.join(pluginDir, "moltbot.plugin.json"),
+          path.join(pluginDir, "AGENT.plugin.json"),
           JSON.stringify(
             {
               id: "demo-plugin",
@@ -156,7 +156,7 @@ describe("Nix integration (U3, U5, U9)", () => {
           "utf-8",
         );
         await fs.writeFile(
-          path.join(configDir, "moltbot.json"),
+          path.join(configDir, "AGENT.json"),
           JSON.stringify(
             {
               plugins: {
@@ -238,7 +238,7 @@ describe("Nix integration (U3, U5, U9)", () => {
         const configDir = path.join(home, ".clawdbot");
         await fs.mkdir(configDir, { recursive: true });
         await fs.writeFile(
-          path.join(configDir, "moltbot.json"),
+          path.join(configDir, "AGENT.json"),
           JSON.stringify({
             channels: { telegram: { botToken: "123:ABC" } },
           }),
@@ -258,7 +258,7 @@ describe("Nix integration (U3, U5, U9)", () => {
         const configDir = path.join(home, ".clawdbot");
         await fs.mkdir(configDir, { recursive: true });
         await fs.writeFile(
-          path.join(configDir, "moltbot.json"),
+          path.join(configDir, "AGENT.json"),
           JSON.stringify({
             channels: { telegram: { tokenFile: "/run/agenix/telegram-token" } },
           }),
@@ -278,7 +278,7 @@ describe("Nix integration (U3, U5, U9)", () => {
         const configDir = path.join(home, ".clawdbot");
         await fs.mkdir(configDir, { recursive: true });
         await fs.writeFile(
-          path.join(configDir, "moltbot.json"),
+          path.join(configDir, "AGENT.json"),
           JSON.stringify({
             channels: {
               telegram: {

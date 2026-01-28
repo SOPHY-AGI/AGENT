@@ -14,7 +14,7 @@ export function resolveChannelDefaultAccountId<ResolvedAccount>(params: {
 }
 
 export function formatPairingApproveHint(channelId: string): string {
-  const listCmd = formatCliCommand(`moltbot pairing list ${channelId}`);
-  const approveCmd = formatCliCommand(`moltbot pairing approve ${channelId} <code>`);
+  const listCmd = formatCliCommand(`AGENT pairing list ${channelId}`);
+  const approveCmd = formatCliCommand(`AGENT pairing approve ${channelId} <code>`);
   return `Approve via: ${listCmd} / ${approveCmd}`;
 }

@@ -58,7 +58,7 @@ function normalizeAllowlist(input: unknown): string[] | undefined {
 }
 
 function isBundledSkill(entry: SkillEntry): boolean {
-  return entry.skill.source === "moltbot-bundled";
+  return entry.skill.source === "AGENT-bundled";
 }
 
 export function resolveBundledAllowlist(config?: MoltbotConfig): string[] | undefined {

@@ -106,11 +106,11 @@ const saveSessionToMemory: HookHandler = async (event) => {
         // Dynamically import the LLM slug generator (avoids module caching issues)
         // When compiled, handler is at dist/hooks/bundled/session-memory/handler.js
         // Going up ../.. puts us at dist/hooks/, so just add llm-slug-generator.js
-        const moltbotRoot = path.resolve(
+        const AGENTRoot = path.resolve(
           path.dirname(import.meta.url.replace("file://", "")),
           "../..",
         );
-        const slugGenPath = path.join(moltbotRoot, "llm-slug-generator.js");
+        const slugGenPath = path.join(AGENTRoot, "llm-slug-generator.js");
         const { generateSlugViaLLM } = await import(slugGenPath);
 
         // Use LLM to generate a descriptive slug

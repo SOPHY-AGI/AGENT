@@ -95,7 +95,7 @@ export async function startGatewayBonjourAdvertiser(
       .hostname()
       .replace(/\.local$/i, "")
       .split(".")[0]
-      .trim() || "moltbot";
+      .trim() || "AGENT";
   const instanceName =
     typeof opts.instanceName === "string" && opts.instanceName.trim()
       ? opts.instanceName.trim()
@@ -140,7 +140,7 @@ export async function startGatewayBonjourAdvertiser(
 
   const gateway = responder.createService({
     name: safeServiceName(instanceName),
-    type: "moltbot-gw",
+    type: "AGENT-gw",
     protocol: Protocol.TCP,
     port: opts.gatewayPort,
     domain: "local",

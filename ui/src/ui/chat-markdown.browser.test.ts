@@ -6,7 +6,7 @@ const originalConnect = MoltbotApp.prototype.connect;
 
 function mountApp(pathname: string) {
   window.history.replaceState({}, "", pathname);
-  const app = document.createElement("moltbot-app") as MoltbotApp;
+  const app = document.createElement("AGENT-app") as MoltbotApp;
   document.body.append(app);
   return app;
 }

@@ -23,13 +23,13 @@ want “always works” text responses without relying on external APIs.
 You can use Claude Code CLI **without any config** (Moltbot ships a built-in default):
 
 ```bash
-moltbot agent --message "hi" --model claude-cli/opus-4.5
+AGENT agent --message "hi" --model claude-cli/opus-4.5
 ```
 
 Codex CLI also works out of the box:
 
 ```bash
-moltbot agent --message "hi" --model codex-cli/gpt-5.2-codex
+AGENT agent --message "hi" --model codex-cli/gpt-5.2-codex
 ```
 
 If your gateway runs under launchd/systemd and PATH is minimal, add just the

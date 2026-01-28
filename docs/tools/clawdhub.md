@@ -177,7 +177,7 @@ Updates compare the local skill contents to registry versions using a content ha
 
 ### Sync scanning and fallback roots
 
-`clawdhub sync` scans your current workdir first. If no skills are found, it falls back to known legacy locations (for example `~/moltbot/skills` and `~/.clawdbot/skills`). This is designed to find older skill installs without extra flags.
+`clawdhub sync` scans your current workdir first. If no skills are found, it falls back to known legacy locations (for example `~/AGENT/skills` and `~/.clawdbot/skills`). This is designed to find older skill installs without extra flags.
 
 ### Storage and lockfile
 

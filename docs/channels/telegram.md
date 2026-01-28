@@ -202,7 +202,7 @@ Forward any message from the group to `@userinfobot` or `@getidsbot` on Telegram
 
 **Tip:** For your own user ID, DM the bot and it will reply with your user ID (pairing message), or use `/whoami` once commands are enabled.
 
-**Privacy note:** `@userinfobot` is a third-party bot. If you prefer, add the bot to the group, send a message, and use `moltbot logs --follow` to read `chat.id`, or use the Bot API `getUpdates`.
+**Privacy note:** `@userinfobot` is a third-party bot. If you prefer, add the bot to the group, send a message, and use `AGENT logs --follow` to read `chat.id`, or use the Bot API `getUpdates`.
 
 ## Config writes
 By default, Telegram is allowed to write config updates triggered by channel events or `/config set|unset`.
@@ -310,15 +310,15 @@ Use the global setting when all Telegram bots/accounts should behave the same. U
 ### DM access
 - Default: `channels.telegram.dmPolicy = "pairing"`. Unknown senders receive a pairing code; messages are ignored until approved (codes expire after 1 hour).
 - Approve via:
-  - `moltbot pairing list telegram`
-  - `moltbot pairing approve telegram <CODE>`
+  - `AGENT pairing list telegram`
+  - `AGENT pairing approve telegram <CODE>`
 - Pairing is the default token exchange used for Telegram DMs. Details: [Pairing](/start/pairing)
 - `channels.telegram.allowFrom` accepts numeric user IDs (recommended) or `@username` entries. It is **not** the bot username; use the human sender’s ID. The wizard accepts `@username` and resolves it to the numeric ID when possible.
 
 #### Finding your Telegram user ID
 Safer (no third-party bot):
 1) Start the gateway and DM your bot.
-2) Run `moltbot logs --follow` and look for `from.id`.
+2) Run `AGENT logs --follow` and look for `from.id`.
 
 Alternate (official Bot API):
 1) DM your bot.
@@ -594,22 +594,22 @@ The agent sees reactions as **system notifications** in the conversation history
 
 ## Delivery targets (CLI/cron)
 - Use a chat id (`123456789`) or a username (`@name`) as the target.
-- Example: `moltbot message send --channel telegram --target 123456789 --message "hi"`.
+- Example: `AGENT message send --channel telegram --target 123456789 --message "hi"`.
 
 ## Troubleshooting
 
 **Bot doesn’t respond to non-mention messages in a group:**
 - If you set `channels.telegram.groups.*.requireMention=false`, Telegram’s Bot API **privacy mode** must be disabled.
   - BotFather: `/setprivacy` → **Disable** (then remove + re-add the bot to the group)
-- `moltbot channels status` shows a warning when config expects unmentioned group messages.
-- `moltbot channels status --probe` can additionally check membership for explicit numeric group IDs (it can’t audit wildcard `"*"` rules).
+- `AGENT channels status` shows a warning when config expects unmentioned group messages.
+- `AGENT channels status --probe` can additionally check membership for explicit numeric group IDs (it can’t audit wildcard `"*"` rules).
 - Quick test: `/activation always` (session-only; use config for persistence)
 
 **Bot not seeing group messages at all:**
 - If `channels.telegram.groups` is set, the group must be listed or use `"*"`
 - Check Privacy Settings in @BotFather → "Group Privacy" should be **OFF**
 - Verify bot is actually a member (not just an admin with no read access)
-- Check gateway logs: `moltbot logs --follow` (look for "skipping group message")
+- Check gateway logs: `AGENT logs --follow` (look for "skipping group message")
 
 **Bot responds to mentions but not `/activation always`:**
 - The `/activation` command updates session state but doesn't persist to config

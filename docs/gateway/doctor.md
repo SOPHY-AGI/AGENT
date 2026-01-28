@@ -6,44 +6,44 @@ read_when:
 ---
 # Doctor
 
-`moltbot doctor` is the repair + migration tool for Moltbot. It fixes stale
+`AGENT doctor` is the repair + migration tool for Moltbot. It fixes stale
 config/state, checks health, and provides actionable repair steps.
 
 ## Quick start
 
 ```bash
-moltbot doctor
+AGENT doctor
 ```
 
 ### Headless / automation
 
 ```bash
-moltbot doctor --yes
+AGENT doctor --yes
 ```
 
 Accept defaults without prompting (including restart/service/sandbox repair steps when applicable).
 
 ```bash
-moltbot doctor --repair
+AGENT doctor --repair
 ```
 
 Apply recommended repairs without prompting (repairs + restarts where safe).
 
 ```bash
-moltbot doctor --repair --force
+AGENT doctor --repair --force
 ```
 
 Apply aggressive repairs too (overwrites custom supervisor configs).
 
 ```bash
-moltbot doctor --non-interactive
+AGENT doctor --non-interactive
 ```
 
 Run without prompts and only apply safe migrations (config normalization + on-disk state moves). Skips restart/service/sandbox actions that require human confirmation.
 Legacy state migrations run automatically when detected.
 
 ```bash
-moltbot doctor --deep
+AGENT doctor --deep
 ```
 
 Scan system services for extra gateway installs (launchd/systemd/schtasks).
@@ -51,7 +51,7 @@ Scan system services for extra gateway installs (launchd/systemd/schtasks).
 If you want to review changes before writing, open the config file first:
 
 ```bash
-cat ~/.clawdbot/moltbot.json
+cat ~/.clawdbot/AGENT.json
 ```
 
 ## What it does (summary)
@@ -65,7 +65,7 @@ cat ~/.clawdbot/moltbot.json
 - State integrity and permissions checks (sessions, transcripts, state dir).
 - Config file permission checks (chmod 600) when running locally.
 - Model auth health: checks OAuth expiry, can refresh expiring tokens, and reports auth-profile cooldown/disabled states.
-- Extra workspace dir detection (`~/moltbot`).
+- Extra workspace dir detection (`~/AGENT`).
 - Sandbox image repair when sandboxing is enabled.
 - Legacy service migration and extra gateway detection.
 - Gateway runtime checks (service installed but not running; cached launchd label).
@@ -92,12 +92,12 @@ schema.
 
 ### 2) Legacy config key migrations
 When the config contains deprecated keys, other commands refuse to run and ask
-you to run `moltbot doctor`.
+you to run `AGENT doctor`.
 
 Doctor will:
 - Explain which legacy keys were found.
 - Show the migration it applied.
-- Rewrite `~/.clawdbot/moltbot.json` with the updated schema.
+- Rewrite `~/.clawdbot/AGENT.json` with the updated schema.
 
 The Gateway also auto-runs doctor migrations on startup when it detects a
 legacy config format, so stale configs are repaired without manual intervention.
@@ -138,7 +138,7 @@ These migrations are best-effort and idempotent; doctor will emit warnings when
 it leaves any legacy folders behind as backups. The Gateway/CLI also auto-migrates
 the legacy sessions + agent dir on startup so history/auth/models land in the
 per-agent path without a manual doctor run. WhatsApp auth is intentionally only
-migrated via `moltbot doctor`.
+migrated via `AGENT doctor`.
 
 ### 4) State integrity checks (session persistence, routing, and safety)
 The state directory is the operational brainstem. If it vanishes, you lose
@@ -160,7 +160,7 @@ Doctor checks:
   split between installs).
 - **Remote mode reminder**: if `gateway.mode=remote`, doctor reminds you to run
   it on the remote host (the state lives there).
-- **Config file permissions**: warns if `~/.clawdbot/moltbot.json` is
+- **Config file permissions**: warns if `~/.clawdbot/AGENT.json` is
   group/world readable and offers to tighten to `600`.
 
 ### 5) Model auth health (OAuth expiry)
@@ -203,7 +203,7 @@ workspace.
 
 ### 12) Gateway auth checks (local token)
 Doctor warns when `gateway.auth` is missing on a local gateway and offers to
-generate a token. Use `moltbot doctor --generate-gateway-token` to force token
+generate a token. Use `AGENT doctor --generate-gateway-token` to force token
 creation in automation.
 
 ### 13) Gateway health check + restart
@@ -221,11 +221,11 @@ restart delay). When it finds a mismatch, it recommends an update and can
 rewrite the service file/task to the current defaults.
 
 Notes:
-- `moltbot doctor` prompts before rewriting supervisor config.
-- `moltbot doctor --yes` accepts the default repair prompts.
-- `moltbot doctor --repair` applies recommended fixes without prompts.
-- `moltbot doctor --repair --force` overwrites custom supervisor configs.
-- You can always force a full rewrite via `moltbot gateway install --force`.
+- `AGENT doctor` prompts before rewriting supervisor config.
+- `AGENT doctor --yes` accepts the default repair prompts.
+- `AGENT doctor --repair` applies recommended fixes without prompts.
+- `AGENT doctor --repair --force` overwrites custom supervisor configs.
+- You can always force a full rewrite via `AGENT gateway install --force`.
 
 ### 16) Gateway runtime + port diagnostics
 Doctor inspects the service runtime (PID, last exit status) and warns when the

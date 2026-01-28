@@ -4,7 +4,7 @@ import path from "node:path";
 import type { AgentTool } from "@mariozechner/pi-agent-core";
 import { describe, expect, it, vi } from "vitest";
 import "./test-helpers/fast-coding-tools.js";
-import { createMoltbotTools } from "./moltbot-tools.js";
+import { createMoltbotTools } from "./AGENT-tools.js";
 import { __testing, createMoltbotCodingTools } from "./pi-tools.js";
 import { createSandboxedReadTool } from "./pi-tools.read.js";
 import { createBrowserTool } from "./tools/browser-tool.js";
@@ -449,8 +449,8 @@ describe("createMoltbotCodingTools", () => {
     }
   });
   it("applies sandbox path guards to file_path alias", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "moltbot-sbx-"));
-    const outsidePath = path.join(os.tmpdir(), "moltbot-outside.txt");
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "AGENT-sbx-"));
+    const outsidePath = path.join(os.tmpdir(), "AGENT-outside.txt");
     await fs.writeFile(outsidePath, "outside", "utf8");
     try {
       const readTool = createSandboxedReadTool(tmpDir);

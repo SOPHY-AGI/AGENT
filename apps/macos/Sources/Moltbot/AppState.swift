@@ -41,13 +41,13 @@ final class AppState {
     }
 
     var onboardingSeen: Bool {
-        didSet { self.ifNotPreview { UserDefaults.standard.set(self.onboardingSeen, forKey: "moltbot.onboardingSeen") }
+        didSet { self.ifNotPreview { UserDefaults.standard.set(self.onboardingSeen, forKey: "AGENT.onboardingSeen") }
         }
     }
 
     var debugPaneEnabled: Bool {
         didSet {
-            self.ifNotPreview { UserDefaults.standard.set(self.debugPaneEnabled, forKey: "moltbot.debugPaneEnabled") }
+            self.ifNotPreview { UserDefaults.standard.set(self.debugPaneEnabled, forKey: "AGENT.debugPaneEnabled") }
             CanvasManager.shared.refreshDebugStatus()
         }
     }
@@ -229,11 +229,11 @@ final class AppState {
 
     init(preview: Bool = false) {
         self.isPreview = preview || ProcessInfo.processInfo.isRunningTests
-        let onboardingSeen = UserDefaults.standard.bool(forKey: "moltbot.onboardingSeen")
+        let onboardingSeen = UserDefaults.standard.bool(forKey: "AGENT.onboardingSeen")
         self.isPaused = UserDefaults.standard.bool(forKey: pauseDefaultsKey)
         self.launchAtLogin = false
         self.onboardingSeen = onboardingSeen
-        self.debugPaneEnabled = UserDefaults.standard.bool(forKey: "moltbot.debugPaneEnabled")
+        self.debugPaneEnabled = UserDefaults.standard.bool(forKey: "AGENT.debugPaneEnabled")
         let savedVoiceWake = UserDefaults.standard.bool(forKey: swabbleEnabledKey)
         self.swabbleEnabled = voiceWakeSupported ? savedVoiceWake : false
         self.swabbleTriggerWords = UserDefaults.standard
@@ -685,7 +685,7 @@ extension AppState {
         state.remoteTarget = "user@example.com"
         state.remoteUrl = "wss://gateway.example.ts.net"
         state.remoteIdentity = "~/.ssh/id_ed25519"
-        state.remoteProjectRoot = "~/Projects/moltbot"
+        state.remoteProjectRoot = "~/Projects/AGENT"
         state.remoteCliPath = ""
         return state
     }

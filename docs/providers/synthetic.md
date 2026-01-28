@@ -15,7 +15,7 @@ Synthetic exposes Anthropic-compatible endpoints. Moltbot registers it as the
 2) Run onboarding:
 
 ```bash
-moltbot onboard --auth-choice synthetic-api-key
+AGENT onboard --auth-choice synthetic-api-key
 ```
 
 The default model is set to:
